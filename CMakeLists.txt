@@ -128,6 +128,17 @@ target_link_libraries(CameraZoomPlugin PRIVATE
   gz-sim${GZ_SIM_VER}::gz-sim${GZ_SIM_VER}
 )
 
+add_library(GimbalStabilizerPlugin
+  SHARED
+  src/GimbalStabilizerPlugin.cc
+)
+target_include_directories(GimbalStabilizerPlugin PRIVATE
+  include
+)
+target_link_libraries(GimbalStabilizerPlugin PRIVATE
+  gz-sim${GZ_SIM_VER}::gz-sim${GZ_SIM_VER}
+)
+
 add_library(GstCameraPlugin
   SHARED
   src/GstCameraPlugin.cc
@@ -151,6 +162,7 @@ install(
   ArduPilotPlugin
   ParachutePlugin
   CameraZoomPlugin
+  GimbalStabilizerPlugin
   GstCameraPlugin
   DESTINATION lib/${PROJECT_NAME}
 )

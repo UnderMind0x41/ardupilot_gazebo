@@ -281,31 +281,10 @@
         <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
       </control>
 
-      <!-- roll range is -30 to +30 deg -->
-      <control channel="8">
-        <jointName>gimbal::roll_joint</jointName>
-        <multiplier>1.047197551196</multiplier>
-        <offset>-0.5</offset>
-        <servo_min>1100</servo_min>
-        <servo_max>1900</servo_max>
-        <type>COMMAND</type>
-        <cmd_topic>/gimbal/cmd_roll</cmd_topic>
-        <p_gain>2</p_gain>
-      </control>
+      <!-- Gimbal roll/pitch are handled by GimbalStabilizerPlugin below.
+           Yaw (channel 10) can optionally be controlled via RC/MAVProxy. -->
 
-      <!-- pitch range is -135 to +45 deg -->
-      <control channel="9">
-        <jointName>gimbal::pitch_joint</jointName>
-        <multiplier>-3.14159265</multiplier>
-        <offset>-0.75</offset>
-        <servo_min>1100</servo_min>
-        <servo_max>1900</servo_max>
-        <type>COMMAND</type>
-        <cmd_topic>/gimbal/cmd_pitch</cmd_topic>
-        <p_gain>2</p_gain>
-      </control>
-
-      <!-- yaw range is -160 to +160 deg -->
+      <!-- yaw range is -160 to +160 deg (RC-controllable heading offset) -->
       <control channel="10">
         <jointName>gimbal::yaw_joint</jointName>
         <multiplier>-5.5850536</multiplier>
@@ -319,6 +298,7 @@
 
     </plugin>
 
+    <!-- Joint controllers: receive target angles and apply PID forces -->
     <plugin
       filename="gz-sim-joint-position-controller-system"
       name="gz::sim::systems::JointPositionController">
@@ -339,6 +319,17 @@
       <joint_name>gimbal::yaw_joint</joint_name>
       <topic>/gimbal/cmd_yaw</topic>
       <p_gain>2</p_gain>
+    </plugin>
+
+    <!-- Gimbal stabilisation: reads drone attitude and commands roll/pitch
+         joints each step to keep the camera pointing straight down. -->
+    <plugin
+      filename="GimbalStabilizerPlugin"
+      name="GimbalStabilizerPlugin">
+      <roll_topic>/gimbal/cmd_roll</roll_topic>
+      <pitch_topic>/gimbal/cmd_pitch</pitch_topic>
+      <!-- 0 = camera looks forward (horizontal) when drone is level -->
+      <pitch_offset>0</pitch_offset>
     </plugin>
 
   </model>
