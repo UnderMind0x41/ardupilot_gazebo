@@ -1,0 +1,126 @@
+[0.007s] Invoking command in '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/build/ardupilot_gazebo': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/build/ardupilot_gazebo -- -j16 -l16
+[0.055s] [ 28%] Built target CameraZoomPlugin
+[0.055s] [ 28%] Built target GimbalStabilizerPlugin
+[0.056s] [ 35%] Building CXX object CMakeFiles/SprayerPlugin.dir/src/SprayerPlugin.cc.o
+[0.062s] [ 50%] Built target ParachutePlugin
+[0.063s] [ 64%] Built target GstCameraPlugin
+[0.067s] [ 92%] Built target ArduPilotPlugin
+[6.785s] [100%] Linking CXX shared library libSprayerPlugin.so
+[6.960s] [100%] Built target SprayerPlugin
+[6.970s] Invoked command in '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/build/ardupilot_gazebo' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/build/ardupilot_gazebo -- -j16 -l16
+[6.977s] Invoking command in '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/build/ardupilot_gazebo': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/build/ardupilot_gazebo
+[6.984s] -- Install configuration: "RelWithDebInfo"
+[6.984s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libArduPilotPlugin.so
+[6.984s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libParachutePlugin.so
+[6.984s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libCameraZoomPlugin.so
+[6.985s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libGimbalStabilizerPlugin.so
+[6.985s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libGstCameraPlugin.so
+[6.985s] -- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libSprayerPlugin.so
+[6.990s] -- Set non-toolchain portion of runtime path of "/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libSprayerPlugin.so" to ""
+[6.990s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/config
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/model.config
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/meshes
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/meshes/airfield.dae
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials/textures
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials/textures/runway.png
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials/textures/Grass004_2K_Roughness.jpg
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials/textures/Grass004_2K_NormalGL.jpg
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials/textures/Grass004_2K_Color copy.jpg
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials/textures/Grass004_2K_Displacement.jpg
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials/textures/Grass004_2K_AmbientOcclusion.jpg
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials/textures/Grass004_2K_Color.jpg
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/model.sdf
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_1d
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_1d/model.config
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_1d/meshes
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_1d/meshes/tilt.dae
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_1d/meshes/base_main.dae
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_1d/meshes/base_arm.dae
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_1d/model.sdf
+[6.991s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_gimbal
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_gimbal/model.config
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_gimbal/model.sdf
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr_with_ardupilot
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr_with_ardupilot/model.config
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr_with_ardupilot/model.sdf
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/model.config
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/meshes
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/model.sdf
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_ardupilot
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_ardupilot/model.config
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_ardupilot/model.sdf
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/parachute_small
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/parachute_small/model.config
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/parachute_small/meshes
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/parachute_small/meshes/parachute_small.dae
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/parachute_small/model.sdf
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/model.config
+[6.992s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/meshes
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/meshes/wing.dae
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/meshes/parachute_small.dae
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/materials
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/materials/textures
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/materials/textures/wing.png
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/model.sdf
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/thumbnails
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/thumbnails/1.png
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/thumbnails/3.png
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/thumbnails/4.png
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/thumbnails/2.png
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/thumbnails/5.png
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_2d
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_2d/model.config
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_2d/meshes
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_2d/meshes/tilt.dae
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_2d/meshes/base_main.dae
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_2d/meshes/base_arm.dae
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_2d/model.sdf
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_sprayer
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_sprayer/model.config
+[6.993s] -- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_sprayer/model.sdf
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr_with_parachute
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr_with_parachute/model.config
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr_with_parachute/model.sdf
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/model.config
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/meshes
+[6.993s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/model.sdf
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/worlds
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/worlds/iris_runway.sdf
+[6.994s] -- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/worlds/iris_sprayer.sdf
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/worlds/zephyr_runway.sdf
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/worlds/gimbal.sdf
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/worlds/iris_warehouse.sdf
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/worlds/zephyr_parachute.sdf
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/environment/ardupilot_gazebo.dsv
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/environment/ardupilot_gazebo.sh
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ament_index/resource_index/package_run_dependencies/ardupilot_gazebo
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ament_index/resource_index/parent_prefix_path/ardupilot_gazebo
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/environment/ament_prefix_path.sh
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/environment/ament_prefix_path.dsv
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/environment/path.sh
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/environment/path.dsv
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/local_setup.bash
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/local_setup.sh
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/local_setup.zsh
+[6.994s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/local_setup.dsv
+[6.994s] -- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/package.dsv
+[6.995s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ament_index/resource_index/packages/ardupilot_gazebo
+[6.995s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/cmake/ardupilot_gazeboConfig.cmake
+[6.995s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/cmake/ardupilot_gazeboConfig-version.cmake
+[6.995s] -- Up-to-date: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/package.xml
+[6.995s] Invoked command in '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/build/ardupilot_gazebo' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/build/ardupilot_gazebo

@@ -1,0 +1,470 @@
+[0.000000] (-) TimerEvent: {}
+[0.000169] (ardupilot_gazebo) JobQueued: {'identifier': 'ardupilot_gazebo', 'dependencies': OrderedDict()}
+[0.000315] (ardupilot_gazebo) JobStarted: {'identifier': 'ardupilot_gazebo'}
+[0.005738] (ardupilot_gazebo) JobProgress: {'identifier': 'ardupilot_gazebo', 'progress': 'cmake'}
+[0.006621] (ardupilot_gazebo) Command: {'cmd': ['/usr/bin/cmake', '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo', '-DCMAKE_INSTALL_PREFIX=/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo'], 'cwd': '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/build/ardupilot_gazebo', 'env': OrderedDict({'PYTHON_BASIC_REPL': '1', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'KDE_FULL_SESSION': 'true', 'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share', 'USER': 'kirillz', 'PAM_KWALLET5_LOGIN': '/run/user/1000/kwallet5.socket', 'LC_TIME': 'ru_RU.UTF-8', 'FONTCONFIG_PATH': '/etc/fonts', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'XDG_SEAT': 'seat0', 'GIO_MODULE_DIR': '/home/kirillz/snap/code/common/.cache/gio-modules', 'SSH_AGENT_PID': '5148', 'XDG_SESSION_TYPE': 'x11', 'GIT_ASKPASS': '/snap/code/232/usr/share/code/resources/app/extensions/git/dist/askpass.sh', 'GTK_EXE_PREFIX_VSCODE_SNAP_ORIG': '', 'GDK_BACKEND_VSCODE_SNAP_ORIG': '', 'XCURSOR_SIZE': '24', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/kirillz', 'CHROME_DESKTOP': 'code.desktop', 'KDE_APPLICATIONS_AS_SCOPE': '1', 'LOCPATH_VSCODE_SNAP_ORIG': '', 'OLDPWD': '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo', 'TERM_PROGRAM_VERSION': '1.114.0', 'DESKTOP_SESSION': 'plasma', 'GTK_PATH': '/snap/code/232/usr/lib/x86_64-linux-gnu/gtk-3.0', 'XDG_DATA_HOME_VSCODE_SNAP_ORIG': '', 'GTK_IM_MODULE_FILE': '/home/kirillz/snap/code/common/.cache/immodules/immodules.cache', 'ROS_PYTHON_VERSION': '3', 'GTK_RC_FILES': '/etc/gtk/gtkrc:/home/kirillz/.gtkrc:/home/kirillz/.config/gtkrc', 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0', 'SDL_IM_MODULE': 'fcitx', 'GSETTINGS_SCHEMA_DIR_VSCODE_SNAP_ORIG': '', 'KDE_SESSION_VERSION': '5', 'VSCODE_GIT_ASKPASS_MAIN': '/snap/code/232/usr/share/code/resources/app/extensions/git/dist/askpass-main.js', 'PS1': '\\[\x1b]633;A\x07\\](.venv) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$ \\[\x1b]633;B\x07\\]', 'LC_MONETARY': 'ru_RU.UTF-8', 'VSCODE_GIT_ASKPASS_NODE': '/snap/code/232/usr/share/code/code', 'MANAGERPID': '2397', 'PYDEVD_DISABLE_FILE_VALIDATION': '1', 'SYSTEMD_EXEC_PID': '5312', 'BUNDLED_DEBUGPY_PATH': '/home/kirillz/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/bundled/libs/debugpy', 'SSH_ASKPASS': '/usr/bin/ksshaskpass', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'LIBVIRT_DEFAULT_URI': 'qemu:///system', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'IM_CONFIG_PHASE': '1', 'ROS_DISTRO': 'jazzy', 'GTK_IM_MODULE': 'fcitx', 'LOGNAME': 'kirillz', 'ERP_DEV': 'TRUE', 'QT_AUTO_SCREEN_SCALE_FACTOR': '0', 'JOURNAL_STREAM': '9:31476', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG': '/home/kirillz/.config/kdedefaults:/etc/xdg/xdg-plasma:/etc/xdg:/usr/share/kubuntu-default-settings/kf5-settings', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/plasma-plasmashell.service/memory.pressure', 'CLAUDE_CODE_SSE_PORT': '20252', 'XDG_SESSION_CLASS': 'user', 'XDG_DATA_DIRS_VSCODE_SNAP_ORIG': '/usr/share/plasma:/home/kirillz/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '5', 'FC_FONTATIONS': '1', 'GTK2_RC_FILES': '/etc/gtk-2.0/gtkrc:/home/kirillz/.gtkrc-2.0:/home/kirillz/.config/gtkrc-2.0', 'PATH': '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/.venv/bin:/home/kirillz/.npm-global/bin:/home/kirillz/.config/Code/User/globalStorage/github.copilot-chat/debugCommand:/home/kirillz/.config/Code/User/globalStorage/github.copilot-chat/copilotCli:/home/kirillz/ardupilot/Tools/autotest:/home/kirillz/ardupilot/Tools/autotest:/usr/lib/ccache:/opt/gcc-arm-none-eabi-10-2020-q4-major/bin:/home/kirillz/.local/bin:/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/home/kirillz/.local/share/pnpm:/home/kirillz/.npm-global/bin:/home/kirillz/ardupilot/Tools/autotest:/home/kirillz/ardupilot/Tools/autotest:/usr/lib/ccache:/opt/gcc-arm-none-eabi-10-2020-q4-major/bin:/home/kirillz/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/kirillz/.lmstudio/bin:/home/kirillz/.lmstudio/bin:/home/kirillz/.lmstudio/bin:/home/kirillz/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/bundled/scripts/noConfigScripts:/home/kirillz/.lmstudio/bin', 'SESSION_MANAGER': 'local/kirillz-ms7d88:@/tmp/.ICE-unix/5268,unix/kirillz-ms7d88:/tmp/.ICE-unix/5268', 'GTK_EXE_PREFIX': '/snap/code/232/usr', 'INVOCATION_ID': '87f7ecb24cae4f93b3f9a116400a971e', 'GTK3_MODULES': 'xapp-gtk3-module', 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session1', 'LC_ADDRESS': 'ru_RU.UTF-8', 'XDG_RUNTIME_DIR': '/run/user/1000', 'XCURSOR_THEME': 'breeze_cursors', 'GDK_BACKEND': 'x11', 'ICEAUTHORITY': '/run/user/1000/iceauth_oFDISR', 'DISPLAY': ':0', 'LOCPATH': '/snap/code/232/usr/lib/locale', 'VSCODE_DEBUGPY_ADAPTER_ENDPOINTS': '/home/kirillz/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-1ab2dbbd6719547d.txt', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'KDE', 'PYTHONSTARTUP': '/home/kirillz/.config/Code/User/workspaceStorage/0d3b1246d04b381e1ca58867832613f7/ms-python.python/pythonrc.py', 'LC_TELEPHONE': 'ru_RU.UTF-8', 'VIRTUAL_ENV_PROMPT': '(.venv)', 'GIO_MODULE_DIR_VSCODE_SNAP_ORIG': '', 'XDG_DATA_HOME': '/home/kirillz/snap/code/232/.local/share', 'XMODIFIERS': '@im=fcitx', 'XDG_SESSION_DESKTOP': 'KDE', 'XAUTHORITY': '/run/user/1000/.Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-336c99fdba.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/tmp/ssh-qiEuxjUZ4UKN/agent.5070', 'GSETTINGS_SCHEMA_DIR': '/home/kirillz/snap/code/232/.local/share/glib-2.0/schemas', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'SHELL': '/bin/bash', 'LC_NAME': 'ru_RU.UTF-8', 'QT_ACCESSIBILITY': '1', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GTK_PATH_VSCODE_SNAP_ORIG': '', 'FONTCONFIG_FILE': '/etc/fonts/fonts.conf', 'GTK_IM_MODULE_FILE_VSCODE_SNAP_ORIG': '', 'LC_MEASUREMENT': 'ru_RU.UTF-8', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'LC_IDENTIFICATION': 'ru_RU.UTF-8', 'VIRTUAL_ENV': '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/.venv', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'QT_IM_MODULE': 'fcitx', 'XDG_VTNR': '2', 'PWD': '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/build/ardupilot_gazebo', 'XDG_CONFIG_DIRS': '/home/kirillz/.config/kdedefaults:/etc/xdg/xdg-plasma:/etc/xdg:/usr/share/kubuntu-default-settings/kf5-settings', 'CLUTTER_IM_MODULE': 'xim', 'XDG_DATA_DIRS': '/home/kirillz/snap/code/232/.local/share/flatpak/exports/share:/home/kirillz/snap/code/232/.local/share:/home/kirillz/snap/code/232:/snap/code/232/usr/share:/usr/share/plasma:/home/kirillz/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'QTWEBENGINE_DICTIONARIES_PATH': '/usr/share/hunspell-bdic/', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'LC_NUMERIC': 'ru_RU.UTF-8', 'LC_PAPER': 'ru_RU.UTF-8', 'KDE_SESSION_UID': '1000', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'PNPM_HOME': '/home/kirillz/.local/share/pnpm', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[0.099921] (-) TimerEvent: {}
+[0.166606] (ardupilot_gazebo) StderrLine: {'line': b'\x1b[0mBuilding ardupilot_gazebo as an `ament_cmake` project.\x1b[0m\n'}
+[0.170293] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[0.170732] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5\n'}
+[0.171022] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[0.171140] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-utils2\n'}
+[0.171704] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for dlfcn.h - found\n'}
+[0.171739] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for libdl - found\n'}
+[0.176752] (ardupilot_gazebo) StdoutLine: {'line': b"-- Checking for module 'uuid'\n"}
+[0.194614] (ardupilot_gazebo) StdoutLine: {'line': b'--   Found uuid, version 2.39.3\n'}
+[0.199998] (-) TimerEvent: {}
+[0.276717] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5 - found\n'}
+[0.277139] (ardupilot_gazebo) StdoutLine: {'line': b'\n'}
+[0.278686] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-rendering8 -- found version 8.2.3\n'}
+[0.278954] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-rendering8\n'}
+[0.279767] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[0.280001] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-math7\n'}
+[0.280625] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[0.281483] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-math7> component [eigen3]\n'}
+[0.282068] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-math7-eigen3 -- found version 7.5.2\n'}
+[0.282315] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-math7-eigen3\n'}
+[0.284145] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[0.284321] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5\n'}
+[0.284678] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[0.284828] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for dlfcn.h - found\n'}
+[0.284910] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for libdl - found\n'}
+[0.289784] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-common5> component [graphics]\n'}
+[0.290202] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5-graphics -- found version 5.7.1\n'}
+[0.290324] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5-graphics\n'}
+[0.290596] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[0.292253] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-common5> component [events]\n'}
+[0.292566] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5-events -- found version 5.7.1\n'}
+[0.292693] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5-events\n'}
+[0.292968] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[0.293332] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-common5> component [geospatial]\n'}
+[0.293614] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5-geospatial -- found version 5.7.1\n'}
+[0.293731] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5-geospatial\n'}
+[0.293977] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[0.294255] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[0.294864] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-plugin2 -- found version 2.0.4\n'}
+[0.294963] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-plugin2\n'}
+[0.295183] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[0.295329] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-utils2\n'}
+[0.295503] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-utils2> component [cli]\n'}
+[0.295616] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-utils2-cli -- found version 2.2.1\n'}
+[0.295721] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-utils2-cli\n'}
+[0.296236] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-plugin2> component [all]\n'}
+[0.296471] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for all libraries of gz-plugin2 -- found version 2.0.4\n'}
+[0.296795] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-plugin2 -- found version 2.0.4\n'}
+[0.297075] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-plugin2-loader -- found version 2.0.4\n'}
+[0.297209] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-plugin2-loader\n'}
+[0.297717] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-plugin2-register -- found version 2.0.4\n'}
+[0.297851] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-plugin2-register\n'}
+[0.298527] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[0.300060] (-) TimerEvent: {}
+[0.300441] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-rendering8 - found\n'}
+[0.300539] (ardupilot_gazebo) StdoutLine: {'line': b'\n'}
+[0.300930] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sim8 -- found version 8.10.0\n'}
+[0.301033] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sim8\n'}
+[0.301275] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for sdformat14 -- found version 14.8.0\n'}
+[0.301376] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of sdformat14\n'}
+[0.304347] (ardupilot_gazebo) StdoutLine: {'line': b"-- Checking for module 'tinyxml2'\n"}
+[0.314705] (ardupilot_gazebo) StdoutLine: {'line': b'--   Found tinyxml2, version 10.0.0\n'}
+[0.337503] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[0.337749] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[0.338378] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-plugin2 -- found version 2.0.4\n'}
+[0.338674] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-transport13 -- found version 13.5.0\n'}
+[0.338802] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-transport13\n'}
+[0.366638] (ardupilot_gazebo) StdoutLine: {'line': b'-- Config-file not installed for ZeroMQ -- checking for pkg-config\n'}
+[0.370082] (ardupilot_gazebo) StdoutLine: {'line': b"-- Checking for module 'libzmq >= 4'\n"}
+[0.386364] (ardupilot_gazebo) StdoutLine: {'line': b'--   Found libzmq, version 4.3.5\n'}
+[0.400236] (-) TimerEvent: {}
+[0.499036] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[0.499909] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-msgs10 -- found version 10.3.2\n'}
+[0.500350] (-) TimerEvent: {}
+[0.500614] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-msgs10\n'}
+[0.519649] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[0.519911] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[0.525541] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-transport13> component [log]\n'}
+[0.525828] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-transport13-log -- found version 13.5.0\n'}
+[0.525996] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-transport13-log\n'}
+[0.526178] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-transport13> component [parameters]\n'}
+[0.526442] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-transport13-parameters -- found version 13.5.0\n'}
+[0.526565] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-transport13-parameters\n'}
+[0.527172] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-msgs10 -- found version 10.3.2\n'}
+[0.527475] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[0.527602] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5\n'}
+[0.527860] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[0.527989] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for dlfcn.h - found\n'}
+[0.528100] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for libdl - found\n'}
+[0.536148] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-common5> component [av]\n'}
+[0.536789] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5-av -- found version 5.7.1\n'}
+[0.537074] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5-av\n'}
+[0.544704] (ardupilot_gazebo) StdoutLine: {'line': b"-- Checking for module 'libswscale'\n"}
+[0.564488] (ardupilot_gazebo) StdoutLine: {'line': b'--   Found libswscale, version 7.5.100\n'}
+[0.600503] (-) TimerEvent: {}
+[0.601738] (ardupilot_gazebo) StdoutLine: {'line': b"-- Checking for module 'libavdevice >= 56.4.100'\n"}
+[0.612997] (ardupilot_gazebo) StdoutLine: {'line': b'--   Found libavdevice, version 60.3.100\n'}
+[0.685933] (ardupilot_gazebo) StdoutLine: {'line': b"-- Checking for module 'libavformat'\n"}
+[0.700722] (-) TimerEvent: {}
+[0.728973] (ardupilot_gazebo) StdoutLine: {'line': b'--   Found libavformat, version 60.16.100\n'}
+[0.793660] (ardupilot_gazebo) StdoutLine: {'line': b"-- Checking for module 'libavcodec'\n"}
+[0.800790] (-) TimerEvent: {}
+[0.805870] (ardupilot_gazebo) StdoutLine: {'line': b'--   Found libavcodec, version 60.31.102\n'}
+[0.871621] (ardupilot_gazebo) StdoutLine: {'line': b"-- Checking for module 'libavutil'\n"}
+[0.882353] (ardupilot_gazebo) StdoutLine: {'line': b'--   Found libavutil, version 58.29.100\n'}
+[0.900898] (-) TimerEvent: {}
+[0.917343] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-common5> component [events]\n'}
+[0.917625] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-common5> component [graphics]\n'}
+[0.917756] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-common5> component [io]\n'}
+[0.918032] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5-io -- found version 5.7.1\n'}
+[0.918295] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5-io\n'}
+[0.918890] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-common5> component [profiler]\n'}
+[0.919352] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5-profiler -- found version 5.7.1\n'}
+[0.919560] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5-profiler\n'}
+[0.920495] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-fuel_tools9 -- found version 9.1.1\n'}
+[0.920659] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-fuel_tools9\n'}
+[0.986747] (ardupilot_gazebo) StdoutLine: {'line': b"-- Checking for module 'jsoncpp'\n"}
+[1.001030] (ardupilot_gazebo) StdoutLine: {'line': b'--   Found jsoncpp, version 1.9.5\n'}
+[1.001228] (-) TimerEvent: {}
+[1.101413] (-) TimerEvent: {}
+[1.102320] (ardupilot_gazebo) StdoutLine: {'line': b"-- Checking for module 'yaml-0.1'\n"}
+[1.118769] (ardupilot_gazebo) StdoutLine: {'line': b'--   Found yaml-0.1, version 0.2.5\n'}
+[1.201528] (-) TimerEvent: {}
+[1.221723] (ardupilot_gazebo) StdoutLine: {'line': b"-- Checking for module 'libzip'\n"}
+[1.263265] (ardupilot_gazebo) StdoutLine: {'line': b'--   Found libzip, version 1.7.3\n'}
+[1.301685] (-) TimerEvent: {}
+[1.357990] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.358970] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.359432] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5\n'}
+[1.360863] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.361675] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for dlfcn.h - found\n'}
+[1.361866] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for libdl - found\n'}
+[1.376450] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-common5> component [testing]\n'}
+[1.377744] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5-testing -- found version 5.7.1\n'}
+[1.378586] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-common5-testing\n'}
+[1.381368] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.382642] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-msgs10 -- found version 10.3.2\n'}
+[1.385876] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-gui8 -- found version 8.4.0\n'}
+[1.386328] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-gui8\n'}
+[1.401746] (-) TimerEvent: {}
+[1.413759] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.414100] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.414452] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.414795] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-plugin2 -- found version 2.0.4\n'}
+[1.415164] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-transport13 -- found version 13.5.0\n'}
+[1.415512] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-rendering8 -- found version 8.2.3\n'}
+[1.415853] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-msgs10 -- found version 10.3.2\n'}
+[1.428890] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-physics7 -- found version 7.6.0\n'}
+[1.429121] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-physics7\n'}
+[1.429249] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.429514] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.429765] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-plugin2 -- found version 2.0.4\n'}
+[1.430011] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.430955] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-physics7> component [heightmap]\n'}
+[1.431229] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-physics7-heightmap -- found version 7.6.0\n'}
+[1.431336] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-physics7-heightmap\n'}
+[1.431588] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.431878] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-physics7> component [mesh]\n'}
+[1.432136] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-physics7-mesh -- found version 7.6.0\n'}
+[1.432243] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-physics7-mesh\n'}
+[1.432487] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.432768] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-physics7> component [sdf]\n'}
+[1.433027] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-physics7-sdf -- found version 7.6.0\n'}
+[1.433137] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-physics7-sdf\n'}
+[1.433372] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for sdformat14 -- found version 14.8.0\n'}
+[1.433964] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8 -- found version 8.2.2\n'}
+[1.434061] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8\n'}
+[1.451436] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.451656] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.451932] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-transport13 -- found version 13.5.0\n'}
+[1.452202] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-rendering8 -- found version 8.2.3\n'}
+[1.452471] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-msgs10 -- found version 10.3.2\n'}
+[1.452727] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for sdformat14 -- found version 14.8.0\n'}
+[1.453108] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [air_pressure]\n'}
+[1.453395] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-air_pressure -- found version 8.2.2\n'}
+[1.453515] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-air_pressure\n'}
+[1.453821] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [air_speed]\n'}
+[1.454075] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-air_speed -- found version 8.2.2\n'}
+[1.454185] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-air_speed\n'}
+[1.454494] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [altimeter]\n'}
+[1.454751] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-altimeter -- found version 8.2.2\n'}
+[1.454851] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-altimeter\n'}
+[1.455143] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [imu]\n'}
+[1.455408] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-imu -- found version 8.2.2\n'}
+[1.455520] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-imu\n'}
+[1.455820] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [force_torque]\n'}
+[1.456072] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-force_torque -- found version 8.2.2\n'}
+[1.456170] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-force_torque\n'}
+[1.456474] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [logical_camera]\n'}
+[1.456736] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-logical_camera -- found version 8.2.2\n'}
+[1.456840] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-logical_camera\n'}
+[1.457144] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [magnetometer]\n'}
+[1.457399] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-magnetometer -- found version 8.2.2\n'}
+[1.457508] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-magnetometer\n'}
+[1.457816] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [navsat]\n'}
+[1.458064] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-navsat -- found version 8.2.2\n'}
+[1.458165] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-navsat\n'}
+[1.458472] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [dvl]\n'}
+[1.458734] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-dvl -- found version 8.2.2\n'}
+[1.458836] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-dvl\n'}
+[1.459086] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8 -- found version 8.2.2\n'}
+[1.459189] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8\n'}
+[1.476926] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.477207] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-common5 -- found version 5.7.1\n'}
+[1.477552] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-transport13 -- found version 13.5.0\n'}
+[1.477903] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-rendering8 -- found version 8.2.3\n'}
+[1.478215] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-msgs10 -- found version 10.3.2\n'}
+[1.478501] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for sdformat14 -- found version 14.8.0\n'}
+[1.478637] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [rendering]\n'}
+[1.478928] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-rendering -- found version 8.2.2\n'}
+[1.479046] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-rendering\n'}
+[1.479852] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [rendering]\n'}
+[1.479954] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [lidar]\n'}
+[1.480165] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-lidar -- found version 8.2.2\n'}
+[1.480256] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-lidar\n'}
+[1.480529] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8 -- found version 8.2.2\n'}
+[1.480925] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [gpu_lidar]\n'}
+[1.481181] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-gpu_lidar -- found version 8.2.2\n'}
+[1.481283] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-gpu_lidar\n'}
+[1.481537] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8 -- found version 8.2.2\n'}
+[1.481894] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [camera]\n'}
+[1.482155] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-camera -- found version 8.2.2\n'}
+[1.482256] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-camera\n'}
+[1.482529] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8 -- found version 8.2.2\n'}
+[1.482951] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [boundingbox_camera]\n'}
+[1.483247] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-boundingbox_camera -- found version 8.2.2\n'}
+[1.483354] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-boundingbox_camera\n'}
+[1.483803] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [segmentation_camera]\n'}
+[1.484077] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-segmentation_camera -- found version 8.2.2\n'}
+[1.484187] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-segmentation_camera\n'}
+[1.484572] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [depth_camera]\n'}
+[1.484851] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-depth_camera -- found version 8.2.2\n'}
+[1.484959] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-depth_camera\n'}
+[1.485220] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8 -- found version 8.2.2\n'}
+[1.485612] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [rgbd_camera]\n'}
+[1.485893] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-rgbd_camera -- found version 8.2.2\n'}
+[1.486001] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-rgbd_camera\n'}
+[1.486259] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8 -- found version 8.2.2\n'}
+[1.486661] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [thermal_camera]\n'}
+[1.486933] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-thermal_camera -- found version 8.2.2\n'}
+[1.487040] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-thermal_camera\n'}
+[1.487293] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8 -- found version 8.2.2\n'}
+[1.487677] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for <gz-sensors8> component [wide_angle_camera]\n'}
+[1.487960] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sensors8-wide_angle_camera -- found version 8.2.2\n'}
+[1.488074] (ardupilot_gazebo) StdoutLine: {'line': b'-- Searching for dependencies of gz-sensors8-wide_angle_camera\n'}
+[1.488791] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-rendering8 -- found version 8.2.3\n'}
+[1.489055] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-math7 -- found version 7.5.2\n'}
+[1.489318] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-utils2 -- found version 2.2.1\n'}
+[1.501868] (-) TimerEvent: {}
+[1.507171] (ardupilot_gazebo) StdoutLine: {'line': b'-- Looking for gz-sim8 - found\n'}
+[1.507385] (ardupilot_gazebo) StdoutLine: {'line': b'\n'}
+[1.507503] (ardupilot_gazebo) StdoutLine: {'line': b'-- Compiling against Gazebo Harmonic\n'}
+[1.507585] (ardupilot_gazebo) StdoutLine: {'line': b'-- RapidJSON found. Headers: /usr/include\n'}
+[1.587770] (ardupilot_gazebo) StdoutLine: {'line': b'-- Configuring done (1.6s)\n'}
+[1.601960] (-) TimerEvent: {}
+[1.619985] (ardupilot_gazebo) StdoutLine: {'line': b'-- Generating done (0.0s)\n'}
+[1.627245] (ardupilot_gazebo) StdoutLine: {'line': b'-- Build files have been written to: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/build/ardupilot_gazebo\n'}
+[1.633435] (ardupilot_gazebo) CommandEnded: {'returncode': 0}
+[1.633832] (ardupilot_gazebo) JobProgress: {'identifier': 'ardupilot_gazebo', 'progress': 'build'}
+[1.634230] (ardupilot_gazebo) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/build/ardupilot_gazebo', '--', '-j16', '-l16'], 'cwd': '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/build/ardupilot_gazebo', 'env': OrderedDict({'PYTHON_BASIC_REPL': '1', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'KDE_FULL_SESSION': 'true', 'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share', 'USER': 'kirillz', 'PAM_KWALLET5_LOGIN': '/run/user/1000/kwallet5.socket', 'LC_TIME': 'ru_RU.UTF-8', 'FONTCONFIG_PATH': '/etc/fonts', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'XDG_SEAT': 'seat0', 'GIO_MODULE_DIR': '/home/kirillz/snap/code/common/.cache/gio-modules', 'SSH_AGENT_PID': '5148', 'XDG_SESSION_TYPE': 'x11', 'GIT_ASKPASS': '/snap/code/232/usr/share/code/resources/app/extensions/git/dist/askpass.sh', 'GTK_EXE_PREFIX_VSCODE_SNAP_ORIG': '', 'GDK_BACKEND_VSCODE_SNAP_ORIG': '', 'XCURSOR_SIZE': '24', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/kirillz', 'CHROME_DESKTOP': 'code.desktop', 'KDE_APPLICATIONS_AS_SCOPE': '1', 'LOCPATH_VSCODE_SNAP_ORIG': '', 'OLDPWD': '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo', 'TERM_PROGRAM_VERSION': '1.114.0', 'DESKTOP_SESSION': 'plasma', 'GTK_PATH': '/snap/code/232/usr/lib/x86_64-linux-gnu/gtk-3.0', 'XDG_DATA_HOME_VSCODE_SNAP_ORIG': '', 'GTK_IM_MODULE_FILE': '/home/kirillz/snap/code/common/.cache/immodules/immodules.cache', 'ROS_PYTHON_VERSION': '3', 'GTK_RC_FILES': '/etc/gtk/gtkrc:/home/kirillz/.gtkrc:/home/kirillz/.config/gtkrc', 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0', 'SDL_IM_MODULE': 'fcitx', 'GSETTINGS_SCHEMA_DIR_VSCODE_SNAP_ORIG': '', 'KDE_SESSION_VERSION': '5', 'VSCODE_GIT_ASKPASS_MAIN': '/snap/code/232/usr/share/code/resources/app/extensions/git/dist/askpass-main.js', 'PS1': '\\[\x1b]633;A\x07\\](.venv) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$ \\[\x1b]633;B\x07\\]', 'LC_MONETARY': 'ru_RU.UTF-8', 'VSCODE_GIT_ASKPASS_NODE': '/snap/code/232/usr/share/code/code', 'MANAGERPID': '2397', 'PYDEVD_DISABLE_FILE_VALIDATION': '1', 'SYSTEMD_EXEC_PID': '5312', 'BUNDLED_DEBUGPY_PATH': '/home/kirillz/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/bundled/libs/debugpy', 'SSH_ASKPASS': '/usr/bin/ksshaskpass', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'LIBVIRT_DEFAULT_URI': 'qemu:///system', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'IM_CONFIG_PHASE': '1', 'ROS_DISTRO': 'jazzy', 'GTK_IM_MODULE': 'fcitx', 'LOGNAME': 'kirillz', 'ERP_DEV': 'TRUE', 'QT_AUTO_SCREEN_SCALE_FACTOR': '0', 'JOURNAL_STREAM': '9:31476', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG': '/home/kirillz/.config/kdedefaults:/etc/xdg/xdg-plasma:/etc/xdg:/usr/share/kubuntu-default-settings/kf5-settings', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/plasma-plasmashell.service/memory.pressure', 'CLAUDE_CODE_SSE_PORT': '20252', 'XDG_SESSION_CLASS': 'user', 'XDG_DATA_DIRS_VSCODE_SNAP_ORIG': '/usr/share/plasma:/home/kirillz/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '5', 'FC_FONTATIONS': '1', 'GTK2_RC_FILES': '/etc/gtk-2.0/gtkrc:/home/kirillz/.gtkrc-2.0:/home/kirillz/.config/gtkrc-2.0', 'PATH': '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/.venv/bin:/home/kirillz/.npm-global/bin:/home/kirillz/.config/Code/User/globalStorage/github.copilot-chat/debugCommand:/home/kirillz/.config/Code/User/globalStorage/github.copilot-chat/copilotCli:/home/kirillz/ardupilot/Tools/autotest:/home/kirillz/ardupilot/Tools/autotest:/usr/lib/ccache:/opt/gcc-arm-none-eabi-10-2020-q4-major/bin:/home/kirillz/.local/bin:/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/home/kirillz/.local/share/pnpm:/home/kirillz/.npm-global/bin:/home/kirillz/ardupilot/Tools/autotest:/home/kirillz/ardupilot/Tools/autotest:/usr/lib/ccache:/opt/gcc-arm-none-eabi-10-2020-q4-major/bin:/home/kirillz/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/kirillz/.lmstudio/bin:/home/kirillz/.lmstudio/bin:/home/kirillz/.lmstudio/bin:/home/kirillz/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/bundled/scripts/noConfigScripts:/home/kirillz/.lmstudio/bin', 'SESSION_MANAGER': 'local/kirillz-ms7d88:@/tmp/.ICE-unix/5268,unix/kirillz-ms7d88:/tmp/.ICE-unix/5268', 'GTK_EXE_PREFIX': '/snap/code/232/usr', 'INVOCATION_ID': '87f7ecb24cae4f93b3f9a116400a971e', 'GTK3_MODULES': 'xapp-gtk3-module', 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session1', 'LC_ADDRESS': 'ru_RU.UTF-8', 'XDG_RUNTIME_DIR': '/run/user/1000', 'XCURSOR_THEME': 'breeze_cursors', 'GDK_BACKEND': 'x11', 'ICEAUTHORITY': '/run/user/1000/iceauth_oFDISR', 'DISPLAY': ':0', 'LOCPATH': '/snap/code/232/usr/lib/locale', 'VSCODE_DEBUGPY_ADAPTER_ENDPOINTS': '/home/kirillz/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-1ab2dbbd6719547d.txt', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'KDE', 'PYTHONSTARTUP': '/home/kirillz/.config/Code/User/workspaceStorage/0d3b1246d04b381e1ca58867832613f7/ms-python.python/pythonrc.py', 'LC_TELEPHONE': 'ru_RU.UTF-8', 'VIRTUAL_ENV_PROMPT': '(.venv)', 'GIO_MODULE_DIR_VSCODE_SNAP_ORIG': '', 'XDG_DATA_HOME': '/home/kirillz/snap/code/232/.local/share', 'XMODIFIERS': '@im=fcitx', 'XDG_SESSION_DESKTOP': 'KDE', 'XAUTHORITY': '/run/user/1000/.Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-336c99fdba.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/tmp/ssh-qiEuxjUZ4UKN/agent.5070', 'GSETTINGS_SCHEMA_DIR': '/home/kirillz/snap/code/232/.local/share/glib-2.0/schemas', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'SHELL': '/bin/bash', 'LC_NAME': 'ru_RU.UTF-8', 'QT_ACCESSIBILITY': '1', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GTK_PATH_VSCODE_SNAP_ORIG': '', 'FONTCONFIG_FILE': '/etc/fonts/fonts.conf', 'GTK_IM_MODULE_FILE_VSCODE_SNAP_ORIG': '', 'LC_MEASUREMENT': 'ru_RU.UTF-8', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'LC_IDENTIFICATION': 'ru_RU.UTF-8', 'VIRTUAL_ENV': '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/.venv', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'QT_IM_MODULE': 'fcitx', 'XDG_VTNR': '2', 'PWD': '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/build/ardupilot_gazebo', 'XDG_CONFIG_DIRS': '/home/kirillz/.config/kdedefaults:/etc/xdg/xdg-plasma:/etc/xdg:/usr/share/kubuntu-default-settings/kf5-settings', 'CLUTTER_IM_MODULE': 'xim', 'XDG_DATA_DIRS': '/home/kirillz/snap/code/232/.local/share/flatpak/exports/share:/home/kirillz/snap/code/232/.local/share:/home/kirillz/snap/code/232:/snap/code/232/usr/share:/usr/share/plasma:/home/kirillz/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'QTWEBENGINE_DICTIONARIES_PATH': '/usr/share/hunspell-bdic/', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'LC_NUMERIC': 'ru_RU.UTF-8', 'LC_PAPER': 'ru_RU.UTF-8', 'KDE_SESSION_UID': '1000', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'PNPM_HOME': '/home/kirillz/.local/share/pnpm', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[1.692567] (ardupilot_gazebo) StdoutLine: {'line': b'[  7%] \x1b[32mBuilding CXX object CMakeFiles/ParachutePlugin.dir/src/ParachutePlugin.cc.o\x1b[0m\n'}
+[1.693286] (ardupilot_gazebo) StdoutLine: {'line': b'[ 14%] \x1b[32mBuilding CXX object CMakeFiles/SprayerPlugin.dir/src/SprayerPlugin.cc.o\x1b[0m\n'}
+[1.696314] (ardupilot_gazebo) StdoutLine: {'line': b'[ 21%] \x1b[32mBuilding CXX object CMakeFiles/ArduPilotPlugin.dir/src/ArduPilotPlugin.cc.o\x1b[0m\n'}
+[1.697282] (ardupilot_gazebo) StdoutLine: {'line': b'[ 28%] \x1b[32mBuilding CXX object CMakeFiles/ArduPilotPlugin.dir/src/SocketUDP.cc.o\x1b[0m\n'}
+[1.698024] (ardupilot_gazebo) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/ArduPilotPlugin.dir/src/Util.cc.o\x1b[0m\n'}
+[1.699631] (ardupilot_gazebo) StdoutLine: {'line': b'[ 42%] \x1b[32mBuilding CXX object CMakeFiles/GimbalStabilizerPlugin.dir/src/GimbalStabilizerPlugin.cc.o\x1b[0m\n'}
+[1.699947] (ardupilot_gazebo) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/GstCameraPlugin.dir/src/GstCameraPlugin.cc.o\x1b[0m\n'}
+[1.702053] (-) TimerEvent: {}
+[1.704262] (ardupilot_gazebo) StdoutLine: {'line': b'[ 57%] \x1b[32mBuilding CXX object CMakeFiles/CameraZoomPlugin.dir/src/CameraZoomPlugin.cc.o\x1b[0m\n'}
+[1.802159] (-) TimerEvent: {}
+[1.902384] (-) TimerEvent: {}
+[2.002627] (-) TimerEvent: {}
+[2.102882] (-) TimerEvent: {}
+[2.203154] (-) TimerEvent: {}
+[2.303400] (-) TimerEvent: {}
+[2.403657] (-) TimerEvent: {}
+[2.503932] (-) TimerEvent: {}
+[2.604225] (-) TimerEvent: {}
+[2.704508] (-) TimerEvent: {}
+[2.804781] (-) TimerEvent: {}
+[2.905064] (-) TimerEvent: {}
+[3.005376] (-) TimerEvent: {}
+[3.105662] (-) TimerEvent: {}
+[3.205909] (-) TimerEvent: {}
+[3.306184] (-) TimerEvent: {}
+[3.406469] (-) TimerEvent: {}
+[3.506742] (-) TimerEvent: {}
+[3.607012] (-) TimerEvent: {}
+[3.707293] (-) TimerEvent: {}
+[3.807582] (-) TimerEvent: {}
+[3.907863] (-) TimerEvent: {}
+[4.008142] (-) TimerEvent: {}
+[4.108409] (-) TimerEvent: {}
+[4.208687] (-) TimerEvent: {}
+[4.308963] (-) TimerEvent: {}
+[4.409232] (-) TimerEvent: {}
+[4.509505] (-) TimerEvent: {}
+[4.609767] (-) TimerEvent: {}
+[4.710041] (-) TimerEvent: {}
+[4.810322] (-) TimerEvent: {}
+[4.910617] (-) TimerEvent: {}
+[5.010893] (-) TimerEvent: {}
+[5.111163] (-) TimerEvent: {}
+[5.211445] (-) TimerEvent: {}
+[5.311713] (-) TimerEvent: {}
+[5.411987] (-) TimerEvent: {}
+[5.512242] (-) TimerEvent: {}
+[5.612489] (-) TimerEvent: {}
+[5.712751] (-) TimerEvent: {}
+[5.813010] (-) TimerEvent: {}
+[5.897626] (ardupilot_gazebo) StdoutLine: {'line': b'[ 64%] \x1b[32m\x1b[1mLinking CXX shared library libGimbalStabilizerPlugin.so\x1b[0m\n'}
+[5.913110] (-) TimerEvent: {}
+[6.013366] (-) TimerEvent: {}
+[6.083258] (ardupilot_gazebo) StdoutLine: {'line': b'[ 64%] Built target GimbalStabilizerPlugin\n'}
+[6.113478] (-) TimerEvent: {}
+[6.213761] (-) TimerEvent: {}
+[6.314051] (-) TimerEvent: {}
+[6.367925] (ardupilot_gazebo) StdoutLine: {'line': b'[ 71%] \x1b[32m\x1b[1mLinking CXX shared library libParachutePlugin.so\x1b[0m\n'}
+[6.390795] (ardupilot_gazebo) StdoutLine: {'line': b'[ 78%] \x1b[32m\x1b[1mLinking CXX shared library libCameraZoomPlugin.so\x1b[0m\n'}
+[6.414156] (-) TimerEvent: {}
+[6.416165] (ardupilot_gazebo) StdoutLine: {'line': b'[ 85%] \x1b[32m\x1b[1mLinking CXX shared library libSprayerPlugin.so\x1b[0m\n'}
+[6.514277] (-) TimerEvent: {}
+[6.578393] (ardupilot_gazebo) StdoutLine: {'line': b'[ 85%] Built target ParachutePlugin\n'}
+[6.600395] (ardupilot_gazebo) StdoutLine: {'line': b'[ 85%] Built target CameraZoomPlugin\n'}
+[6.612252] (ardupilot_gazebo) StdoutLine: {'line': b'[ 85%] Built target SprayerPlugin\n'}
+[6.614341] (-) TimerEvent: {}
+[6.714576] (-) TimerEvent: {}
+[6.814838] (-) TimerEvent: {}
+[6.915055] (-) TimerEvent: {}
+[6.993125] (ardupilot_gazebo) StdoutLine: {'line': b'[ 92%] \x1b[32m\x1b[1mLinking CXX shared library libGstCameraPlugin.so\x1b[0m\n'}
+[7.015149] (-) TimerEvent: {}
+[7.115404] (-) TimerEvent: {}
+[7.215666] (-) TimerEvent: {}
+[7.232746] (ardupilot_gazebo) StdoutLine: {'line': b'[ 92%] Built target GstCameraPlugin\n'}
+[7.287116] (ardupilot_gazebo) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX shared library libArduPilotPlugin.so\x1b[0m\n'}
+[7.315839] (-) TimerEvent: {}
+[7.416305] (-) TimerEvent: {}
+[7.499052] (ardupilot_gazebo) StdoutLine: {'line': b'[100%] Built target ArduPilotPlugin\n'}
+[7.508108] (ardupilot_gazebo) CommandEnded: {'returncode': 0}
+[7.508563] (ardupilot_gazebo) JobProgress: {'identifier': 'ardupilot_gazebo', 'progress': 'install'}
+[7.514862] (ardupilot_gazebo) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/build/ardupilot_gazebo'], 'cwd': '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/build/ardupilot_gazebo', 'env': OrderedDict({'PYTHON_BASIC_REPL': '1', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'KDE_FULL_SESSION': 'true', 'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share', 'USER': 'kirillz', 'PAM_KWALLET5_LOGIN': '/run/user/1000/kwallet5.socket', 'LC_TIME': 'ru_RU.UTF-8', 'FONTCONFIG_PATH': '/etc/fonts', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'XDG_SEAT': 'seat0', 'GIO_MODULE_DIR': '/home/kirillz/snap/code/common/.cache/gio-modules', 'SSH_AGENT_PID': '5148', 'XDG_SESSION_TYPE': 'x11', 'GIT_ASKPASS': '/snap/code/232/usr/share/code/resources/app/extensions/git/dist/askpass.sh', 'GTK_EXE_PREFIX_VSCODE_SNAP_ORIG': '', 'GDK_BACKEND_VSCODE_SNAP_ORIG': '', 'XCURSOR_SIZE': '24', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/kirillz', 'CHROME_DESKTOP': 'code.desktop', 'KDE_APPLICATIONS_AS_SCOPE': '1', 'LOCPATH_VSCODE_SNAP_ORIG': '', 'OLDPWD': '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo', 'TERM_PROGRAM_VERSION': '1.114.0', 'DESKTOP_SESSION': 'plasma', 'GTK_PATH': '/snap/code/232/usr/lib/x86_64-linux-gnu/gtk-3.0', 'XDG_DATA_HOME_VSCODE_SNAP_ORIG': '', 'GTK_IM_MODULE_FILE': '/home/kirillz/snap/code/common/.cache/immodules/immodules.cache', 'ROS_PYTHON_VERSION': '3', 'GTK_RC_FILES': '/etc/gtk/gtkrc:/home/kirillz/.gtkrc:/home/kirillz/.config/gtkrc', 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0', 'SDL_IM_MODULE': 'fcitx', 'GSETTINGS_SCHEMA_DIR_VSCODE_SNAP_ORIG': '', 'KDE_SESSION_VERSION': '5', 'VSCODE_GIT_ASKPASS_MAIN': '/snap/code/232/usr/share/code/resources/app/extensions/git/dist/askpass-main.js', 'PS1': '\\[\x1b]633;A\x07\\](.venv) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$ \\[\x1b]633;B\x07\\]', 'LC_MONETARY': 'ru_RU.UTF-8', 'VSCODE_GIT_ASKPASS_NODE': '/snap/code/232/usr/share/code/code', 'MANAGERPID': '2397', 'PYDEVD_DISABLE_FILE_VALIDATION': '1', 'SYSTEMD_EXEC_PID': '5312', 'BUNDLED_DEBUGPY_PATH': '/home/kirillz/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/bundled/libs/debugpy', 'SSH_ASKPASS': '/usr/bin/ksshaskpass', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'LIBVIRT_DEFAULT_URI': 'qemu:///system', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'IM_CONFIG_PHASE': '1', 'ROS_DISTRO': 'jazzy', 'GTK_IM_MODULE': 'fcitx', 'LOGNAME': 'kirillz', 'ERP_DEV': 'TRUE', 'QT_AUTO_SCREEN_SCALE_FACTOR': '0', 'JOURNAL_STREAM': '9:31476', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG': '/home/kirillz/.config/kdedefaults:/etc/xdg/xdg-plasma:/etc/xdg:/usr/share/kubuntu-default-settings/kf5-settings', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/plasma-plasmashell.service/memory.pressure', 'CLAUDE_CODE_SSE_PORT': '20252', 'XDG_SESSION_CLASS': 'user', 'XDG_DATA_DIRS_VSCODE_SNAP_ORIG': '/usr/share/plasma:/home/kirillz/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '5', 'FC_FONTATIONS': '1', 'GTK2_RC_FILES': '/etc/gtk-2.0/gtkrc:/home/kirillz/.gtkrc-2.0:/home/kirillz/.config/gtkrc-2.0', 'PATH': '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/.venv/bin:/home/kirillz/.npm-global/bin:/home/kirillz/.config/Code/User/globalStorage/github.copilot-chat/debugCommand:/home/kirillz/.config/Code/User/globalStorage/github.copilot-chat/copilotCli:/home/kirillz/ardupilot/Tools/autotest:/home/kirillz/ardupilot/Tools/autotest:/usr/lib/ccache:/opt/gcc-arm-none-eabi-10-2020-q4-major/bin:/home/kirillz/.local/bin:/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/home/kirillz/.local/share/pnpm:/home/kirillz/.npm-global/bin:/home/kirillz/ardupilot/Tools/autotest:/home/kirillz/ardupilot/Tools/autotest:/usr/lib/ccache:/opt/gcc-arm-none-eabi-10-2020-q4-major/bin:/home/kirillz/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/kirillz/.lmstudio/bin:/home/kirillz/.lmstudio/bin:/home/kirillz/.lmstudio/bin:/home/kirillz/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/bundled/scripts/noConfigScripts:/home/kirillz/.lmstudio/bin', 'SESSION_MANAGER': 'local/kirillz-ms7d88:@/tmp/.ICE-unix/5268,unix/kirillz-ms7d88:/tmp/.ICE-unix/5268', 'GTK_EXE_PREFIX': '/snap/code/232/usr', 'INVOCATION_ID': '87f7ecb24cae4f93b3f9a116400a971e', 'GTK3_MODULES': 'xapp-gtk3-module', 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session1', 'LC_ADDRESS': 'ru_RU.UTF-8', 'XDG_RUNTIME_DIR': '/run/user/1000', 'XCURSOR_THEME': 'breeze_cursors', 'GDK_BACKEND': 'x11', 'ICEAUTHORITY': '/run/user/1000/iceauth_oFDISR', 'DISPLAY': ':0', 'LOCPATH': '/snap/code/232/usr/lib/locale', 'VSCODE_DEBUGPY_ADAPTER_ENDPOINTS': '/home/kirillz/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-1ab2dbbd6719547d.txt', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'KDE', 'PYTHONSTARTUP': '/home/kirillz/.config/Code/User/workspaceStorage/0d3b1246d04b381e1ca58867832613f7/ms-python.python/pythonrc.py', 'LC_TELEPHONE': 'ru_RU.UTF-8', 'VIRTUAL_ENV_PROMPT': '(.venv)', 'GIO_MODULE_DIR_VSCODE_SNAP_ORIG': '', 'XDG_DATA_HOME': '/home/kirillz/snap/code/232/.local/share', 'XMODIFIERS': '@im=fcitx', 'XDG_SESSION_DESKTOP': 'KDE', 'XAUTHORITY': '/run/user/1000/.Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-336c99fdba.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/tmp/ssh-qiEuxjUZ4UKN/agent.5070', 'GSETTINGS_SCHEMA_DIR': '/home/kirillz/snap/code/232/.local/share/glib-2.0/schemas', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'SHELL': '/bin/bash', 'LC_NAME': 'ru_RU.UTF-8', 'QT_ACCESSIBILITY': '1', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GTK_PATH_VSCODE_SNAP_ORIG': '', 'FONTCONFIG_FILE': '/etc/fonts/fonts.conf', 'GTK_IM_MODULE_FILE_VSCODE_SNAP_ORIG': '', 'LC_MEASUREMENT': 'ru_RU.UTF-8', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'LC_IDENTIFICATION': 'ru_RU.UTF-8', 'VIRTUAL_ENV': '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/.venv', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'QT_IM_MODULE': 'fcitx', 'XDG_VTNR': '2', 'PWD': '/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/build/ardupilot_gazebo', 'XDG_CONFIG_DIRS': '/home/kirillz/.config/kdedefaults:/etc/xdg/xdg-plasma:/etc/xdg:/usr/share/kubuntu-default-settings/kf5-settings', 'CLUTTER_IM_MODULE': 'xim', 'XDG_DATA_DIRS': '/home/kirillz/snap/code/232/.local/share/flatpak/exports/share:/home/kirillz/snap/code/232/.local/share:/home/kirillz/snap/code/232:/snap/code/232/usr/share:/usr/share/plasma:/home/kirillz/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'QTWEBENGINE_DICTIONARIES_PATH': '/usr/share/hunspell-bdic/', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'LC_NUMERIC': 'ru_RU.UTF-8', 'LC_PAPER': 'ru_RU.UTF-8', 'KDE_SESSION_UID': '1000', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'PNPM_HOME': '/home/kirillz/.local/share/pnpm', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[7.516498] (-) TimerEvent: {}
+[7.520528] (ardupilot_gazebo) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[7.520646] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libArduPilotPlugin.so\n'}
+[7.522205] (ardupilot_gazebo) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libArduPilotPlugin.so" to ""\n'}
+[7.522307] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libParachutePlugin.so\n'}
+[7.523388] (ardupilot_gazebo) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libParachutePlugin.so" to ""\n'}
+[7.523485] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libCameraZoomPlugin.so\n'}
+[7.524568] (ardupilot_gazebo) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libCameraZoomPlugin.so" to ""\n'}
+[7.524619] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libGimbalStabilizerPlugin.so\n'}
+[7.525484] (ardupilot_gazebo) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libGimbalStabilizerPlugin.so" to ""\n'}
+[7.525538] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libGstCameraPlugin.so\n'}
+[7.526491] (ardupilot_gazebo) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libGstCameraPlugin.so" to ""\n'}
+[7.526540] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libSprayerPlugin.so\n'}
+[7.527702] (ardupilot_gazebo) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/lib/ardupilot_gazebo/libSprayerPlugin.so" to ""\n'}
+[7.527776] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/config\n'}
+[7.527823] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/config/gazebo-iris-gimbal.parm\n'}
+[7.527871] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models\n'}
+[7.527914] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway\n'}
+[7.527957] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/model.config\n'}
+[7.528008] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/meshes\n'}
+[7.528046] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/meshes/airfield.dae\n'}
+[7.528093] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials\n'}
+[7.528131] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials/textures\n'}
+[7.528172] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials/textures/runway.png\n'}
+[7.528217] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials/textures/Grass004_2K_Roughness.jpg\n'}
+[7.529506] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials/textures/Grass004_2K_NormalGL.jpg\n'}
+[7.533314] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials/textures/Grass004_2K_Color copy.jpg\n'}
+[7.536187] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials/textures/Grass004_2K_Displacement.jpg\n'}
+[7.537553] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials/textures/Grass004_2K_AmbientOcclusion.jpg\n'}
+[7.539017] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/materials/textures/Grass004_2K_Color.jpg\n'}
+[7.539471] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/runway/model.sdf\n'}
+[7.539527] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_1d\n'}
+[7.539579] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_1d/model.config\n'}
+[7.539628] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_1d/meshes\n'}
+[7.539674] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_1d/meshes/tilt.dae\n'}
+[7.540900] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_1d/meshes/base_main.dae\n'}
+[7.543215] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_1d/meshes/base_arm.dae\n'}
+[7.544541] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_1d/model.sdf\n'}
+[7.544594] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_gimbal\n'}
+[7.544639] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_gimbal/model.config\n'}
+[7.544688] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_gimbal/model.sdf\n'}
+[7.544742] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr_with_ardupilot\n'}
+[7.544788] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr_with_ardupilot/model.config\n'}
+[7.544833] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr_with_ardupilot/model.sdf\n'}
+[7.544879] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs\n'}
+[7.544923] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/model.config\n'}
+[7.544971] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/meshes\n'}
+[7.545017] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae\n'}
+[7.545166] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae\n'}
+[7.545357] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_collision.stl\n'}
+[7.545477] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/meshes/iris.dae\n'}
+[7.553732] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_standoffs/model.sdf\n'}
+[7.553824] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_ardupilot\n'}
+[7.553863] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_ardupilot/model.config\n'}
+[7.553912] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_ardupilot/model.sdf\n'}
+[7.553961] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/parachute_small\n'}
+[7.554009] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/parachute_small/model.config\n'}
+[7.554059] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/parachute_small/meshes\n'}
+[7.554094] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/parachute_small/meshes/parachute_small.dae\n'}
+[7.554188] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/parachute_small/model.sdf\n'}
+[7.554244] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr\n'}
+[7.554289] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/model.config\n'}
+[7.554334] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/meshes\n'}
+[7.554378] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/meshes/wing.dae\n'}
+[7.554453] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/meshes/parachute_small.dae\n'}
+[7.554576] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/materials\n'}
+[7.554620] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/materials/textures\n'}
+[7.554661] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/materials/textures/wing.png\n'}
+[7.554785] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/model.sdf\n'}
+[7.554838] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/thumbnails\n'}
+[7.554883] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/thumbnails/1.png\n'}
+[7.554929] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/thumbnails/3.png\n'}
+[7.554979] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/thumbnails/4.png\n'}
+[7.555032] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/thumbnails/2.png\n'}
+[7.555096] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr/thumbnails/5.png\n'}
+[7.555148] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_2d\n'}
+[7.555192] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_2d/model.config\n'}
+[7.555234] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_2d/meshes\n'}
+[7.555280] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_2d/meshes/tilt.dae\n'}
+[7.556497] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_2d/meshes/base_main.dae\n'}
+[7.558756] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_2d/meshes/base_arm.dae\n'}
+[7.560112] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_2d/model.sdf\n'}
+[7.560166] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_sprayer\n'}
+[7.560210] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_sprayer/model.config\n'}
+[7.560257] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/iris_with_sprayer/model.sdf\n'}
+[7.560313] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr_with_parachute\n'}
+[7.560357] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr_with_parachute/model.config\n'}
+[7.560399] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/zephyr_with_parachute/model.sdf\n'}
+[7.560457] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d\n'}
+[7.560500] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/model.config\n'}
+[7.560542] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/meshes\n'}
+[7.560584] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/meshes/yaw_arm.dae\n'}
+[7.561218] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/meshes/base_plate.dae\n'}
+[7.562720] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/meshes/roll_arm.dae\n'}
+[7.563328] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/meshes/camera_enclosure.dae\n'}
+[7.563750] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/models/gimbal_small_3d/model.sdf\n'}
+[7.563857] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/worlds\n'}
+[7.563913] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/worlds/iris_runway.sdf\n'}
+[7.563967] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/worlds/iris_sprayer.sdf\n'}
+[7.564020] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/worlds/zephyr_runway.sdf\n'}
+[7.564075] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/worlds/gimbal.sdf\n'}
+[7.564129] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/worlds/iris_warehouse.sdf\n'}
+[7.564184] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/worlds/zephyr_parachute.sdf\n'}
+[7.564280] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/environment/ardupilot_gazebo.dsv\n'}
+[7.564352] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/environment/ardupilot_gazebo.sh\n'}
+[7.564464] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ament_index/resource_index/package_run_dependencies/ardupilot_gazebo\n'}
+[7.564549] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ament_index/resource_index/parent_prefix_path/ardupilot_gazebo\n'}
+[7.564617] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/environment/ament_prefix_path.sh\n'}
+[7.564680] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/environment/ament_prefix_path.dsv\n'}
+[7.564742] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/environment/path.sh\n'}
+[7.564805] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/environment/path.dsv\n'}
+[7.564870] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/local_setup.bash\n'}
+[7.564936] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/local_setup.sh\n'}
+[7.565005] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/local_setup.zsh\n'}
+[7.565067] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/local_setup.dsv\n'}
+[7.565130] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/package.dsv\n'}
+[7.565216] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ament_index/resource_index/packages/ardupilot_gazebo\n'}
+[7.565295] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/cmake/ardupilot_gazeboConfig.cmake\n'}
+[7.565348] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/cmake/ardupilot_gazeboConfig-version.cmake\n'}
+[7.565412] (ardupilot_gazebo) StdoutLine: {'line': b'-- Installing: /home/kirillz/Desktop/DEV/arducopter-sim-ros2-gazebo/ardupilot_gazebo/install/ardupilot_gazebo/share/ardupilot_gazebo/package.xml\n'}
+[7.566579] (ardupilot_gazebo) CommandEnded: {'returncode': 0}
+[7.576321] (ardupilot_gazebo) JobEnded: {'identifier': 'ardupilot_gazebo', 'rc': 0}
+[7.576723] (-) EventReactorShutdown: {}

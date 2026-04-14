@@ -139,6 +139,17 @@ target_link_libraries(GimbalStabilizerPlugin PRIVATE
   gz-sim${GZ_SIM_VER}::gz-sim${GZ_SIM_VER}
 )
 
+add_library(SprayerPlugin
+  SHARED
+  src/SprayerPlugin.cc
+)
+target_include_directories(SprayerPlugin PRIVATE
+  include
+)
+target_link_libraries(SprayerPlugin PRIVATE
+  gz-sim${GZ_SIM_VER}::gz-sim${GZ_SIM_VER}
+)
+
 add_library(GstCameraPlugin
   SHARED
   src/GstCameraPlugin.cc
@@ -164,6 +175,7 @@ install(
   CameraZoomPlugin
   GimbalStabilizerPlugin
   GstCameraPlugin
+  SprayerPlugin
   DESTINATION lib/${PROJECT_NAME}
 )
 

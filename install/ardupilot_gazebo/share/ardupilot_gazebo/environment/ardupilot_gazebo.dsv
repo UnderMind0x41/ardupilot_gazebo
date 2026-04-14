@@ -1,0 +1,6 @@
+prepend-non-duplicate;GZ_SIM_RESOURCE_PATH;share/ardupilot_gazebo/models
+prepend-non-duplicate;GZ_SIM_RESOURCE_PATH;share/ardupilot_gazebo/worlds
+prepend-non-duplicate;GZ_SIM_SYSTEM_PLUGIN_PATH;lib/ardupilot_gazebo/
+
+prepend-non-duplicate;SDF_PATH;share/ardupilot_gazebo/models
+prepend-non-duplicate;SDF_PATH;share/ardupilot_gazebo/worlds
