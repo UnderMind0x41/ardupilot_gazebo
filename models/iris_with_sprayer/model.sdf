@@ -312,10 +312,34 @@
         <cmd_max>2.5</cmd_max><cmd_min>-2.5</cmd_min>
         <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
       </control>
+
+      <!--
+        Channel 4 = SERVO5 in ArduCopter (0-indexed).
+        SERVO5_FUNCTION=22 maps the sprayer pump to this output.
+        Type COMMAND: ArduPilotPlugin normalises the raw PWM [servo_min..servo_max]
+        to [0..1] and publishes it as gz.msgs.Double to pump_cmd_topic.
+        SprayerPlugin subscribes to that topic and treats value > 0.05 as "pump ON".
+        jointName is required by ArduPilotPlugin validation but unused for COMMAND type.
+      -->
+      <control channel="4">
+        <jointName>iris_with_standoffs::rotor_0_joint</jointName>
+        <type>COMMAND</type>
+        <cmd_topic>/model/iris_with_sprayer/sprayer/pump_cmd</cmd_topic>
+        <servo_min>1100</servo_min>
+        <servo_max>1900</servo_max>
+        <multiplier>1</multiplier>
+        <offset>0</offset>
+      </control>
     </plugin>
 
     <!-- ─────────────────────────────────────────────────────────────────── -->
     <!--  Sprayer plugin                                                     -->
+    <!--                                                                     -->
+    <!--  Spray state is driven by the real ArduCopter pump output:          -->
+    <!--    SPRAY_ENABLE=1, SERVO5_FUNCTION=22 (pump)                        -->
+    <!--  ArduPilotPlugin normalises SERVO5 PWM → [0..1] and publishes it    -->
+    <!--  as gz.msgs.Double on pump_cmd_topic.  SprayerPlugin activates the   -->
+    <!--  particle emitters when that value exceeds pump_threshold (0.05).    -->
     <!-- ─────────────────────────────────────────────────────────────────── -->
     <plugin name="SprayerPlugin" filename="SprayerPlugin">
       <!-- Names of the links that hold the particle emitters. -->
@@ -326,14 +350,13 @@
       <left_emitter_name>spray_left</left_emitter_name>
       <right_emitter_name>spray_right</right_emitter_name>
 
-      <!-- Topic (gz.msgs.Boolean) to toggle spraying.
-           true  = start spraying
-           false = stop spraying
-           Example:
-             gz topic -t /model/iris_with_sprayer/sprayer/cmd \
-                      -m gz.msgs.Boolean -p "data: true"
-      -->
-      <spray_topic>/model/iris_with_sprayer/sprayer/cmd</spray_topic>
+      <!-- Topic (gz.msgs.Double, [0..1]) from ArduPilotPlugin COMMAND channel.
+           Published automatically when ArduCopter drives SERVO5 (pump).
+           No manual gz topic command needed. -->
+      <pump_cmd_topic>/model/iris_with_sprayer/sprayer/pump_cmd</pump_cmd_topic>
+
+      <!-- Normalised pump value above which spraying is considered active. -->
+      <pump_threshold>0.05</pump_threshold>
 
       <!-- Maximum height AGL (m) for ground marking. -->
       <spray_height_max>15.0</spray_height_max>

@@ -1,0 +1,58 @@
+# ArduCopter sprayer parameters for Gazebo iris_sprayer world
+# Loaded as --defaults when GZ_WORLD=iris_sprayer.sdf
+
+# Iris is X frame
+FRAME_CLASS      1
+FRAME_TYPE       1
+
+# Motor PWM range
+MOT_PWM_MIN      1100
+MOT_PWM_MAX      1900
+
+# ── Sprayer subsystem ─────────────────────────────────────────────────────────
+# Enable the sprayer controller
+SPRAY_ENABLE     1
+
+# Pump rate expressed as % of servo range per 1 m/s of ground speed.
+# Default 10 means: at 1 m/s → 10% pump output, at 2 m/s → 20%, etc.
+SPRAY_PUMP_RATE  10
+
+# CRITICAL: minimum pump output as a PERCENTAGE (0–100) while sprayer is
+# running. Default 0 means pump is silent when hovering (speed = 0).
+# Set to 10 so the pump always outputs at least 10% → PWM ≈ 1180 → normalised
+# value 0.10 > SprayerPlugin pump_threshold 0.05 → Gazebo emitters fire.
+SPRAY_PUMP_MIN   10
+
+# Minimum ground speed (cm/s) before spraying starts.
+# 0 = no speed requirement: pump turns on as soon as the RC switch is HIGH.
+# Default is 100 (= 1 m/s) which prevents spraying while hovering.
+SPRAY_SPEED_MIN  0
+
+# Spinner PWM (visual only — not wired to Gazebo).
+SPRAY_SPINNER    1300
+
+# ── RC9 → Sprayer enable (option 15) ─────────────────────────────────────────
+# RC9 HIGH (>1700 PWM) activates the sprayer subsystem.
+# Use: rc 9 1900  →  spray ON
+#      rc 9 1100  →  spray OFF
+RC9_OPTION       15
+RC9_MIN          1100
+RC9_MAX          1900
+RC9_TRIM         1100
+
+# ── SERVO5 → pump (ArduPilot SRV function k_sprayer_pump = 22) ───────────────
+# channel 4 in ArduPilotPlugin (0-indexed = SERVO5).
+# ArduPilotPlugin normalises [SERVO5_MIN..SERVO5_MAX] → [0..1] and publishes
+# as gz.msgs.Double on /model/iris_with_sprayer/sprayer/pump_cmd.
+# SprayerPlugin fires particle emitters when value > pump_threshold (0.05).
+SERVO5_FUNCTION  22
+SERVO5_MIN       1100
+SERVO5_MAX       1900
+SERVO5_TRIM      1100
+
+# ── SERVO6 → spinner (function 23) ───────────────────────────────────────────
+# Not wired to Gazebo but must be assigned so ArduCopter drives it.
+SERVO6_FUNCTION  23
+SERVO6_MIN       1100
+SERVO6_MAX       1900
+SERVO6_TRIM      1100

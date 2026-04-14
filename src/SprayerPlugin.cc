@@ -17,6 +17,7 @@
 #include "SprayerPlugin.hh"
 
 #include <gz/msgs/boolean.pb.h>
+#include <gz/msgs/double.pb.h>
 #include <gz/msgs/entity_factory.pb.h>
 #include <gz/msgs/particle_emitter.pb.h>
 
@@ -47,7 +48,13 @@ class SprayerPlugin::Impl
 {
   // ── Callbacks ──────────────────────────────────────────────────────────── //
 
-  /// \brief Toggle spray state from external command topic.
+  /// \brief Receive normalised pump command from ArduPilotPlugin COMMAND channel.
+  /// Value is in [0, 1] where 0 = pump off (PWM at servo_min) and
+  /// 1 = pump at full power (PWM at servo_max).
+  /// Spraying is considered active when value > pumpThreshold.
+  public: void OnPumpCmd(const msgs::Double &_msg);
+
+  /// \brief Receive a legacy manual override on a boolean topic.
   public: void OnSprayCmd(const msgs::Boolean &_msg);
 
   // ── Helpers ────────────────────────────────────────────────────────────── //
@@ -71,7 +78,16 @@ class SprayerPlugin::Impl
 
   // ── Config ─────────────────────────────────────────────────────────────── //
 
+  /// \brief Topic that receives normalised pump PWM from ArduPilotPlugin.
+  /// Carries gz.msgs.Double in [0..1].  Set via <pump_cmd_topic> in SDF.
+  public: std::string pumpCmdTopic;
+
+  /// \brief Legacy manual override topic using gz.msgs.Boolean.
   public: std::string sprayTopic;
+
+  /// \brief Normalised pump value above which spraying is considered active.
+  public: double pumpThreshold{0.05};
+
   public: double sprayHeightMax{15.0};
   public: double markInterval{2.0};
   public: double markRadius{1.5};
@@ -101,11 +117,29 @@ class SprayerPlugin::Impl
 };
 
 //////////////////////////////////////////////////
+void SprayerPlugin::Impl::OnPumpCmd(const msgs::Double &_msg)
+{
+  const bool active = (_msg.data() > this->pumpThreshold);
+  const bool prev   = this->spraying.exchange(active);
+  if (active != prev)
+  {
+    this->emitterStateChanged = true;
+    gzmsg << "SprayerPlugin: pump " << _msg.data()
+          << " → spray " << (active ? "ON" : "OFF") << "\n";
+  }
+}
+
+//////////////////////////////////////////////////
 void SprayerPlugin::Impl::OnSprayCmd(const msgs::Boolean &_msg)
 {
-  this->spraying = _msg.data();
-  this->emitterStateChanged = true;
-  gzmsg << "SprayerPlugin: spray " << (_msg.data() ? "ON" : "OFF") << "\n";
+  const bool active = _msg.data();
+  const bool prev   = this->spraying.exchange(active);
+  if (active != prev)
+  {
+    this->emitterStateChanged = true;
+    gzmsg << "SprayerPlugin: manual override "
+          << (active ? "ON" : "OFF") << "\n";
+  }
 }
 
 //////////////////////////////////////////////////
@@ -202,10 +236,20 @@ void SprayerPlugin::Configure(
   if (_sdf->HasElement("right_emitter_name"))
     this->impl->rightEmitterName = _sdf->Get<std::string>("right_emitter_name");
 
+  // Pump command topic: receives gz.msgs.Double from ArduPilotPlugin COMMAND
+  // channel (normalised PWM value in [0..1]).
+  this->impl->pumpCmdTopic = "/model/" + modelName + "/sprayer/pump_cmd";
+  if (_sdf->HasElement("pump_cmd_topic"))
+    this->impl->pumpCmdTopic = _sdf->Get<std::string>("pump_cmd_topic");
+
+  // Legacy manual override topic. Keeping this allows quick smoke tests with
+  // `gz topic .../sprayer/cmd` while the real ArduPilot path uses pump_cmd.
   this->impl->sprayTopic = "/model/" + modelName + "/sprayer/cmd";
   if (_sdf->HasElement("spray_topic"))
     this->impl->sprayTopic = _sdf->Get<std::string>("spray_topic");
 
+  if (_sdf->HasElement("pump_threshold"))
+    this->impl->pumpThreshold = _sdf->Get<double>("pump_threshold");
   if (_sdf->HasElement("spray_height_max"))
     this->impl->sprayHeightMax = _sdf->Get<double>("spray_height_max");
   if (_sdf->HasElement("mark_interval"))
@@ -232,18 +276,23 @@ void SprayerPlugin::Configure(
   this->impl->pubRight =
       this->impl->node.Advertise<msgs::ParticleEmitter>(topicRight);
 
-  // ── Subscribe to spray on/off command ─────────────────────────────────── //
+  // ── Subscribe to normalised pump command from ArduPilotPlugin ─────────── //
 
+  this->impl->node.Subscribe(
+      this->impl->pumpCmdTopic,
+      &SprayerPlugin::Impl::OnPumpCmd, this->impl.get());
   this->impl->node.Subscribe(
       this->impl->sprayTopic,
       &SprayerPlugin::Impl::OnSprayCmd, this->impl.get());
 
   gzmsg << "SprayerPlugin [" << modelName << "]:\n"
-        << "  spray topic   : " << this->impl->sprayTopic << "\n"
-        << "  emitter left  : " << topicLeft  << "\n"
-        << "  emitter right : " << topicRight << "\n"
-        << "  mark interval : " << this->impl->markInterval << " m\n"
-        << "  mark radius   : " << this->impl->markRadius   << " m\n";
+        << "  pump cmd topic : " << this->impl->pumpCmdTopic << "\n"
+        << "  spray topic    : " << this->impl->sprayTopic << "\n"
+        << "  pump threshold : " << this->impl->pumpThreshold << "\n"
+        << "  emitter left   : " << topicLeft  << "\n"
+        << "  emitter right  : " << topicRight << "\n"
+        << "  mark interval  : " << this->impl->markInterval << " m\n"
+        << "  mark radius    : " << this->impl->markRadius   << " m\n";
 
   this->impl->validConfig = true;
 }
@@ -256,7 +305,7 @@ void SprayerPlugin::PreUpdate(const UpdateInfo &_info,
 
   if (!this->impl->validConfig || _info.paused) return;
 
-  // ── Toggle particle emitters when spray command received ──────────────── //
+  // ── Toggle particle emitters when pump state changes ──────────────────── //
 
   if (this->impl->emitterStateChanged.exchange(false))
   {

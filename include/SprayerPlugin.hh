@@ -29,19 +29,35 @@ namespace systems {
 /// \brief Agri-drone sprayer plugin with dual spray nozzles, purple particle
 /// cloud visualisation, and ground treatment marking.
 ///
+/// Spraying state is driven by the real ArduCopter pump servo output:
+/// ArduPilotPlugin forwards SERVO5 (SERVO5_FUNCTION=22, pump) to this plugin
+/// as a normalised gz.msgs.Double value in [0..1].  The plugin activates the
+/// particle emitters when the value exceeds <pump_threshold>.
+///
 /// ## System Parameters:
 ///
-///   `<link_name>` Name of the base link used for pose tracking.
-///   Default: "iris_with_standoffs::base_link"
+///   `<left_link_name>` Name of the link that holds the left particle emitter.
+///   Default: "sprayer_left"
 ///
-///   `<emitter_left_name>` Name of the left particle emitter entity.
+///   `<right_link_name>` Name of the link that holds the right particle emitter.
+///   Default: "sprayer_right"
+///
+///   `<left_emitter_name>` Name of the left particle_emitter entity.
 ///   Default: "spray_left"
 ///
-///   `<emitter_right_name>` Name of the right particle emitter entity.
+///   `<right_emitter_name>` Name of the right particle_emitter entity.
 ///   Default: "spray_right"
 ///
-///   `<spray_topic>` Topic to receive spray on/off commands (gz::msgs::Boolean).
+///   `<pump_cmd_topic>` Topic that receives the normalised pump command
+///   (gz::msgs::Double in [0..1]) published by ArduPilotPlugin COMMAND channel.
+///   Default: "/model/<model_name>/sprayer/pump_cmd"
+///
+///   `<spray_topic>` Legacy manual override topic carrying gz::msgs::Boolean.
+///   `true` forces spraying on, `false` forces it off.
 ///   Default: "/model/<model_name>/sprayer/cmd"
+///
+///   `<pump_threshold>` Normalised pump value above which spraying is active.
+///   Default: 0.05
 ///
 ///   `<spray_height_max>` Maximum AGL height (m) at which spraying marks the
 ///   ground. Default: 15.0

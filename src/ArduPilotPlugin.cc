@@ -549,6 +549,17 @@ void gz::sim::systems::ArduPilotPlugin::LoadControlChannels(
     controlSDF = _sdf->GetElement("rotor");
   }
 
+  // Reserve once so COMMAND publishers aren't copied around during vector
+  // growth. A copied transport publisher may advertise a topic but fail to
+  // publish the runtime command we rely on for auxiliary systems.
+  size_t controlCount = 0;
+  for (auto countSDF = controlSDF; countSDF;
+       countSDF = countSDF->GetNextElement("control"))
+  {
+    ++controlCount;
+  }
+  this->dataPtr->controls.reserve(this->dataPtr->controls.size() + controlCount);
+
   while (controlSDF)
   {
     Control control;
@@ -798,7 +809,7 @@ void gz::sim::systems::ArduPilotPlugin::LoadControlChannels(
     // set pid initial command
     control.pid.SetCmd(0.0);
 
-    this->dataPtr->controls.push_back(control);
+    this->dataPtr->controls.push_back(std::move(control));
     controlSDF = controlSDF->GetNextElement("control");
   }
 }
