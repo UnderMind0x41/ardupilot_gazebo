@@ -1,0 +1,31 @@
+# Параметры для агро-дрона с мониторингом батареи и предсказанием умной посадки
+# Agricultural drone parameters for battery monitoring and smart landing prediction
+
+# Основная батарея (Main battery)
+BATT_MONITOR         3          # 3 = Analog Voltage and Current
+BATT_VOLT_PIN        2          # Analog pin
+BATT_AMP_PIN         3          # Analog pin for current (if available)
+BATT_SERIAL_NUM      -1         # Set manually based on your battery (e.g., 4S LiPo = 4)
+BATT_CAPACITY        5000       # mAh - capacity of battery
+BATT_LOW_VOLT        10.5       # Low voltage warning (for 3S: 3.5V per cell)
+BATT_FS_VOLT_RTH     9.75       # Failsafe threshold for Return-to-Home (3.25V per cell)
+BATT_FS_VOLT_CRT     9.0        # Critical failsafe threshold for landing (3.0V per cell)
+
+# Параметры сельскохозяйственного мониторинга батареи
+# Agricultural battery monitoring parameters
+AGRO_BAT_SMRTLND     3.5        # Напряжение на банку для умной посадки (voltage per cell for smart landing)
+AGRO_BAT_ENABLED     1          # 1 = Enable monitoring, 0 = Disable
+AGRO_BAT_INSTANCE    0          # Index of battery to monitor (0 for first battery)
+AGRO_BAT_NCELLS      4          # Number of cells (set manually if auto-detect fails). 0 = auto-detect
+AGRO_BAT_EXP_POST    1.0        # Exponential correction for discharge below 3.8V (1.0 = linear, >1.0 = accelerated discharge)
+
+# Опциональные настройки логирования
+# Optional logging settings
+LOG_BITMASK          196638     # Enable all major logging (can be adjusted as needed)
+
+# Рекомендуемые параметры для безопасности
+# Recommended safety parameters
+FS_EKF_ACTION        1          # Action on EKF failsafe
+FS_GCS_ENABLE        1          # Enable GCS failsafe
+RTH_ALT              15         # Return to Home altitude (meters)
+LAND_SPEED           50         # Landing descent rate (cm/s)
