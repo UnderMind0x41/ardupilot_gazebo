@@ -2,22 +2,21 @@
 # Agricultural drone parameters for battery monitoring and smart landing prediction
 
 # Основная батарея (Main battery)
-BATT_MONITOR         3          # 3 = Analog Voltage and Current
-BATT_VOLT_PIN        2          # Analog pin
-BATT_AMP_PIN         3          # Analog pin for current (if available)
-BATT_SERIAL_NUM      -1         # Set manually based on your battery (e.g., 4S LiPo = 4)
+# For SITL/Gazebo use monitor type 4 (simulated voltage/current source).
+BATT_MONITOR         4          # 4 = SITL battery monitor (recommended for simulation)
+BATT_SERIAL_NUM      4          # Number of cells (3=3S, 4=4S, 6=6S LiPo). USED for smart landing cell count detection
 BATT_CAPACITY        5000       # mAh - capacity of battery
-BATT_LOW_VOLT        10.5       # Low voltage warning (for 3S: 3.5V per cell)
-BATT_FS_VOLT_RTH     9.75       # Failsafe threshold for Return-to-Home (3.25V per cell)
-BATT_FS_VOLT_CRT     9.0        # Critical failsafe threshold for landing (3.0V per cell)
+BATT_LOW_VOLT        10.5       # Low voltage warning (for 4S: 3.5V per cell)
+BATT_FS_VOLT_RTH     11.2       # Failsafe threshold for Return-to-Home (3.1V per cell)
+BATT_FS_VOLT_CRT     10.8       # Critical failsafe threshold for landing (2.7V per cell)
 
 # Параметры сельскохозяйственного мониторинга батареи
 # Agricultural battery monitoring parameters
-AGRO_BAT_SMRTLND     3.5        # Напряжение на банку для умной посадки (voltage per cell for smart landing)
+AGRO_BAT_SMRTLND     3.5        # Напряжение на ячейку для умной посадки (voltage per cell for smart landing)
 AGRO_BAT_ENABLED     1          # 1 = Enable monitoring, 0 = Disable
 AGRO_BAT_INSTANCE    0          # Index of battery to monitor (0 for first battery)
-AGRO_BAT_NCELLS      4          # Number of cells (set manually if auto-detect fails). 0 = auto-detect
-AGRO_BAT_EXP_POST    1.0        # Exponential correction for discharge below 3.8V (1.0 = linear, >1.0 = accelerated discharge)
+AGRO_BAT_EXP_POST    1.3        # Exponential correction for discharge below 3.8V (1.0 = linear, 1.3 = typical LiPo)
+AGRO_LOG_ENABLED     1          # 1 = Send AGRO_BAT_TIME(...) as STATUSTEXT for Mission Planner Messages tab
 
 # Опциональные настройки логирования
 # Optional logging settings
