@@ -1,0 +1,554 @@
+<?xml version="1.0" ?>
+<!--
+  Model: landing_truck
+  Description: Semi-truck with flatbed trailer used as drone landing/takeoff base.
+
+  Coordinate system (model frame):
+    +X = East (truck faces East — cab is at the +X end)
+    +Y = North (left side of truck when facing East)
+    +Z = Up
+    Origin = center of trailer bed at ground level (Z=0)
+
+  Key dimensions:
+    Trailer: 8 m long (X: -4 to +4), 2.5 m wide, deck top at Z=1.34 m
+    Cab:     3.5 m long (X: +4.25 to +7.75), 2.35 m wide, 3.5 m tall
+    Wheels:  radius=0.5 m, axle at Z=0.5 m
+
+  Landing pad: 2.6×2.6 m yellow rectangle with white "H" at X=-1.0 (trailer rear area)
+  GPS sensor:  mounted at X=-1.0, Z≈1.87 m (on antenna above landing pad)
+
+  Gazebo topic:
+    /world/<world>/model/landing_truck/link/base_link/sensor/gps_sensor/navsat
+-->
+<sdf version="1.9">
+  <model name="landing_truck">
+    <static>true</static>
+
+    <link name="base_link">
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!--  TRAILER FRAME                                                  -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+
+      <!-- Left side I-beam rail -->
+      <visual name="frame_rail_left">
+        <pose>0 1.1 1.1 0 0 0</pose>
+        <geometry><box><size>8.1 0.14 0.35</size></box></geometry>
+        <material>
+          <ambient>0.22 0.22 0.22 1</ambient>
+          <diffuse>0.22 0.22 0.22 1</diffuse>
+          <specular>0.05 0.05 0.05 1</specular>
+        </material>
+      </visual>
+      <collision name="frame_rail_left_col">
+        <pose>0 1.1 1.1 0 0 0</pose>
+        <geometry><box><size>8.1 0.14 0.35</size></box></geometry>
+      </collision>
+
+      <!-- Right side I-beam rail -->
+      <visual name="frame_rail_right">
+        <pose>0 -1.1 1.1 0 0 0</pose>
+        <geometry><box><size>8.1 0.14 0.35</size></box></geometry>
+        <material>
+          <ambient>0.22 0.22 0.22 1</ambient>
+          <diffuse>0.22 0.22 0.22 1</diffuse>
+          <specular>0.05 0.05 0.05 1</specular>
+        </material>
+      </visual>
+      <collision name="frame_rail_right_col">
+        <pose>0 -1.1 1.1 0 0 0</pose>
+        <geometry><box><size>8.1 0.14 0.35</size></box></geometry>
+      </collision>
+
+      <!-- Rear cross-member (at X=-3.0) -->
+      <visual name="cross_beam_rear">
+        <pose>-3.0 0 1.05 0 0 0</pose>
+        <geometry><box><size>0.14 2.35 0.28</size></box></geometry>
+        <material>
+          <ambient>0.22 0.22 0.22 1</ambient>
+          <diffuse>0.22 0.22 0.22 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- Front cross-member (at X=+3.0) -->
+      <visual name="cross_beam_front">
+        <pose>3.0 0 1.05 0 0 0</pose>
+        <geometry><box><size>0.14 2.35 0.28</size></box></geometry>
+        <material>
+          <ambient>0.22 0.22 0.22 1</ambient>
+          <diffuse>0.22 0.22 0.22 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- Mid cross-member (at X=-0.5) -->
+      <visual name="cross_beam_mid">
+        <pose>-0.5 0 1.05 0 0 0</pose>
+        <geometry><box><size>0.14 2.35 0.28</size></box></geometry>
+        <material>
+          <ambient>0.22 0.22 0.22 1</ambient>
+          <diffuse>0.22 0.22 0.22 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!--  TRAILER BED                                                    -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+
+      <!-- Main decking surface (landing/walking surface) -->
+      <visual name="trailer_bed">
+        <pose>0 0 1.34 0 0 0</pose>
+        <geometry><box><size>8.1 2.55 0.12</size></box></geometry>
+        <material>
+          <ambient>0.42 0.42 0.42 1</ambient>
+          <diffuse>0.40 0.40 0.40 1</diffuse>
+          <specular>0.08 0.08 0.08 1</specular>
+        </material>
+      </visual>
+      <collision name="trailer_bed_col">
+        <pose>0 0 1.34 0 0 0</pose>
+        <geometry><box><size>8.1 2.55 0.12</size></box></geometry>
+      </collision>
+
+      <!-- Rear end board (prevents cargo fall-off) -->
+      <visual name="trailer_rear_board">
+        <pose>-4.11 0 1.52 0 0 0</pose>
+        <geometry><box><size>0.1 2.55 0.28</size></box></geometry>
+        <material>
+          <ambient>0.30 0.30 0.30 1</ambient>
+          <diffuse>0.28 0.28 0.28 1</diffuse>
+        </material>
+      </visual>
+      <collision name="trailer_rear_board_col">
+        <pose>-4.11 0 1.52 0 0 0</pose>
+        <geometry><box><size>0.1 2.55 0.28</size></box></geometry>
+      </collision>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!--  DRONE LANDING PAD (H marking, 2.6×2.6 m at X=-1.0)           -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+
+      <!-- Yellow background square -->
+      <visual name="landing_pad_bg">
+        <pose>-1.0 0 1.406 0 0 0</pose>
+        <geometry><box><size>2.6 2.6 0.008</size></box></geometry>
+        <material>
+          <ambient>0.95 0.82 0.0 1</ambient>
+          <diffuse>0.95 0.82 0.0 1</diffuse>
+          <specular>0.15 0.12 0.0 1</specular>
+        </material>
+      </visual>
+
+      <!-- H — horizontal centre bar -->
+      <visual name="landing_pad_h_bar">
+        <pose>-1.0 0 1.416 0 0 0</pose>
+        <geometry><box><size>0.28 2.2 0.012</size></box></geometry>
+        <material>
+          <ambient>1.0 1.0 1.0 1</ambient>
+          <diffuse>1.0 1.0 1.0 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- H — left vertical leg -->
+      <visual name="landing_pad_h_left">
+        <pose>-1.0 0.76 1.416 0 0 0</pose>
+        <geometry><box><size>2.2 0.28 0.012</size></box></geometry>
+        <material>
+          <ambient>1.0 1.0 1.0 1</ambient>
+          <diffuse>1.0 1.0 1.0 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- H — right vertical leg -->
+      <visual name="landing_pad_h_right">
+        <pose>-1.0 -0.76 1.416 0 0 0</pose>
+        <geometry><box><size>2.2 0.28 0.012</size></box></geometry>
+        <material>
+          <ambient>1.0 1.0 1.0 1</ambient>
+          <diffuse>1.0 1.0 1.0 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!--  GPS ANTENNA ASSEMBLY (at X=-1.0, above landing pad)           -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+
+      <!-- Antenna mounting base -->
+      <visual name="gps_mount_base">
+        <pose>-1.0 0 1.428 0 0 0</pose>
+        <geometry><box><size>0.1 0.1 0.04</size></box></geometry>
+        <material>
+          <ambient>0.30 0.30 0.30 1</ambient>
+          <diffuse>0.28 0.28 0.28 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- Antenna pole (vertical cylinder, Z=1.448 to Z=1.848) -->
+      <visual name="gps_pole">
+        <pose>-1.0 0 1.648 0 0 0</pose>
+        <geometry><cylinder><radius>0.022</radius><length>0.40</length></cylinder></geometry>
+        <material>
+          <ambient>0.88 0.88 0.88 1</ambient>
+          <diffuse>0.85 0.85 0.85 1</diffuse>
+          <specular>0.3 0.3 0.3 1</specular>
+        </material>
+      </visual>
+
+      <!-- GPS receiver head (puck-shaped disc) -->
+      <visual name="gps_head">
+        <pose>-1.0 0 1.872 0 0 0</pose>
+        <geometry><cylinder><radius>0.065</radius><length>0.048</length></cylinder></geometry>
+        <material>
+          <ambient>0.90 0.90 0.90 1</ambient>
+          <diffuse>0.88 0.88 0.88 1</diffuse>
+          <specular>0.4 0.4 0.4 1</specular>
+        </material>
+      </visual>
+
+      <!-- Status LED (green = fix acquired) -->
+      <visual name="gps_led">
+        <pose>-1.0 0 1.898 0 0 0</pose>
+        <geometry><cylinder><radius>0.018</radius><length>0.008</length></cylinder></geometry>
+        <material>
+          <ambient>0.0 0.9 0.2 1</ambient>
+          <diffuse>0.0 0.9 0.2 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!--  TRAILER WHEELS (4 wheels, 2 axles)                            -->
+      <!--  Wheel axis along Y: roll = π/2 = 1.5708                      -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+
+      <visual name="wheel_trailer_rear_left">
+        <pose>-2.8 1.38 0.5 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.50</radius><length>0.26</length></cylinder></geometry>
+        <material>
+          <ambient>0.12 0.12 0.12 1</ambient>
+          <diffuse>0.10 0.10 0.10 1</diffuse>
+        </material>
+      </visual>
+      <collision name="wheel_trailer_rear_left_col">
+        <pose>-2.8 1.38 0.5 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.50</radius><length>0.26</length></cylinder></geometry>
+      </collision>
+
+      <visual name="wheel_trailer_rear_right">
+        <pose>-2.8 -1.38 0.5 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.50</radius><length>0.26</length></cylinder></geometry>
+        <material>
+          <ambient>0.12 0.12 0.12 1</ambient>
+          <diffuse>0.10 0.10 0.10 1</diffuse>
+        </material>
+      </visual>
+      <collision name="wheel_trailer_rear_right_col">
+        <pose>-2.8 -1.38 0.5 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.50</radius><length>0.26</length></cylinder></geometry>
+      </collision>
+
+      <visual name="wheel_trailer_front_left">
+        <pose>2.0 1.38 0.5 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.50</radius><length>0.26</length></cylinder></geometry>
+        <material>
+          <ambient>0.12 0.12 0.12 1</ambient>
+          <diffuse>0.10 0.10 0.10 1</diffuse>
+        </material>
+      </visual>
+      <collision name="wheel_trailer_front_left_col">
+        <pose>2.0 1.38 0.5 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.50</radius><length>0.26</length></cylinder></geometry>
+      </collision>
+
+      <visual name="wheel_trailer_front_right">
+        <pose>2.0 -1.38 0.5 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.50</radius><length>0.26</length></cylinder></geometry>
+        <material>
+          <ambient>0.12 0.12 0.12 1</ambient>
+          <diffuse>0.10 0.10 0.10 1</diffuse>
+        </material>
+      </visual>
+      <collision name="wheel_trailer_front_right_col">
+        <pose>2.0 -1.38 0.5 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.50</radius><length>0.26</length></cylinder></geometry>
+      </collision>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!--  FIFTH WHEEL COUPLING PLATE (trailer–cab connection)            -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+
+      <visual name="fifth_wheel_plate">
+        <pose>4.15 0 1.28 0 0 0</pose>
+        <geometry><box><size>0.85 1.45 0.13</size></box></geometry>
+        <material>
+          <ambient>0.30 0.30 0.30 1</ambient>
+          <diffuse>0.28 0.28 0.28 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+        </material>
+      </visual>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!--  TRUCK CAB                                                      -->
+      <!--  Lower body / hood: X=4.25→7.75, Z=0→1.05                     -->
+      <!--  Upper cab:         X=4.45→7.45, Z=1.05→3.45                  -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+
+      <!-- Lower body (hood, chassis skirt, steps) -->
+      <visual name="cab_lower">
+        <pose>6.0 0 0.55 0 0 0</pose>
+        <geometry><box><size>3.5 2.35 1.1</size></box></geometry>
+        <material>
+          <ambient>0.82 0.32 0.05 1</ambient>
+          <diffuse>0.80 0.30 0.04 1</diffuse>
+          <specular>0.10 0.05 0.02 1</specular>
+        </material>
+      </visual>
+      <collision name="cab_lower_col">
+        <pose>6.0 0 0.55 0 0 0</pose>
+        <geometry><box><size>3.5 2.35 1.1</size></box></geometry>
+      </collision>
+
+      <!-- Upper cab (driver compartment + sleeper) -->
+      <visual name="cab_upper">
+        <pose>5.75 0 2.1 0 0 0</pose>
+        <geometry><box><size>3.0 2.35 2.1</size></box></geometry>
+        <material>
+          <ambient>0.85 0.35 0.05 1</ambient>
+          <diffuse>0.82 0.32 0.04 1</diffuse>
+          <specular>0.10 0.05 0.02 1</specular>
+        </material>
+      </visual>
+      <collision name="cab_upper_col">
+        <pose>5.75 0 2.1 0 0 0</pose>
+        <geometry><box><size>3.0 2.35 2.1</size></box></geometry>
+      </collision>
+
+      <!-- Roof panel / A/C fairing -->
+      <visual name="cab_roof">
+        <pose>5.6 0 3.37 0 0 0</pose>
+        <geometry><box><size>2.8 2.2 0.42</size></box></geometry>
+        <material>
+          <ambient>0.68 0.26 0.04 1</ambient>
+          <diffuse>0.65 0.24 0.03 1</diffuse>
+        </material>
+      </visual>
+      <collision name="cab_roof_col">
+        <pose>5.6 0 3.37 0 0 0</pose>
+        <geometry><box><size>2.8 2.2 0.42</size></box></geometry>
+      </collision>
+
+      <!-- Windshield (front face, semi-transparent blue-tinted) -->
+      <visual name="windshield">
+        <pose>7.27 0 2.0 0 0 0</pose>
+        <geometry><box><size>0.08 1.95 1.35</size></box></geometry>
+        <material>
+          <ambient>0.38 0.55 0.85 0.55</ambient>
+          <diffuse>0.38 0.55 0.85 0.50</diffuse>
+          <specular>0.5 0.6 0.9 0.3</specular>
+        </material>
+      </visual>
+
+      <!-- Front grille (dark, chrome-trim look) -->
+      <visual name="front_grille">
+        <pose>7.76 0 0.72 0 0 0</pose>
+        <geometry><box><size>0.22 2.35 0.95</size></box></geometry>
+        <material>
+          <ambient>0.18 0.18 0.20 1</ambient>
+          <diffuse>0.15 0.15 0.18 1</diffuse>
+          <specular>0.5 0.5 0.6 1</specular>
+        </material>
+      </visual>
+      <collision name="front_grille_col">
+        <pose>7.76 0 0.72 0 0 0</pose>
+        <geometry><box><size>0.22 2.35 0.95</size></box></geometry>
+      </collision>
+
+      <!-- Front bumper (chrome/silver) -->
+      <visual name="front_bumper">
+        <pose>7.9 0 0.24 0 0 0</pose>
+        <geometry><box><size>0.30 2.35 0.44</size></box></geometry>
+        <material>
+          <ambient>0.65 0.65 0.70 1</ambient>
+          <diffuse>0.60 0.60 0.65 1</diffuse>
+          <specular>0.6 0.6 0.65 1</specular>
+        </material>
+      </visual>
+      <collision name="front_bumper_col">
+        <pose>7.9 0 0.24 0 0 0</pose>
+        <geometry><box><size>0.30 2.35 0.44</size></box></geometry>
+      </collision>
+
+      <!-- Headlight left -->
+      <visual name="headlight_left">
+        <pose>7.80 0.80 0.72 0 0 0</pose>
+        <geometry><box><size>0.10 0.38 0.28</size></box></geometry>
+        <material>
+          <ambient>0.98 0.98 0.85 1</ambient>
+          <diffuse>0.95 0.95 0.80 1</diffuse>
+          <specular>0.8 0.8 0.7 1</specular>
+        </material>
+      </visual>
+
+      <!-- Headlight right -->
+      <visual name="headlight_right">
+        <pose>7.80 -0.80 0.72 0 0 0</pose>
+        <geometry><box><size>0.10 0.38 0.28</size></box></geometry>
+        <material>
+          <ambient>0.98 0.98 0.85 1</ambient>
+          <diffuse>0.95 0.95 0.80 1</diffuse>
+          <specular>0.8 0.8 0.7 1</specular>
+        </material>
+      </visual>
+
+      <!-- Side mirror left -->
+      <visual name="mirror_left">
+        <pose>7.35 1.52 2.05 0 0 0</pose>
+        <geometry><box><size>0.14 0.32 0.20</size></box></geometry>
+        <material>
+          <ambient>0.25 0.25 0.25 1</ambient>
+          <diffuse>0.22 0.22 0.22 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- Side mirror right -->
+      <visual name="mirror_right">
+        <pose>7.35 -1.52 2.05 0 0 0</pose>
+        <geometry><box><size>0.14 0.32 0.20</size></box></geometry>
+        <material>
+          <ambient>0.25 0.25 0.25 1</ambient>
+          <diffuse>0.22 0.22 0.22 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- Exhaust stack (vertical, behind cab-left) -->
+      <visual name="exhaust_pipe">
+        <pose>4.8 1.12 2.9 0 0 0</pose>
+        <geometry><cylinder><radius>0.058</radius><length>1.9</length></cylinder></geometry>
+        <material>
+          <ambient>0.18 0.18 0.18 1</ambient>
+          <diffuse>0.15 0.15 0.15 1</diffuse>
+          <specular>0.3 0.3 0.3 1</specular>
+        </material>
+      </visual>
+
+      <!-- Fuel tank left (longitudinal cylinder, axis along X) -->
+      <!-- pitch=π/2 rotates Z-axis toward +X direction -->
+      <visual name="fuel_tank_left">
+        <pose>5.7 1.35 0.72 0 1.5708 0</pose>
+        <geometry><cylinder><radius>0.28</radius><length>0.85</length></cylinder></geometry>
+        <material>
+          <ambient>0.22 0.22 0.22 1</ambient>
+          <diffuse>0.20 0.20 0.20 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- Fuel tank right -->
+      <visual name="fuel_tank_right">
+        <pose>5.7 -1.35 0.72 0 1.5708 0</pose>
+        <geometry><cylinder><radius>0.28</radius><length>0.85</length></cylinder></geometry>
+        <material>
+          <ambient>0.22 0.22 0.22 1</ambient>
+          <diffuse>0.20 0.20 0.20 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!--  TRUCK WHEELS (4 wheels, 2 axles)                              -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+
+      <visual name="wheel_truck_front_left">
+        <pose>7.3 1.37 0.5 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.50</radius><length>0.26</length></cylinder></geometry>
+        <material>
+          <ambient>0.12 0.12 0.12 1</ambient>
+          <diffuse>0.10 0.10 0.10 1</diffuse>
+        </material>
+      </visual>
+      <collision name="wheel_truck_front_left_col">
+        <pose>7.3 1.37 0.5 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.50</radius><length>0.26</length></cylinder></geometry>
+      </collision>
+
+      <visual name="wheel_truck_front_right">
+        <pose>7.3 -1.37 0.5 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.50</radius><length>0.26</length></cylinder></geometry>
+        <material>
+          <ambient>0.12 0.12 0.12 1</ambient>
+          <diffuse>0.10 0.10 0.10 1</diffuse>
+        </material>
+      </visual>
+      <collision name="wheel_truck_front_right_col">
+        <pose>7.3 -1.37 0.5 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.50</radius><length>0.26</length></cylinder></geometry>
+      </collision>
+
+      <visual name="wheel_truck_rear_left">
+        <pose>4.8 1.37 0.5 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.50</radius><length>0.26</length></cylinder></geometry>
+        <material>
+          <ambient>0.12 0.12 0.12 1</ambient>
+          <diffuse>0.10 0.10 0.10 1</diffuse>
+        </material>
+      </visual>
+      <collision name="wheel_truck_rear_left_col">
+        <pose>4.8 1.37 0.5 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.50</radius><length>0.26</length></cylinder></geometry>
+      </collision>
+
+      <visual name="wheel_truck_rear_right">
+        <pose>4.8 -1.37 0.5 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.50</radius><length>0.26</length></cylinder></geometry>
+        <material>
+          <ambient>0.12 0.12 0.12 1</ambient>
+          <diffuse>0.10 0.10 0.10 1</diffuse>
+        </material>
+      </visual>
+      <collision name="wheel_truck_rear_right_col">
+        <pose>4.8 -1.37 0.5 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.50</radius><length>0.26</length></cylinder></geometry>
+      </collision>
+
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <!--  NavSat GPS SENSOR                                              -->
+      <!--  Placed at the GPS receiver head (X=-1.0, Z≈1.90)             -->
+      <!--  Publishes to:                                                  -->
+      <!--    /world/<world>/model/landing_truck/link/base_link/          -->
+      <!--      sensor/gps_sensor/navsat                                  -->
+      <!-- ═══════════════════════════════════════════════════════════════ -->
+      <sensor name="gps_sensor" type="navsat">
+        <pose>-1.0 0 1.90 0 0 0</pose>
+        <always_on>true</always_on>
+        <update_rate>1.0</update_rate>
+        <navsat>
+          <position_sensing>
+            <horizontal>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.001</stddev>
+              </noise>
+            </horizontal>
+            <vertical>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.002</stddev>
+              </noise>
+            </vertical>
+          </position_sensing>
+          <velocity_sensing>
+            <horizontal>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.05</stddev>
+              </noise>
+            </horizontal>
+            <vertical>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.05</stddev>
+              </noise>
+            </vertical>
+          </velocity_sensing>
+        </navsat>
+      </sensor>
+
+    </link>
+  </model>
+</sdf>

@@ -547,5 +547,43 @@
       <pose degrees="true">10 0 0.195 0 0 90</pose>
     </include>
 
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <!--  BASE-1: Landing Truck + Trailer                                 -->
+    <!--                                                                   -->
+    <!--  Truck faces East (+X). Model origin = centre of trailer bed.    -->
+    <!--  Landing pad (H marker): world position ≈ (-1, -30, 1.41)       -->
+    <!--  GPS sensor:             world position ≈ (-1, -30, 1.90)       -->
+    <!--                                                                   -->
+    <!--  Drone 1 starts 30 m north of this base (Y=0 vs Y=-30).         -->
+    <!--  To start drones ON the truck trailer, set drone poses to        -->
+    <!--    (-1 0 1.60 0 0 90) relative to this model's world origin.    -->
+    <!--                                                                   -->
+    <!--  Gazebo GPS topic:                                                -->
+    <!--    /world/iris_2drones_field/model/landing_truck/                -->
+    <!--      link/base_link/sensor/gps_sensor/navsat                    -->
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <include>
+      <uri>model://landing_truck</uri>
+      <name>landing_truck</name>
+      <pose>0 -30 0 0 0 0</pose>
+    </include>
+
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <!--  BASE-2: Additional Standalone Trailer                           -->
+    <!--                                                                   -->
+    <!--  Detached flatbed trailer, 10 m north of BASE-1 truck.          -->
+    <!--  Landing pad (H marker): world position ≈ (0, -20, 1.41)        -->
+    <!--  GPS sensor:             world position ≈ (1, -20, 1.90)        -->
+    <!--                                                                   -->
+    <!--  Gazebo GPS topic:                                                -->
+    <!--    /world/iris_2drones_field/model/landing_trailer/              -->
+    <!--      link/base_link/sensor/gps_sensor/navsat                    -->
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <include>
+      <uri>model://landing_trailer</uri>
+      <name>landing_trailer</name>
+      <pose>0 -20 0 0 0 0</pose>
+    </include>
+
   </world>
 </sdf>
