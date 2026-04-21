@@ -22,9 +22,25 @@
 -->
 <sdf version="1.9">
   <model name="landing_truck">
-    <static>true</static>
+    <static>false</static>
 
     <link name="base_link">
+      <!-- Dynamic properties for drivable truck behavior -->
+      <inertial>
+        <mass>9000.0</mass>
+        <inertia>
+          <ixx>11437.5</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>114750.0</iyy>
+          <iyz>0.0</iyz>
+          <izz>112687.5</izz>
+        </inertia>
+      </inertial>
+      <velocity_decay>
+        <linear>0.10</linear>
+        <angular>0.22</angular>
+      </velocity_decay>
 
       <!-- ═══════════════════════════════════════════════════════════════ -->
       <!--  TRAILER FRAME                                                  -->
@@ -539,5 +555,70 @@
       </sensor>
 
     </link>
+
+    <!-- Drive support: publish Twist to /model/landing_truck/cmd_vel -->
+    <plugin
+      filename="gz-sim-velocity-control-system"
+      name="gz::sim::systems::VelocityControl">
+      <topic>/model/landing_truck/cmd_vel</topic>
+      <initial_linear>0 0 0</initial_linear>
+      <initial_angular>0 0 0</initial_angular>
+    </plugin>
+
+    <!-- Keyboard teleop via Gazebo KeyPublisher (W/A/S/D + X/Space stop) -->
+    <plugin filename="gz-sim-triggered-publisher-system"
+            name="gz::sim::systems::TriggeredPublisher">
+      <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+        <match field="data">87</match>
+      </input>
+      <output type="gz.msgs.Twist" topic="/model/landing_truck/cmd_vel">
+        linear: {x: 2.6}, angular: {z: 0.0}
+      </output>
+    </plugin>
+    <plugin filename="gz-sim-triggered-publisher-system"
+            name="gz::sim::systems::TriggeredPublisher">
+      <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+        <match field="data">65</match>
+      </input>
+      <output type="gz.msgs.Twist" topic="/model/landing_truck/cmd_vel">
+        linear: {x: 1.8}, angular: {z: 0.30}
+      </output>
+    </plugin>
+    <plugin filename="gz-sim-triggered-publisher-system"
+            name="gz::sim::systems::TriggeredPublisher">
+      <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+        <match field="data">83</match>
+      </input>
+      <output type="gz.msgs.Twist" topic="/model/landing_truck/cmd_vel">
+        linear: {x: -1.4}, angular: {z: 0.0}
+      </output>
+    </plugin>
+    <plugin filename="gz-sim-triggered-publisher-system"
+            name="gz::sim::systems::TriggeredPublisher">
+      <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+        <match field="data">68</match>
+      </input>
+      <output type="gz.msgs.Twist" topic="/model/landing_truck/cmd_vel">
+        linear: {x: 1.8}, angular: {z: -0.30}
+      </output>
+    </plugin>
+    <plugin filename="gz-sim-triggered-publisher-system"
+            name="gz::sim::systems::TriggeredPublisher">
+      <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+        <match field="data">88</match>
+      </input>
+      <output type="gz.msgs.Twist" topic="/model/landing_truck/cmd_vel">
+        linear: {x: 0.0}, angular: {z: 0.0}
+      </output>
+    </plugin>
+    <plugin filename="gz-sim-triggered-publisher-system"
+            name="gz::sim::systems::TriggeredPublisher">
+      <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+        <match field="data">32</match>
+      </input>
+      <output type="gz.msgs.Twist" topic="/model/landing_truck/cmd_vel">
+        linear: {x: 0.0}, angular: {z: 0.0}
+      </output>
+    </plugin>
   </model>
 </sdf>
