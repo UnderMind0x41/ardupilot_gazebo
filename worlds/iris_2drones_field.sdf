@@ -1,0 +1,551 @@
+<?xml version="1.0" ?>
+<!--
+  World: iris_2drones_field
+
+  Agricultural field with TWO Iris sprayer drones placed 10 m apart (along X axis).
+
+  Drone 1: iris_with_sprayer   — SITL instance 0, fdm_port_in=9002, MAVLINK TCP=5760
+  Drone 2: iris_with_sprayer_2 — SITL instance 1, fdm_port_in=9012, MAVLINK TCP=5770
+
+  Usage:
+    ./scripts-no-docker/2_drones_start_sim.sh
+-->
+<sdf version="1.9">
+  <world name="iris_2drones_field">
+
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <!--  Physics                                                          -->
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <physics name="1ms" type="ignore">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <!--  Core systems                                                     -->
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <plugin filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics"/>
+
+    <plugin filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <plugin filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands"/>
+
+    <plugin filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster"/>
+
+    <plugin filename="gz-sim-imu-system"
+      name="gz::sim::systems::Imu"/>
+
+    <plugin filename="gz-sim-navsat-system"
+      name="gz::sim::systems::NavSat"/>
+
+    <!--  Required for the sprayer particle emitters -->
+    <plugin filename="gz-sim-particle-emitter-system"
+      name="gz::sim::systems::ParticleEmitter"/>
+
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <!--  Scene, sky and lighting                                          -->
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <scene>
+      <ambient>0.75 0.80 0.70 1</ambient>
+      <background>0.45 0.70 0.90 1</background>
+      <sky>
+        <clouds>true</clouds>
+      </sky>
+      <shadows>true</shadows>
+    </scene>
+
+    <!-- Warm afternoon sun (low angle from south-west) -->
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 200 0 0 0</pose>
+      <direction>-0.45 0.20 -0.87</direction>
+      <diffuse>1.0 0.92 0.78 1</diffuse>
+      <specular>0.35 0.30 0.25 1</specular>
+      <attenuation>
+        <range>2000</range>
+        <constant>1.0</constant>
+        <linear>0.0</linear>
+        <quadratic>0.0</quadratic>
+      </attenuation>
+    </light>
+
+    <!-- Soft sky-dome fill (no shadows, cool blue) -->
+    <light type="directional" name="sky_fill">
+      <cast_shadows>false</cast_shadows>
+      <pose>0 0 50 0 0 0</pose>
+      <direction>0 0 -1</direction>
+      <diffuse>0.35 0.45 0.60 1</diffuse>
+      <specular>0.0 0.0 0.0 1</specular>
+      <attenuation>
+        <range>2000</range>
+        <constant>1.0</constant>
+        <linear>0.0</linear>
+        <quadratic>0.0</quadratic>
+      </attenuation>
+    </light>
+
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <!--  Geolocation (same as iris_sprayer — Canberra, Australia)        -->
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <spherical_coordinates>
+      <latitude_deg>-35.363262</latitude_deg>
+      <longitude_deg>149.165237</longitude_deg>
+      <elevation>584</elevation>
+      <heading_deg>0</heading_deg>
+      <surface_model>EARTH_WGS84</surface_model>
+    </spherical_coordinates>
+
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <!--  Ground — grass field  1000 × 1000 m                               -->
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane><normal>0 0 1</normal><size>1000 1000</size></plane>
+          </geometry>
+          <surface>
+            <friction><ode><mu>0.8</mu><mu2>0.8</mu2></ode></friction>
+          </surface>
+        </collision>
+        <visual name="grass">
+          <geometry>
+            <plane><normal>0 0 1</normal><size>1000 1000</size></plane>
+          </geometry>
+          <material>
+            <!-- Mid-tone grass green -->
+            <ambient>0.25 0.40 0.15 1</ambient>
+            <diffuse>0.30 0.48 0.18 1</diffuse>
+            <specular>0.04 0.06 0.02 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <!--  Crop rows  — 24 rows, 1.5 m pitch, 50 m long                   -->
+    <!--  y range: -17.25 … +17.25 m  (step 1.5 m)                       -->
+    <!--  Slightly darker / yellower green to contrast with bare grass    -->
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <model name="crop_field">
+      <static>true</static>
+      <link name="link">
+
+        <visual name="row_00"><pose>0 -17.25 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_01"><pose>0 -15.75 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_02"><pose>0 -14.25 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_03"><pose>0 -12.75 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_04"><pose>0 -11.25 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_05"><pose>0 -9.75 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_06"><pose>0 -8.25 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_07"><pose>0 -6.75 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_08"><pose>0 -5.25 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_09"><pose>0 -3.75 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_10"><pose>0 -2.25 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_11"><pose>0 -0.75 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_12"><pose>0 0.75 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_13"><pose>0 2.25 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_14"><pose>0 3.75 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_15"><pose>0 5.25 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_16"><pose>0 6.75 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_17"><pose>0 8.25 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_18"><pose>0 9.75 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_19"><pose>0 11.25 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_20"><pose>0 12.75 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_21"><pose>0 14.25 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_22"><pose>0 15.75 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+        <visual name="row_23"><pose>0 17.25 0.06 0 0 0</pose>
+          <geometry><box><size>50 0.35 0.12</size></box></geometry>
+          <material><ambient>0.18 0.34 0.08 1</ambient><diffuse>0.20 0.38 0.09 1</diffuse></material></visual>
+
+      </link>
+    </model>
+
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <!--  Trees — fetched from Gazebo Fuel on first run, then cached      -->
+    <!--  Pine Tree  ≈ 877 KB  |  Oak tree  ≈ 589 KB                     -->
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+
+    <!-- ── North edge ────────────────────────────────────────────────── -->
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>pine_n1</name><pose>-72 90 0 0 0 0.4</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>oak_n1</name><pose>-44 97 0 0 0 1.1</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>pine_n2</name><pose>-12 93 0 0 0 2.5</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>oak_n2</name><pose>18 91 0 0 0 0.8</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>pine_n3</name><pose>48 98 0 0 0 1.7</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>oak_n3</name><pose>73 90 0 0 0 3.0</pose>
+    </include>
+
+    <!-- ── South edge ────────────────────────────────────────────────── -->
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>oak_s1</name><pose>-68 -92 0 0 0 2.1</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>pine_s1</name><pose>-38 -98 0 0 0 0.6</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>oak_s2</name><pose>5 -90 0 0 0 1.4</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>pine_s2</name><pose>38 -95 0 0 0 2.9</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>oak_s3</name><pose>65 -91 0 0 0 0.3</pose>
+    </include>
+
+    <!-- ── East edge ─────────────────────────────────────────────────── -->
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>pine_e1</name><pose>93 -62 0 0 0 1.9</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>oak_e1</name><pose>97 -22 0 0 0 0.7</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>pine_e2</name><pose>91 15 0 0 0 2.3</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>oak_e2</name><pose>96 55 0 0 0 1.2</pose>
+    </include>
+
+    <!-- ── West edge ─────────────────────────────────────────────────── -->
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>oak_w1</name><pose>-96 -58 0 0 0 0.9</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>pine_w1</name><pose>-93 -18 0 0 0 2.0</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>oak_w2</name><pose>-90 22 0 0 0 1.5</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>pine_w2</name><pose>-95 62 0 0 0 0.2</pose>
+    </include>
+
+    <!-- ── Corner clusters ───────────────────────────────────────────── -->
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>pine_ne1</name><pose>84 84 0 0 0 1.3</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>oak_ne1</name><pose>90 76 0 0 0 2.7</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>pine_nw1</name><pose>-82 84 0 0 0 0.5</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>oak_sw1</name><pose>-86 -80 0 0 0 1.8</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>pine_se1</name><pose>82 -84 0 0 0 2.4</pose>
+    </include>
+
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <!--  Forest — four concentric rings, radii 112 / 130 / 152 / 175 m  -->
+    <!--  Placed beyond the current scatter trees (≤ 98 m).              -->
+    <!--  Ring 1: 14 trees @ r≈112 m   (step ≈25.7 °, offset 7 °)       -->
+    <!--  Ring 2: 16 trees @ r≈130 m   (step  22.5 °, offset 15 °)      -->
+    <!--  Ring 3: 18 trees @ r≈152 m   (step  20.0 °, offset  3 °)      -->
+    <!--  Ring 4: 20 trees @ r≈175 m   (step  18.0 °, offset 10 °)      -->
+    <!--  Alternating Pine / Oak, each with a unique yaw.                -->
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+
+    <!-- Ring 1  r=112 -->
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f1_t01</name><pose>111.2 13.6 0 0 0 0.5</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f1_t02</name><pose>94.2 60.7 0 0 0 1.8</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f1_t03</name><pose>58.5 95.5 0 0 0 3.1</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f1_t04</name><pose>11.5 111.4 0 0 0 0.9</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f1_t05</name><pose>-37.9 105.4 0 0 0 2.4</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f1_t06</name><pose>-79.9 78.5 0 0 0 1.2</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f1_t07</name><pose>-106.0 36.2 0 0 0 3.7</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f1_t08</name><pose>-111.1 -14.0 0 0 0 0.3</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f1_t09</name><pose>-94.2 -60.5 0 0 0 2.1</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f1_t10</name><pose>-58.7 -95.4 0 0 0 1.5</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f1_t11</name><pose>-11.7 -111.4 0 0 0 4.2</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f1_t12</name><pose>37.8 -105.4 0 0 0 0.7</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f1_t13</name><pose>79.7 -78.6 0 0 0 2.8</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f1_t14</name><pose>106.0 -36.3 0 0 0 1.1</pose></include>
+
+    <!-- Ring 2  r=130 -->
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f2_t01</name><pose>125.6 33.6 0 0 0 2.3</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f2_t02</name><pose>103.1 79.1 0 0 0 0.6</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f2_t03</name><pose>65.0 112.6 0 0 0 3.4</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f2_t04</name><pose>17.0 128.9 0 0 0 1.9</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f2_t05</name><pose>-33.6 125.6 0 0 0 0.4</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f2_t06</name><pose>-79.1 103.1 0 0 0 2.7</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f2_t07</name><pose>-112.6 65.0 0 0 0 1.3</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f2_t08</name><pose>-128.9 17.0 0 0 0 3.9</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f2_t09</name><pose>-125.6 -33.6 0 0 0 0.8</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f2_t10</name><pose>-103.1 -79.1 0 0 0 2.5</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f2_t11</name><pose>-65.0 -112.6 0 0 0 1.6</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f2_t12</name><pose>-17.0 -128.9 0 0 0 3.2</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f2_t13</name><pose>33.6 -125.6 0 0 0 0.2</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f2_t14</name><pose>79.1 -103.1 0 0 0 2.9</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f2_t15</name><pose>112.6 -65.0 0 0 0 1.4</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f2_t16</name><pose>128.9 -17.0 0 0 0 3.6</pose></include>
+
+    <!-- Ring 3  r=152 -->
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f3_t01</name><pose>151.8 8.0 0 0 0 1.7</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f3_t02</name><pose>139.9 59.4 0 0 0 3.0</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f3_t03</name><pose>111.2 103.7 0 0 0 0.5</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f3_t04</name><pose>69.0 135.4 0 0 0 2.2</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f3_t05</name><pose>18.5 150.9 0 0 0 1.0</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f3_t06</name><pose>-34.2 148.1 0 0 0 3.5</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f3_t07</name><pose>-82.8 127.5 0 0 0 0.7</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f3_t08</name><pose>-121.4 91.5 0 0 0 2.4</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f3_t09</name><pose>-145.4 44.4 0 0 0 1.3</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f3_t10</name><pose>-151.8 -8.0 0 0 0 3.8</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f3_t11</name><pose>-139.9 -59.4 0 0 0 0.9</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f3_t12</name><pose>-111.2 -103.7 0 0 0 2.6</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f3_t13</name><pose>-69.0 -135.4 0 0 0 1.5</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f3_t14</name><pose>-18.5 -150.9 0 0 0 3.3</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f3_t15</name><pose>34.2 -148.1 0 0 0 0.4</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f3_t16</name><pose>82.8 -127.5 0 0 0 2.1</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f3_t17</name><pose>121.4 -91.5 0 0 0 1.8</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f3_t18</name><pose>145.4 -44.4 0 0 0 3.7</pose></include>
+
+    <!-- Ring 4  r=175 -->
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f4_t01</name><pose>172.3 30.4 0 0 0 2.0</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f4_t02</name><pose>154.5 82.2 0 0 0 0.3</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f4_t03</name><pose>121.6 125.9 0 0 0 2.9</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f4_t04</name><pose>76.7 157.3 0 0 0 1.4</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f4_t05</name><pose>24.4 173.3 0 0 0 3.6</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f4_t06</name><pose>-30.4 172.3 0 0 0 0.8</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f4_t07</name><pose>-82.2 154.5 0 0 0 2.5</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f4_t08</name><pose>-125.9 121.6 0 0 0 1.1</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f4_t09</name><pose>-157.3 76.7 0 0 0 3.4</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f4_t10</name><pose>-173.3 24.4 0 0 0 0.6</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f4_t11</name><pose>-172.3 -30.4 0 0 0 2.3</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f4_t12</name><pose>-154.5 -82.2 0 0 0 1.7</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f4_t13</name><pose>-121.6 -125.9 0 0 0 3.9</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f4_t14</name><pose>-76.7 -157.3 0 0 0 0.2</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f4_t15</name><pose>-24.4 -173.3 0 0 0 2.6</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f4_t16</name><pose>30.4 -172.3 0 0 0 1.3</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f4_t17</name><pose>82.2 -154.5 0 0 0 3.1</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f4_t18</name><pose>125.9 -121.6 0 0 0 0.5</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pine Tree</uri>
+      <name>f4_t19</name><pose>157.3 -76.7 0 0 0 2.8</pose></include>
+    <include><uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
+      <name>f4_t20</name><pose>173.3 -24.4 0 0 0 1.0</pose></include>
+
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <!--  Orientation markers (XYZ axes, 2 cm thick)                      -->
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <model name="axes">
+      <static>true</static>
+      <link name="link">
+        <visual name="x_axis">
+          <cast_shadows>false</cast_shadows>
+          <pose>2.5 0 0.05 0 0 0</pose>
+          <geometry><box><size>5 0.04 0.04</size></box></geometry>
+          <material><ambient>1 0 0 1</ambient><diffuse>1 0 0 1</diffuse></material>
+        </visual>
+        <visual name="y_axis">
+          <cast_shadows>false</cast_shadows>
+          <pose>0 2.5 0.05 0 0 0</pose>
+          <geometry><box><size>0.04 5 0.04</size></box></geometry>
+          <material><ambient>0 0.8 0 1</ambient><diffuse>0 0.8 0 1</diffuse></material>
+        </visual>
+        <visual name="z_axis">
+          <cast_shadows>false</cast_shadows>
+          <pose>0 0 2.5 0 0 0</pose>
+          <geometry><box><size>0.04 0.04 5</size></box></geometry>
+          <material><ambient>0 0 1 1</ambient><diffuse>0 0 1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <!--  Drone 1 — SITL instance 0 (fdm_port_in=9002, MAVLINK TCP=5760) -->
+    <!--  Positioned at origin                                            -->
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <include>
+      <uri>model://iris_with_sprayer</uri>
+      <pose degrees="true">0 0 0.195 0 0 90</pose>
+    </include>
+
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <!--  Drone 2 — SITL instance 1 (fdm_port_in=9012, MAVLINK TCP=5770) -->
+    <!--  Positioned 10 m away along X axis                               -->
+    <!-- ═════════════════════════════════════════════════════════════════ -->
+    <include>
+      <uri>model://iris_with_sprayer_2</uri>
+      <pose degrees="true">10 0 0.195 0 0 90</pose>
+    </include>
+
+  </world>
+</sdf>
