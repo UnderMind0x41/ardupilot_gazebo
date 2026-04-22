@@ -50,6 +50,15 @@ SERVO5_MIN       1100
 SERVO5_MAX       1900
 SERVO5_TRIM      1100
 
+# ── Rangefinder via Gazebo ray sensor → JSON rng_1 ──────────────────────────
+# Override the upstream analog SITL sonar defaults from gazebo-iris.parm.
+# ArduPilotPlugin forwards the Gazebo LaserScan minimum hit distance as rng_1,
+# and the SITL rangefinder backend (TYPE=100) consumes that directly.
+RNGFND1_TYPE     100
+RNGFND1_MIN_CM   2
+RNGFND1_MAX_CM   3000
+RNGFND1_ORIENT   25
+
 # ── SERVO6 → spinner (function 23) ───────────────────────────────────────────
 # Not wired to Gazebo but must be assigned so ArduCopter drives it.
 SERVO6_FUNCTION  23

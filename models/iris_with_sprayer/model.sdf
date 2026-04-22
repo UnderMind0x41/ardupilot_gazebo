@@ -152,6 +152,62 @@
     </joint>
 
     <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!--  Downward rangefinder                                              -->
+    <!--  Single-beam ray sensor mounted under the fuselage centre.         -->
+    <!--  The sensor points along local +X, so pitch +90 deg to face −Z.   -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <link name="rangefinder_link">
+      <gravity>false</gravity>
+      <pose>0 0 -0.12 0 0 0</pose>
+
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1e-7</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1e-7</iyy>
+          <iyz>0</iyz>
+          <izz>1e-7</izz>
+        </inertia>
+      </inertial>
+
+      <sensor name="downward_rangefinder" type="gpu_lidar">
+        <pose>0 0 0 0 1.57079632679 0</pose>
+        <topic>/model/iris_with_sprayer/rangefinder</topic>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <visualize>false</visualize>
+        <lidar>
+          <scan>
+            <horizontal>
+              <samples>1</samples>
+              <resolution>1</resolution>
+              <min_angle>0</min_angle>
+              <max_angle>0</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>1</samples>
+              <resolution>1</resolution>
+              <min_angle>0</min_angle>
+              <max_angle>0</max_angle>
+            </vertical>
+          </scan>
+          <range>
+            <min>0.02</min>
+            <max>30.0</max>
+            <resolution>0.01</resolution>
+          </range>
+        </lidar>
+      </sensor>
+    </link>
+
+    <joint name="rangefinder_joint" type="fixed">
+      <parent>iris_with_standoffs::base_link</parent>
+      <child>rangefinder_link</child>
+    </joint>
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
     <!--  Plugins                                                            -->
     <!-- ═══════════════════════════════════════════════════════════════════ -->
 
@@ -276,6 +332,11 @@
       <gazeboXYZToNED degrees="true">0 0 0 180 0 90</gazeboXYZToNED>
 
       <imuName>iris_with_standoffs::imu_link::imu_sensor</imuName>
+      <sensor>
+        <type>lidar</type>
+        <index>1</index>
+        <topic>/model/iris_with_sprayer/rangefinder</topic>
+      </sensor>
 
       <control channel="0">
         <jointName>iris_with_standoffs::rotor_0_joint</jointName>
