@@ -30,8 +30,8 @@
         </inertia>
       </inertial>
       <velocity_decay>
-        <linear>0.14</linear>
-        <angular>1.20</angular>
+        <linear>0.30</linear>
+        <angular>2.10</angular>
       </velocity_decay>
 
       <visual name="frame_rail_left">
@@ -304,7 +304,7 @@
             <bullet>
                 <friction>3.2</friction>
                 <friction2>3.4</friction2>
-                <rolling_friction>0.08</rolling_friction>
+                <rolling_friction>0.45</rolling_friction>
             </bullet>
           </friction>
         </surface>
@@ -341,7 +341,7 @@
             <bullet>
                 <friction>3.2</friction>
                 <friction2>3.4</friction2>
-                <rolling_friction>0.08</rolling_friction>
+                <rolling_friction>0.45</rolling_friction>
             </bullet>
           </friction>
         </surface>
@@ -378,7 +378,7 @@
             <bullet>
                 <friction>3.2</friction>
                 <friction2>3.4</friction2>
-                <rolling_friction>0.08</rolling_friction>
+                <rolling_friction>0.18</rolling_friction>
             </bullet>
           </friction>
         </surface>
@@ -415,7 +415,7 @@
             <bullet>
                 <friction>3.2</friction>
                 <friction2>3.4</friction2>
-                <rolling_friction>0.08</rolling_friction>
+                <rolling_friction>0.18</rolling_friction>
             </bullet>
           </friction>
         </surface>
@@ -432,7 +432,8 @@
           <upper>1.79769e+308</upper>
         </limit>
         <dynamics>
-          <damping>2.4</damping>
+          <damping>8.0</damping>
+          <friction>3.5</friction>
         </dynamics>
       </axis>
     </joint>
@@ -446,7 +447,8 @@
           <upper>1.79769e+308</upper>
         </limit>
         <dynamics>
-          <damping>2.4</damping>
+          <damping>8.0</damping>
+          <friction>3.5</friction>
         </dynamics>
       </axis>
     </joint>
@@ -460,7 +462,8 @@
           <upper>1.79769e+308</upper>
         </limit>
         <dynamics>
-          <damping>2.4</damping>
+          <damping>5.5</damping>
+          <friction>1.2</friction>
         </dynamics>
       </axis>
     </joint>
@@ -474,7 +477,8 @@
           <upper>1.79769e+308</upper>
         </limit>
         <dynamics>
-          <damping>2.4</damping>
+          <damping>5.5</damping>
+          <friction>1.2</friction>
         </dynamics>
       </axis>
     </joint>
@@ -484,27 +488,27 @@
       name="gz::sim::systems::WheelSlip">
       <wheel link_name="wheel_rear_left">
         <wheel_radius>0.50</wheel_radius>
-        <slip_compliance_lateral>0.25</slip_compliance_lateral>
-        <slip_compliance_longitudinal>0.015</slip_compliance_longitudinal>
-        <wheel_normal_force>8500</wheel_normal_force>
+        <slip_compliance_lateral>0.08</slip_compliance_lateral>
+        <slip_compliance_longitudinal>0.004</slip_compliance_longitudinal>
+        <wheel_normal_force>9500</wheel_normal_force>
       </wheel>
       <wheel link_name="wheel_rear_right">
         <wheel_radius>0.50</wheel_radius>
-        <slip_compliance_lateral>0.25</slip_compliance_lateral>
-        <slip_compliance_longitudinal>0.015</slip_compliance_longitudinal>
-        <wheel_normal_force>8500</wheel_normal_force>
+        <slip_compliance_lateral>0.08</slip_compliance_lateral>
+        <slip_compliance_longitudinal>0.004</slip_compliance_longitudinal>
+        <wheel_normal_force>9500</wheel_normal_force>
       </wheel>
       <wheel link_name="wheel_front_left">
         <wheel_radius>0.50</wheel_radius>
-        <slip_compliance_lateral>0.25</slip_compliance_lateral>
-        <slip_compliance_longitudinal>0.015</slip_compliance_longitudinal>
-        <wheel_normal_force>8500</wheel_normal_force>
+        <slip_compliance_lateral>0.10</slip_compliance_lateral>
+        <slip_compliance_longitudinal>0.006</slip_compliance_longitudinal>
+        <wheel_normal_force>9000</wheel_normal_force>
       </wheel>
       <wheel link_name="wheel_front_right">
         <wheel_radius>0.50</wheel_radius>
-        <slip_compliance_lateral>0.25</slip_compliance_lateral>
-        <slip_compliance_longitudinal>0.015</slip_compliance_longitudinal>
-        <wheel_normal_force>8500</wheel_normal_force>
+        <slip_compliance_lateral>0.10</slip_compliance_lateral>
+        <slip_compliance_longitudinal>0.006</slip_compliance_longitudinal>
+        <wheel_normal_force>9000</wheel_normal_force>
       </wheel>
     </plugin>
   </model>
