@@ -540,50 +540,30 @@
 
     <!-- ═════════════════════════════════════════════════════════════════ -->
     <!--  Drone 2 — SITL instance 1 (fdm_port_in=9012, MAVLINK TCP=5770) -->
-    <!--  Start on the trailer yellow pad (center of trailer plate)        -->
+    <!--  Start on the attached trailer yellow pad, behind the truck      -->
     <!-- ═════════════════════════════════════════════════════════════════ -->
     <include>
       <uri>model://iris_with_sprayer_2</uri>
-      <pose degrees="true">0 -20 1.601 0 0 90</pose>
+      <pose degrees="true">-8.8 -30 1.601 0 0 90</pose>
     </include>
 
     <!-- ═════════════════════════════════════════════════════════════════ -->
-    <!--  BASE-1: Landing Truck + Trailer                                 -->
+    <!--  BASE-1: Landing Truck + Attached Trailer                        -->
     <!--                                                                   -->
-    <!--  Truck faces East (+X). Model origin = centre of trailer bed.    -->
-    <!--  Landing pad (H marker): world position ≈ (-1, -30, 1.41)       -->
-    <!--  GPS sensor:             world position ≈ (-1, -30, 1.90)       -->
+    <!--  Truck faces East (+X).                                           -->
+    <!--  Truck landing pad world position   ≈ (-1.0, -30.0, 1.41)       -->
+    <!--  Trailer landing pad world position ≈ (-8.8, -30.0, 1.41)       -->
     <!--                                                                   -->
-    <!--  Drone 1 is already positioned on this pad at:                  -->
-    <!--    world pose (-1, -30, 1.601, 0, 0, 90).                     -->
-    <!--                                                                   -->
-    <!--  Gazebo GPS topic:                                                -->
+    <!--  Gazebo GPS topics:                                               -->
     <!--    /world/iris_2drones_field/model/landing_truck/                -->
-    <!--      link/base_link/sensor/gps_sensor/navsat                    -->
+    <!--      link/base_link/sensor/gps_sensor/navsat                     -->
+    <!--    /world/iris_2drones_field/model/landing_truck/                -->
+    <!--      link/trailer_base_link/sensor/trailer_gps_sensor/navsat     -->
     <!-- ═════════════════════════════════════════════════════════════════ -->
     <include>
       <uri>model://landing_truck</uri>
       <name>landing_truck</name>
       <pose>0 -30 0 0 0 0</pose>
-    </include>
-
-    <!-- ═════════════════════════════════════════════════════════════════ -->
-    <!--  BASE-2: Additional Standalone Trailer                           -->
-    <!--                                                                   -->
-    <!--  Detached flatbed trailer, 10 m north of BASE-1 truck.          -->
-    <!--  Landing pad (H marker): world position ≈ (0, -20, 1.41)        -->
-    <!--  GPS sensor:             world position ≈ (1, -20, 1.90)        -->
-    <!--  Drone 2 is already positioned on this pad at:                  -->
-    <!--    world pose (0, -20, 1.601, 0, 0, 90).                     -->
-    <!--                                                                   -->
-    <!--  Gazebo GPS topic:                                                -->
-    <!--    /world/iris_2drones_field/model/landing_trailer/              -->
-    <!--      link/base_link/sensor/gps_sensor/navsat                    -->
-    <!-- ═════════════════════════════════════════════════════════════════ -->
-    <include>
-      <uri>model://landing_trailer</uri>
-      <name>landing_trailer</name>
-      <pose>0 -20 0 0 0 0</pose>
     </include>
 
   </world>
