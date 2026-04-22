@@ -31,7 +31,7 @@
       </inertial>
       <velocity_decay>
         <linear>0.08</linear>
-        <angular>0.55</angular>
+        <angular>0.80</angular>
       </velocity_decay>
 
       <visual name="frame_rail_left">
@@ -295,16 +295,16 @@
         <surface>
           <friction>
             <ode>
-              <mu>1.2</mu>
-              <mu2>1.6</mu2>
+              <mu>2.2</mu>
+              <mu2>2.8</mu2>
               <fdir1>0 0 1</fdir1>
-              <slip1>0.03</slip1>
-              <slip2>0.18</slip2>
+              <slip1>0.02</slip1>
+              <slip2>0.05</slip2>
             </ode>
             <bullet>
-              <friction>1.2</friction>
-              <friction2>1.6</friction2>
-              <rolling_friction>0.03</rolling_friction>
+                <friction>2.2</friction>
+                <friction2>2.8</friction2>
+                <rolling_friction>0.05</rolling_friction>
             </bullet>
           </friction>
         </surface>
@@ -332,16 +332,16 @@
         <surface>
           <friction>
             <ode>
-              <mu>1.2</mu>
-              <mu2>1.6</mu2>
+              <mu>2.2</mu>
+              <mu2>2.8</mu2>
               <fdir1>0 0 1</fdir1>
-              <slip1>0.03</slip1>
-              <slip2>0.18</slip2>
+              <slip1>0.02</slip1>
+              <slip2>0.05</slip2>
             </ode>
             <bullet>
-              <friction>1.2</friction>
-              <friction2>1.6</friction2>
-              <rolling_friction>0.03</rolling_friction>
+                <friction>2.2</friction>
+                <friction2>2.8</friction2>
+                <rolling_friction>0.05</rolling_friction>
             </bullet>
           </friction>
         </surface>
@@ -369,16 +369,16 @@
         <surface>
           <friction>
             <ode>
-              <mu>1.2</mu>
-              <mu2>1.6</mu2>
+              <mu>2.2</mu>
+              <mu2>2.8</mu2>
               <fdir1>0 0 1</fdir1>
-              <slip1>0.03</slip1>
-              <slip2>0.18</slip2>
+              <slip1>0.02</slip1>
+              <slip2>0.05</slip2>
             </ode>
             <bullet>
-              <friction>1.2</friction>
-              <friction2>1.6</friction2>
-              <rolling_friction>0.03</rolling_friction>
+                <friction>2.2</friction>
+                <friction2>2.8</friction2>
+                <rolling_friction>0.05</rolling_friction>
             </bullet>
           </friction>
         </surface>
@@ -406,16 +406,16 @@
         <surface>
           <friction>
             <ode>
-              <mu>1.2</mu>
-              <mu2>1.6</mu2>
+              <mu>2.2</mu>
+              <mu2>2.8</mu2>
               <fdir1>0 0 1</fdir1>
-              <slip1>0.03</slip1>
-              <slip2>0.18</slip2>
+              <slip1>0.02</slip1>
+              <slip2>0.05</slip2>
             </ode>
             <bullet>
-              <friction>1.2</friction>
-              <friction2>1.6</friction2>
-              <rolling_friction>0.03</rolling_friction>
+                <friction>2.2</friction>
+                <friction2>2.8</friction2>
+                <rolling_friction>0.05</rolling_friction>
             </bullet>
           </friction>
         </surface>
@@ -432,7 +432,7 @@
           <upper>1.79769e+308</upper>
         </limit>
         <dynamics>
-          <damping>0.8</damping>
+          <damping>1.6</damping>
         </dynamics>
       </axis>
     </joint>
@@ -446,7 +446,7 @@
           <upper>1.79769e+308</upper>
         </limit>
         <dynamics>
-          <damping>0.8</damping>
+          <damping>1.6</damping>
         </dynamics>
       </axis>
     </joint>
@@ -460,7 +460,7 @@
           <upper>1.79769e+308</upper>
         </limit>
         <dynamics>
-          <damping>0.8</damping>
+          <damping>1.6</damping>
         </dynamics>
       </axis>
     </joint>
@@ -474,7 +474,7 @@
           <upper>1.79769e+308</upper>
         </limit>
         <dynamics>
-          <damping>0.8</damping>
+          <damping>1.6</damping>
         </dynamics>
       </axis>
     </joint>
@@ -484,27 +484,27 @@
       name="gz::sim::systems::WheelSlip">
       <wheel link_name="wheel_rear_left">
         <wheel_radius>0.50</wheel_radius>
-        <slip_compliance_lateral>2.0</slip_compliance_lateral>
-        <slip_compliance_longitudinal>0.06</slip_compliance_longitudinal>
-        <wheel_normal_force>5500</wheel_normal_force>
+        <slip_compliance_lateral>0.8</slip_compliance_lateral>
+        <slip_compliance_longitudinal>0.03</slip_compliance_longitudinal>
+        <wheel_normal_force>7000</wheel_normal_force>
       </wheel>
       <wheel link_name="wheel_rear_right">
         <wheel_radius>0.50</wheel_radius>
-        <slip_compliance_lateral>2.0</slip_compliance_lateral>
-        <slip_compliance_longitudinal>0.06</slip_compliance_longitudinal>
-        <wheel_normal_force>5500</wheel_normal_force>
+        <slip_compliance_lateral>0.8</slip_compliance_lateral>
+        <slip_compliance_longitudinal>0.03</slip_compliance_longitudinal>
+        <wheel_normal_force>7000</wheel_normal_force>
       </wheel>
       <wheel link_name="wheel_front_left">
         <wheel_radius>0.50</wheel_radius>
-        <slip_compliance_lateral>2.0</slip_compliance_lateral>
-        <slip_compliance_longitudinal>0.06</slip_compliance_longitudinal>
-        <wheel_normal_force>5500</wheel_normal_force>
+        <slip_compliance_lateral>0.8</slip_compliance_lateral>
+        <slip_compliance_longitudinal>0.03</slip_compliance_longitudinal>
+        <wheel_normal_force>7000</wheel_normal_force>
       </wheel>
       <wheel link_name="wheel_front_right">
         <wheel_radius>0.50</wheel_radius>
-        <slip_compliance_lateral>2.0</slip_compliance_lateral>
-        <slip_compliance_longitudinal>0.06</slip_compliance_longitudinal>
-        <wheel_normal_force>5500</wheel_normal_force>
+        <slip_compliance_lateral>0.8</slip_compliance_lateral>
+        <slip_compliance_longitudinal>0.03</slip_compliance_longitudinal>
+        <wheel_normal_force>7000</wheel_normal_force>
       </wheel>
     </plugin>
   </model>
