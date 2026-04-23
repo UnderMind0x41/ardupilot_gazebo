@@ -873,23 +873,23 @@
       <child>trailer_base_link</child>
     </joint>
 
-    <!-- Tow bar / wire -->
+    <!-- Rigid drawbar hitch -->
     <link name="tow_bar_link">
       <pose>-3.0 0 0.90 0 0 0</pose>
       <inertial>
-        <mass>40.0</mass>
+        <mass>120.0</mass>
         <inertia>
-          <ixx>0.05</ixx>
+          <ixx>0.25</ixx>
           <ixy>0.0</ixy>
           <ixz>0.0</ixz>
-          <iyy>8.0</iyy>
+          <iyy>24.0</iyy>
           <iyz>0.0</iyz>
-          <izz>8.0</izz>
+          <izz>24.0</izz>
         </inertia>
       </inertial>
       <visual name="tow_bar_visual">
-        <pose>-0.81 0 0 0 1.5708 0</pose>
-        <geometry><cylinder><radius>0.045</radius><length>1.62</length></cylinder></geometry>
+        <pose>-0.81 0 0 0 0 0</pose>
+        <geometry><box><size>1.62 0.22 0.18</size></box></geometry>
         <material>
           <ambient>0.12 0.12 0.12 1</ambient>
           <diffuse>0.10 0.10 0.10 1</diffuse>
@@ -898,7 +898,7 @@
       </visual>
       <collision name="tow_bar_col">
         <pose>-0.81 0 0 0 0 0</pose>
-        <geometry><box><size>1.62 0.10 0.10</size></box></geometry>
+        <geometry><box><size>1.62 0.22 0.18</size></box></geometry>
       </collision>
     </link>
     <joint name="truck_to_tow_bar_joint" type="revolute">
@@ -923,14 +923,14 @@
     <link name="tow_bar_rear_tip">
       <pose>-4.62 0 0.90 0 0 0</pose>
       <inertial>
-        <mass>2.0</mass>
+        <mass>10.0</mass>
         <inertia>
-          <ixx>0.001</ixx>
+          <ixx>0.02</ixx>
           <ixy>0.0</ixy>
           <ixz>0.0</ixz>
-          <iyy>0.001</iyy>
+          <iyy>0.02</iyy>
           <iyz>0.0</iyz>
-          <izz>0.001</izz>
+          <izz>0.02</izz>
         </inertia>
       </inertial>
     </link>
@@ -989,7 +989,7 @@
             <bullet>
                 <friction>4.0</friction>
                 <friction2>4.0</friction2>
-                <rolling_friction>0.90</rolling_friction>
+                <rolling_friction>1.40</rolling_friction>
             </bullet>
           </friction>
         </surface>
@@ -1026,7 +1026,7 @@
             <bullet>
                 <friction>4.0</friction>
                 <friction2>4.0</friction2>
-                <rolling_friction>0.90</rolling_friction>
+                <rolling_friction>1.40</rolling_friction>
             </bullet>
           </friction>
         </surface>
@@ -1117,8 +1117,8 @@
           <upper>1.79769e+308</upper>
         </limit>
         <dynamics>
-          <damping>12.0</damping>
-          <friction>8.0</friction>
+          <damping>18.0</damping>
+          <friction>16.0</friction>
         </dynamics>
       </axis>
     </joint>
@@ -1132,8 +1132,8 @@
           <upper>1.79769e+308</upper>
         </limit>
         <dynamics>
-          <damping>12.0</damping>
-          <friction>8.0</friction>
+          <damping>18.0</damping>
+          <friction>16.0</friction>
         </dynamics>
       </axis>
     </joint>
@@ -1175,15 +1175,15 @@
       name="gz::sim::systems::WheelSlip">
       <wheel link_name="trailer_rear_left_wheel">
         <wheel_radius>0.50</wheel_radius>
-        <slip_compliance_lateral>0.03</slip_compliance_lateral>
-        <slip_compliance_longitudinal>0.001</slip_compliance_longitudinal>
-        <wheel_normal_force>11000</wheel_normal_force>
+        <slip_compliance_lateral>0.02</slip_compliance_lateral>
+        <slip_compliance_longitudinal>0.0005</slip_compliance_longitudinal>
+        <wheel_normal_force>12500</wheel_normal_force>
       </wheel>
       <wheel link_name="trailer_rear_right_wheel">
         <wheel_radius>0.50</wheel_radius>
-        <slip_compliance_lateral>0.03</slip_compliance_lateral>
-        <slip_compliance_longitudinal>0.001</slip_compliance_longitudinal>
-        <wheel_normal_force>11000</wheel_normal_force>
+        <slip_compliance_lateral>0.02</slip_compliance_lateral>
+        <slip_compliance_longitudinal>0.0005</slip_compliance_longitudinal>
+        <wheel_normal_force>12500</wheel_normal_force>
       </wheel>
       <wheel link_name="trailer_front_left_wheel">
         <wheel_radius>0.50</wheel_radius>
