@@ -232,6 +232,19 @@ Display the streamed video:
 gst-launch-1.0 -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false
 ```
 
+In the `iris_2drones_field.sdf` world, the two agrodrones also have fixed
+downward cameras with 130 degree horizontal FOV at 10 FPS. `scripts/start_sim.sh`
+enables and opens viewers for these streams automatically when a display and
+`gst-launch-1.0` are available:
+
+```bash
+# Drone 1 downward camera
+gst-launch-1.0 -v udpsrc port=5610 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false
+
+# Drone 2 downward camera
+gst-launch-1.0 -v udpsrc port=5611 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false
+```
+
 View the streamed camera frames in [QGC](http://qgroundcontrol.com/):
 
 `Open QGC > Application Settings > Video Settings > Select UDP h.264 Video Stream & use port 5600`
