@@ -243,6 +243,17 @@
       </sensor>
     </link>
 
+    <include>
+      <uri>model://apriltag_36h11_1</uri>
+      <name>trailer_apriltag_36h11_1</name>
+      <pose relative_to="base_link">0 0 1.418 0 0 0</pose>
+    </include>
+
+    <joint name="trailer_apriltag_fixed_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>trailer_apriltag_36h11_1::tag_link</child>
+    </joint>
+
     <link name="coupler_link">
       <pose>4.18 0 0.82 0 0 0</pose>
       <inertial>
