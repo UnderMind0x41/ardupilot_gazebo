@@ -344,14 +344,14 @@
     </link>
 
     <include>
-      <uri>model://apriltag_36h11_0</uri>
-      <name>truck_apriltag_36h11_0</name>
+      <uri>model://apriltag_36h11_1</uri>
+      <name>truck_apriltag_36h11_1</name>
       <pose relative_to="base_link">-1.0 0 1.418 0 0 0</pose>
     </include>
 
     <joint name="truck_apriltag_fixed_joint" type="fixed">
       <parent>base_link</parent>
-      <child>truck_apriltag_36h11_0::tag_link</child>
+      <child>truck_apriltag_36h11_1::tag_link</child>
     </joint>
 
     <link name="truck_hitch_link">
@@ -855,14 +855,14 @@
     </link>
 
     <include>
-      <uri>model://apriltag_36h11_1</uri>
-      <name>trailer_apriltag_36h11_1</name>
+      <uri>model://apriltag_36h11_2</uri>
+      <name>trailer_apriltag_36h11_2</name>
       <pose relative_to="trailer_base_link">0 0 1.418 0 0 0</pose>
     </include>
 
     <joint name="trailer_apriltag_fixed_joint" type="fixed">
       <parent>trailer_base_link</parent>
-      <child>trailer_apriltag_36h11_1::tag_link</child>
+      <child>trailer_apriltag_36h11_2::tag_link</child>
     </joint>
 
     <link name="trailer_coupler_link">

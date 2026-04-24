@@ -19,7 +19,7 @@
         <pose>0 0 -0.004 0 0 0</pose>
         <geometry>
           <box>
-            <size>0.86 0.86 0.008</size>
+            <size>0.66 0.66 0.008</size>
           </box>
         </geometry>
         <material>
@@ -34,7 +34,7 @@
         <geometry>
           <plane>
             <normal>0 0 1</normal>
-            <size>0.80 0.80</size>
+            <size>0.20 0.20</size>
           </plane>
         </geometry>
         <material>
