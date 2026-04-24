@@ -649,19 +649,19 @@
     <link name="trailer_base_link">
       <pose>-8.8 0 0 0 0 0</pose>
       <inertial>
-        <mass>1300.0</mass>
+        <mass>900.0</mass>
         <inertia>
-          <ixx>1100.0</ixx>
+          <ixx>140.0</ixx>
           <ixy>0.0</ixy>
           <ixz>0.0</ixz>
-          <iyy>4200.0</iyy>
+          <iyy>525.0</iyy>
           <iyz>0.0</iyz>
-          <izz>4600.0</izz>
+          <izz>575.0</izz>
         </inertia>
       </inertial>
       <velocity_decay>
-        <linear>0.30</linear>
-        <angular>2.10</angular>
+        <linear>0.80</linear>
+        <angular>4.20</angular>
       </velocity_decay>
 
       <visual name="frame_rail_left">
@@ -913,9 +913,9 @@
           <velocity>2.0</velocity>
         </limit>
         <dynamics>
-          <damping>10.0</damping>
+          <damping>42.0</damping>
           <spring_reference>0.0</spring_reference>
-          <spring_stiffness>420.0</spring_stiffness>
+          <spring_stiffness>45.0</spring_stiffness>
         </dynamics>
       </axis>
     </joint>
@@ -950,9 +950,9 @@
           <velocity>2.0</velocity>
         </limit>
         <dynamics>
-          <damping>9.0</damping>
+          <damping>46.0</damping>
           <spring_reference>0.0</spring_reference>
-          <spring_stiffness>650.0</spring_stiffness>
+          <spring_stiffness>55.0</spring_stiffness>
         </dynamics>
       </axis>
     </joint>
@@ -961,11 +961,11 @@
     <link name="trailer_rear_left_wheel">
       <pose>-10.8 1.38 0.50 -1.5708 0 0</pose>
       <inertial>
-        <mass>45.0</mass>
+        <mass>30.0</mass>
         <inertia>
-          <ixx>3.6</ixx>
-          <iyy>3.6</iyy>
-          <izz>4.6</izz>
+          <ixx>0.45</ixx>
+          <iyy>0.45</iyy>
+          <izz>0.58</izz>
         </inertia>
       </inertial>
       <visual name="visual">
@@ -980,16 +980,16 @@
         <surface>
           <friction>
             <ode>
-              <mu>4.0</mu>
-              <mu2>4.0</mu2>
+              <mu>8.0</mu>
+              <mu2>8.0</mu2>
               <fdir1>0 0 1</fdir1>
-              <slip1>0.002</slip1>
-              <slip2>0.004</slip2>
+              <slip1>0.0002</slip1>
+              <slip2>0.0005</slip2>
             </ode>
             <bullet>
-                <friction>4.0</friction>
-                <friction2>4.0</friction2>
-                <rolling_friction>1.40</rolling_friction>
+                <friction>8.0</friction>
+                <friction2>8.0</friction2>
+                <rolling_friction>3.80</rolling_friction>
             </bullet>
           </friction>
         </surface>
@@ -998,11 +998,11 @@
     <link name="trailer_rear_right_wheel">
       <pose>-10.8 -1.38 0.50 -1.5708 0 0</pose>
       <inertial>
-        <mass>45.0</mass>
+        <mass>30.0</mass>
         <inertia>
-          <ixx>3.6</ixx>
-          <iyy>3.6</iyy>
-          <izz>4.6</izz>
+          <ixx>0.45</ixx>
+          <iyy>0.45</iyy>
+          <izz>0.58</izz>
         </inertia>
       </inertial>
       <visual name="visual">
@@ -1017,16 +1017,16 @@
         <surface>
           <friction>
             <ode>
-              <mu>4.0</mu>
-              <mu2>4.0</mu2>
+              <mu>8.0</mu>
+              <mu2>8.0</mu2>
               <fdir1>0 0 1</fdir1>
-              <slip1>0.002</slip1>
-              <slip2>0.004</slip2>
+              <slip1>0.0002</slip1>
+              <slip2>0.0005</slip2>
             </ode>
             <bullet>
-                <friction>4.0</friction>
-                <friction2>4.0</friction2>
-                <rolling_friction>1.40</rolling_friction>
+                <friction>8.0</friction>
+                <friction2>8.0</friction2>
+                <rolling_friction>3.80</rolling_friction>
             </bullet>
           </friction>
         </surface>
@@ -1035,11 +1035,11 @@
     <link name="trailer_front_left_wheel">
       <pose>-6.8 1.38 0.50 -1.5708 0 0</pose>
       <inertial>
-        <mass>45.0</mass>
+        <mass>30.0</mass>
         <inertia>
-          <ixx>3.6</ixx>
-          <iyy>3.6</iyy>
-          <izz>4.6</izz>
+          <ixx>0.45</ixx>
+          <iyy>0.45</iyy>
+          <izz>0.58</izz>
         </inertia>
       </inertial>
       <visual name="visual">
@@ -1054,16 +1054,16 @@
         <surface>
           <friction>
             <ode>
-              <mu>0.02</mu>
-              <mu2>0.02</mu2>
+              <mu>2.2</mu>
+              <mu2>3.0</mu2>
               <fdir1>0 0 1</fdir1>
-              <slip1>1.5</slip1>
-              <slip2>2.0</slip2>
+              <slip1>0.03</slip1>
+              <slip2>0.08</slip2>
             </ode>
             <bullet>
-                <friction>0.02</friction>
-                <friction2>0.02</friction2>
-                <rolling_friction>0.0</rolling_friction>
+                <friction>2.2</friction>
+                <friction2>3.0</friction2>
+                <rolling_friction>0.90</rolling_friction>
             </bullet>
           </friction>
         </surface>
@@ -1072,11 +1072,11 @@
     <link name="trailer_front_right_wheel">
       <pose>-6.8 -1.38 0.50 -1.5708 0 0</pose>
       <inertial>
-        <mass>45.0</mass>
+        <mass>30.0</mass>
         <inertia>
-          <ixx>3.6</ixx>
-          <iyy>3.6</iyy>
-          <izz>4.6</izz>
+          <ixx>0.45</ixx>
+          <iyy>0.45</iyy>
+          <izz>0.58</izz>
         </inertia>
       </inertial>
       <visual name="visual">
@@ -1091,16 +1091,16 @@
         <surface>
           <friction>
             <ode>
-              <mu>0.02</mu>
-              <mu2>0.02</mu2>
+              <mu>2.2</mu>
+              <mu2>3.0</mu2>
               <fdir1>0 0 1</fdir1>
-              <slip1>1.5</slip1>
-              <slip2>2.0</slip2>
+              <slip1>0.03</slip1>
+              <slip2>0.08</slip2>
             </ode>
             <bullet>
-                <friction>0.02</friction>
-                <friction2>0.02</friction2>
-                <rolling_friction>0.0</rolling_friction>
+                <friction>2.2</friction>
+                <friction2>3.0</friction2>
+                <rolling_friction>0.90</rolling_friction>
             </bullet>
           </friction>
         </surface>
@@ -1117,8 +1117,8 @@
           <upper>1.79769e+308</upper>
         </limit>
         <dynamics>
-          <damping>18.0</damping>
-          <friction>16.0</friction>
+          <damping>58.0</damping>
+          <friction>52.0</friction>
         </dynamics>
       </axis>
     </joint>
@@ -1132,8 +1132,8 @@
           <upper>1.79769e+308</upper>
         </limit>
         <dynamics>
-          <damping>18.0</damping>
-          <friction>16.0</friction>
+          <damping>58.0</damping>
+          <friction>52.0</friction>
         </dynamics>
       </axis>
     </joint>
@@ -1147,8 +1147,8 @@
           <upper>1.79769e+308</upper>
         </limit>
         <dynamics>
-          <damping>0.2</damping>
-          <friction>0.0</friction>
+          <damping>16.0</damping>
+          <friction>12.0</friction>
         </dynamics>
       </axis>
     </joint>
@@ -1162,40 +1162,40 @@
           <upper>1.79769e+308</upper>
         </limit>
         <dynamics>
-          <damping>0.2</damping>
-          <friction>0.0</friction>
+          <damping>16.0</damping>
+          <friction>12.0</friction>
         </dynamics>
       </axis>
     </joint>
 
-    <!-- Give the trailer enough side-slip to follow the truck instead of
-         feeding large yaw torque back into the hitch during tight turns. -->
+    <!-- Keep enough lateral compliance for turning while adding longitudinal
+         resistance so the trailer settles promptly after a full stop. -->
     <plugin
       filename="gz-sim-wheel-slip-system"
       name="gz::sim::systems::WheelSlip">
       <wheel link_name="trailer_rear_left_wheel">
         <wheel_radius>0.50</wheel_radius>
-        <slip_compliance_lateral>0.02</slip_compliance_lateral>
-        <slip_compliance_longitudinal>0.0005</slip_compliance_longitudinal>
-        <wheel_normal_force>12500</wheel_normal_force>
+        <slip_compliance_lateral>0.006</slip_compliance_lateral>
+        <slip_compliance_longitudinal>0.0001</slip_compliance_longitudinal>
+        <wheel_normal_force>7000</wheel_normal_force>
       </wheel>
       <wheel link_name="trailer_rear_right_wheel">
         <wheel_radius>0.50</wheel_radius>
-        <slip_compliance_lateral>0.02</slip_compliance_lateral>
-        <slip_compliance_longitudinal>0.0005</slip_compliance_longitudinal>
-        <wheel_normal_force>12500</wheel_normal_force>
+        <slip_compliance_lateral>0.006</slip_compliance_lateral>
+        <slip_compliance_longitudinal>0.0001</slip_compliance_longitudinal>
+        <wheel_normal_force>7000</wheel_normal_force>
       </wheel>
       <wheel link_name="trailer_front_left_wheel">
         <wheel_radius>0.50</wheel_radius>
-        <slip_compliance_lateral>8.0</slip_compliance_lateral>
-        <slip_compliance_longitudinal>4.0</slip_compliance_longitudinal>
-        <wheel_normal_force>1500</wheel_normal_force>
+        <slip_compliance_lateral>0.18</slip_compliance_lateral>
+        <slip_compliance_longitudinal>0.012</slip_compliance_longitudinal>
+        <wheel_normal_force>2400</wheel_normal_force>
       </wheel>
       <wheel link_name="trailer_front_right_wheel">
         <wheel_radius>0.50</wheel_radius>
-        <slip_compliance_lateral>8.0</slip_compliance_lateral>
-        <slip_compliance_longitudinal>4.0</slip_compliance_longitudinal>
-        <wheel_normal_force>1500</wheel_normal_force>
+        <slip_compliance_lateral>0.18</slip_compliance_lateral>
+        <slip_compliance_longitudinal>0.012</slip_compliance_longitudinal>
+        <wheel_normal_force>2400</wheel_normal_force>
       </wheel>
     </plugin>
 
