@@ -1,5 +1,8 @@
 build/
 Build/
+colcon/
+.venv/
+venv/
 bin/
 lib/
 msg_gen/
