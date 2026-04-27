@@ -18,3 +18,5 @@ We've arducopter simulation with gazebo. There are two bases with Apriltags for 
 It seems like we need to implement ROS2 (maybe with MAVROS) to our system. There are some projects for AprilTag ROS2 implementation (https://github.com/christianrauch/apriltag_ros).
 Can you implement ROS2 into my system for AprilTag detection? It's better to place ROS2-base not into gazebo folder, so we can use that ROS2 base in the our real system later.
 Do we need to create ROS2 folder in the root folder? If so, do this. Also make ROS2 works together with our apriltag and show if detect works well.
+
+
