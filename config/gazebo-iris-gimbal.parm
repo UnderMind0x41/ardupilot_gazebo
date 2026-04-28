@@ -8,6 +8,9 @@ MOT_PWM_MAX      1900
 
 # Servo gimbal on mount 1 has 3 DOF
 MNT1_TYPE        1
+# Start centered. RC targeting uses RC8, which SITL/QGC commonly leaves high
+# at 1800, causing the simulated gimbal yaw servo to start off-center.
+MNT1_DEFLT_MODE  1
 MNT1_PITCH_MAX   45
 MNT1_PITCH_MIN   -135
 MNT1_ROLL_MAX    30
@@ -15,22 +18,27 @@ MNT1_ROLL_MIN    -30
 MNT1_YAW_MAX     160
 MNT1_YAW_MIN     -160
 
-# Gimbal RC in
+# Do not bind regular RC channels to the gimbal by default. QGC / MAVLink
+# gimbal commands still drive SERVO9/10/11, and the neutral command centers it.
 RC6_MAX          1900
 RC6_MIN          1100
+RC6_TRIM         1500
 
 # Mount1 Roll
-RC6_OPTION       212
+RC6_OPTION       0
 
 # Mount1 Pitch
 RC7_MAX          1900
 RC7_MIN          1100
-RC7_OPTION       213
+RC7_TRIM         1500
+RC7_OPTION       0
 
-# Mount1 Yaw
+# Keep the upstream gazebo-iris precision-loiter switch on RC8 instead of
+# repurposing the high RC8 switch as mount yaw.
 RC8_MAX          1900
 RC8_MIN          1100
-RC8_OPTION       214
+RC8_TRIM         1500
+RC8_OPTION       39
 
 # Mount1Roll
 SERVO9_FUNCTION  8
