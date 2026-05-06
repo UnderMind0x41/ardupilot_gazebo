@@ -232,10 +232,11 @@ Display the streamed video:
 gst-launch-1.0 -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false
 ```
 
-In the `iris_2drones_field.sdf` world, the two agrodrones also have fixed
-downward cameras with 130 degree horizontal FOV at 10 FPS. `scripts/start_sim.sh`
-enables and opens viewers for these streams automatically when a display and
-`gst-launch-1.0` are available:
+The default root launcher generates `iris_dynamic_field.sdf` under
+`ardupilot_gazebo/build/generated/` for `NUM_DRONES=1..4`. In that generated
+field world, each agrodrone has a fixed downward camera with 130 degree
+horizontal FOV at 10 FPS. `scripts/start_sim.sh` enables these streams
+automatically when Gazebo advertises the camera topics:
 
 ```bash
 # Drone 1 downward camera
@@ -243,7 +244,16 @@ gst-launch-1.0 -v udpsrc port=5610 caps='application/x-rtp, media=(string)video,
 
 # Drone 2 downward camera
 gst-launch-1.0 -v udpsrc port=5611 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false
+
+# Drone 3 / 4 downward cameras, when NUM_DRONES=3 or 4
+gst-launch-1.0 -v udpsrc port=5612 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false
+gst-launch-1.0 -v udpsrc port=5613 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false
 ```
+
+The same root launcher starts the Docker-hosted truck WASD teleop GUI by
+default when an X11 display is available. It publishes `gz.msgs.Twist` commands
+to `/model/landing_truck/cmd_vel`; use `START_TRUCK_TELEOP=false` to disable it
+for headless runs.
 
 View the streamed camera frames in [QGC](http://qgroundcontrol.com/):
 
