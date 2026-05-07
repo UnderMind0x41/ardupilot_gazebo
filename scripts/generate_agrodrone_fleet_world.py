@@ -32,6 +32,10 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--source-models-dir", type=Path, required=True)
     parser.add_argument("--generated-models-dir", type=Path, required=True)
     parser.add_argument("--generated-worlds-dir", type=Path, required=True)
+    parser.add_argument("--latitude-deg", type=float, default=None)
+    parser.add_argument("--longitude-deg", type=float, default=None)
+    parser.add_argument("--elevation-m", type=float, default=None)
+    parser.add_argument("--heading-deg", type=float, default=None)
     return parser.parse_args()
 
 
@@ -55,6 +59,11 @@ def _pad_x(drone_number: int) -> float:
 
 def _fmt(value: float) -> str:
     text = f"{value:.3f}"
+    return text.rstrip("0").rstrip(".")
+
+
+def _fmt_geo(value: float) -> str:
+    text = f"{value:.9f}"
     return text.rstrip("0").rstrip(".")
 
 
@@ -167,6 +176,33 @@ def _remove_static_fleet_includes(world: ET.Element) -> None:
             world.remove(include)
 
 
+def _set_spherical_coordinates(world: ET.Element, args: argparse.Namespace) -> None:
+    values = {
+        "latitude_deg": args.latitude_deg,
+        "longitude_deg": args.longitude_deg,
+        "elevation": args.elevation_m,
+        "heading_deg": args.heading_deg,
+    }
+    if all(value is None for value in values.values()):
+        return
+
+    spherical = world.find("spherical_coordinates")
+    if spherical is None:
+        spherical = ET.SubElement(world, "spherical_coordinates")
+
+    for tag, value in values.items():
+        if value is None:
+            continue
+        element = spherical.find(tag)
+        if element is None:
+            element = ET.SubElement(spherical, tag)
+        element.text = _fmt_geo(value)
+
+    if spherical.find("surface_model") is None:
+        surface_model = ET.SubElement(spherical, "surface_model")
+        surface_model.text = "EARTH_WGS84"
+
+
 def _generate_world(args: argparse.Namespace) -> Path:
     tree = ET.parse(args.template_world)
     root = tree.getroot()
@@ -175,6 +211,7 @@ def _generate_world(args: argparse.Namespace) -> Path:
         raise ValueError(f"Template world has no <world>: {args.template_world}")
 
     world.set("name", args.world_name)
+    _set_spherical_coordinates(world, args)
     _remove_static_fleet_includes(world)
 
     world.append(ET.Comment(" Generated fleet drone spawns "))
