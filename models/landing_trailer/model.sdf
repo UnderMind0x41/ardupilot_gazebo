@@ -221,7 +221,7 @@
       <sensor name="gps_sensor" type="navsat">
         <pose>1.0 0 1.474 0 0 0</pose>
         <always_on>true</always_on>
-        <update_rate>1.0</update_rate>
+        <update_rate>20.0</update_rate>
         <navsat>
           <position_sensing>
             <horizontal>

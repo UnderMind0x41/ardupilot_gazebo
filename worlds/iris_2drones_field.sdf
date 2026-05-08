@@ -566,7 +566,7 @@
     <!--                                                                   -->
     <!--  Gazebo GPS topics:                                               -->
     <!--    /world/iris_2drones_field/model/landing_truck/                -->
-    <!--      link/base_link/sensor/gps_sensor/navsat                     -->
+    <!--      link/base_gps_link/sensor/gps_sensor/navsat                 -->
     <!--    /world/iris_2drones_field/model/landing_truck/                -->
     <!--      link/trailer_base_link/sensor/trailer_gps_sensor/navsat     -->
     <!-- ═════════════════════════════════════════════════════════════════ -->

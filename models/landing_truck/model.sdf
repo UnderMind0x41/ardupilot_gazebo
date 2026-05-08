@@ -17,7 +17,7 @@
 
   Gazebo topics:
     /model/landing_truck/cmd_vel
-    /world/<world>/model/landing_truck/link/base_link/sensor/gps_sensor/navsat
+    /world/<world>/model/landing_truck/link/base_gps_link/sensor/gps_sensor/navsat
     /world/<world>/model/landing_truck/link/trailer_base_link/sensor/trailer_gps_sensor/navsat
 -->
 <sdf version="1.9">
@@ -318,10 +318,14 @@
         </material>
       </visual>
 
+    </link>
+
+    <link name="base_gps_link">
+      <pose>-0.2 0 1.474 0 0 0</pose>
       <sensor name="gps_sensor" type="navsat">
-        <pose>-0.2 0 1.474 0 0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <always_on>true</always_on>
-        <update_rate>1.0</update_rate>
+        <update_rate>20.0</update_rate>
         <navsat>
           <position_sensing>
             <horizontal>
@@ -342,6 +346,11 @@
         </navsat>
       </sensor>
     </link>
+
+    <joint name="base_gps_fixed_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>base_gps_link</child>
+    </joint>
 
     <include>
       <uri>model://apriltag_36h11_1</uri>
@@ -832,7 +841,7 @@
       <sensor name="trailer_gps_sensor" type="navsat">
         <pose>1.0 0 1.474 0 0 0</pose>
         <always_on>true</always_on>
-        <update_rate>1.0</update_rate>
+        <update_rate>20.0</update_rate>
         <navsat>
           <position_sensing>
             <horizontal>
