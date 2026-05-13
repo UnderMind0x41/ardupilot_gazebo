@@ -110,6 +110,7 @@ class SprayerPlugin::Impl
   public: double lastMarkX{1.0e9};
   public: double lastMarkY{1.0e9};
   public: int markId{0};
+  public: std::string markNamePrefix{"spray_mark"};
 
   // ── Transport ──────────────────────────────────────────────────────────── //
 
@@ -154,10 +155,12 @@ void SprayerPlugin::Impl::SetEmitting(transport::Node::Publisher &pub,
 //////////////////////////////////////////////////
 void SprayerPlugin::Impl::SpawnGroundMark(double x, double y)
 {
+  const std::string markName =
+      this->markNamePrefix + "_" + std::to_string(this->markId++);
   std::string sdf =
       "<?xml version=\"1.0\" ?>"
       "<sdf version=\"1.6\">"
-      "<model name=\"spray_mark_" + std::to_string(this->markId++) + "\">"
+      "<model name=\"" + markName + "\">"
       "  <static>true</static>"
       "  <pose>" + std::to_string(x) + " " + std::to_string(y) + " 0.005 0 0 0</pose>"
       "  <link name=\"mark_link\">"
@@ -215,6 +218,7 @@ void SprayerPlugin::Configure(
     return;
   }
   const std::string modelName = this->impl->model.Name(_ecm);
+  this->impl->markNamePrefix = "spray_mark_" + modelName;
 
   this->impl->world = World(_ecm.EntityByComponents(components::World()));
   if (!this->impl->world.Valid(_ecm))
