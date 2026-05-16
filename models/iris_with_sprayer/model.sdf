@@ -88,9 +88,6 @@
         <!-- Velocity range along emitter +X (world −Z after rotation) -->
         <min_velocity>1.0</min_velocity>
         <max_velocity>3.0</max_velocity>
-        <!-- Purple smoke: semi-transparent, fades to transparent -->
-        <color_start>0.55 0.0 0.85 0.75</color_start>
-        <color_end>0.35 0.0 0.60 0.0</color_end>
         <!-- Scale variation: particles expand as they travel -->
         <scale_rate>0.8</scale_rate>
         <!-- Start off — plugin enables this when spraying begins -->
@@ -153,8 +150,6 @@
         <rate>40</rate>
         <min_velocity>1.0</min_velocity>
         <max_velocity>3.0</max_velocity>
-        <color_start>0.55 0.0 0.85 0.75</color_start>
-        <color_end>0.35 0.0 0.60 0.0</color_end>
         <scale_rate>0.8</scale_rate>
         <emitting>false</emitting>
         <material>
