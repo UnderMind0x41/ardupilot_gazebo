@@ -8,9 +8,10 @@ BATT_MONITOR         4          # 4 = SITL battery monitor (recommended for simu
 BAT_CELL_COUNT      96         # Number of series cells for the ~400V agrodrone pack. USED for smart landing cell count detection
 SIM_BATT_VOLTAGE     403.2      # Full 96S pack voltage at boot; Lua resource commands lower/restore it during live simulation
 BATT_CAPACITY        5000       # mAh - capacity of battery
-BATT_LOW_VOLT        336.0      # Low voltage warning (for 96S: 3.5V per cell)
-BATT_FS_VOLT_RTH     297.6      # Failsafe threshold for Return-to-Home (3.1V per cell)
-BATT_FS_VOLT_CRT     259.2      # Critical failsafe threshold for landing (2.7V per cell)
+BATT_LOW_VOLT        288.0      # Keep native SITL warning below domain "depleted" (96S: 3.0V/cell)
+BATT_CRT_VOLT        259.2      # Critical voltage floor (96S: 2.7V/cell)
+BATT_FS_LOW_ACT      0          # Board resource policy owns depleted->service behavior in live simulation
+BATT_FS_CRT_ACT      0          # Do not latch native battery failsafe after simulated battery replacement
 
 # Параметры сельскохозяйственного мониторинга батареи
 # Agricultural battery monitoring parameters
