@@ -1,0 +1,130 @@
+<?xml version="1.0" ?>
+<!--
+  World: iris_apriltag_precision_land
+
+  Minimal one-drone AprilTag precision-landing smoke world. It keeps the
+  generated fleet-world truck/base coordinates but omits field vegetation and
+  remote Fuel assets so focused takeoff-to-base landing tests start quickly.
+-->
+<sdf version="1.9">
+  <world name="iris_apriltag_precision_land">
+    <physics name="1ms" type="ignore">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics">
+    </plugin>
+    <plugin filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands">
+    </plugin>
+    <plugin filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster">
+    </plugin>
+    <plugin filename="gz-sim-imu-system"
+      name="gz::sim::systems::Imu">
+    </plugin>
+    <plugin filename="gz-sim-navsat-system"
+      name="gz::sim::systems::NavSat">
+    </plugin>
+    <plugin filename="gz-sim-particle-emitter-system"
+      name="gz::sim::systems::ParticleEmitter">
+    </plugin>
+
+    <scene>
+      <ambient>1.0 1.0 1.0</ambient>
+      <background>0.6 0.8 1.0</background>
+      <sky></sky>
+    </scene>
+
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.8 0.8 0.8 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <spherical_coordinates>
+      <latitude_deg>-35.363333333</latitude_deg>
+      <longitude_deg>149.165222222</longitude_deg>
+      <elevation>584</elevation>
+      <heading_deg>0</heading_deg>
+      <surface_model>EARTH_WGS84</surface_model>
+    </spherical_coordinates>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>500 500</size>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>500 500</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.45 0.60 0.30 1</ambient>
+            <diffuse>0.45 0.60 0.30 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="axes">
+      <static>true</static>
+      <link name="link">
+        <visual name="x_axis">
+          <cast_shadows>false</cast_shadows>
+          <pose>2.5 0 0.05 0 0 0</pose>
+          <geometry><box><size>5 0.05 0.05</size></box></geometry>
+          <material><ambient>1 0 0 1</ambient><diffuse>1 0 0 1</diffuse></material>
+        </visual>
+        <visual name="y_axis">
+          <cast_shadows>false</cast_shadows>
+          <pose>0 2.5 0.05 0 0 0</pose>
+          <geometry><box><size>0.05 5 0.05</size></box></geometry>
+          <material><ambient>0 1 0 1</ambient><diffuse>0 1 0 1</diffuse></material>
+        </visual>
+        <visual name="z_axis">
+          <cast_shadows>false</cast_shadows>
+          <pose>0 0 2.5 0 0 0</pose>
+          <geometry><box><size>0.05 0.05 5</size></box></geometry>
+          <material><ambient>0 0 1 1</ambient><diffuse>0 0 1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <include>
+      <uri>model://landing_truck</uri>
+      <name>landing_truck</name>
+      <pose>0 -30 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://iris_with_sprayer</uri>
+      <name>iris_with_sprayer</name>
+      <pose degrees="true">-1 -30 1.601 0 0 90</pose>
+    </include>
+  </world>
+</sdf>

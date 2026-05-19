@@ -1,0 +1,17 @@
+# Agrodrone generated-world precision landing profile.
+# The AprilTag ROS stack publishes MAVLink LANDING_TARGET frames, so ArduPilot
+# must use the companion precision-landing backend rather than the built-in
+# SITL_Gazebo fake target backend from Tools/autotest/default_params/gazebo-iris.parm.
+
+PLND_ENABLED       1
+PLND_TYPE          1       # 1 = MAVLink companion LANDING_TARGET backend
+PLND_ORIENT        25      # Downward-facing precision-landing camera
+PLND_EST_TYPE      1       # Kalman filter
+PLND_STRICT        2       # Required target: hold instead of blind final descent when lost
+PLND_RET_MAX       4
+PLND_TIMEOUT       2
+PLND_ALT_MIN       0.50
+PLND_ALT_MAX       30
+PLND_XY_DIST_MAX   2.50
+PLND_LAG           0.02
+PLND_OPTIONS       0
