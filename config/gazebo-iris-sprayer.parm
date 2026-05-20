@@ -65,3 +65,26 @@ SERVO6_FUNCTION  23
 SERVO6_MIN       1100
 SERVO6_MAX       1900
 SERVO6_TRIM      1100
+
+# ── Live field-processing GUIDED tuning ─────────────────────────────────────
+# Headless generated-field validation may run Gazebo with larger physics steps
+# for throughput. Keep the Copter loop rate low enough that pre-arm gyro/main
+# loop checks stay healthy in that profile.
+SCHED_LOOP_RATE  125
+
+# WebUI fleet missions keep spray passes below 20 m/s so the board-side strict
+# 1 m spray corridor has margin in generated Gazebo validation. Transit may be
+# faster, but remains below the speed that caused edge-of-corridor overshoot.
+# The agro_drone.lua resource script mirrors AGRO_* speed params into WPNAV_SPEED
+# while spraying/transiting, so these must be explicit as well.
+AGRO_WP_SPEED    18
+AGRO_MAX_SPEED   24
+GUID_OPTIONS     16
+WPNAV_SPEED      2400
+WPNAV_ACCEL      500
+WPNAV_ACCEL_Z    200
+WPNAV_SPEED_UP   500
+WPNAV_SPEED_DN   300
+WPNAV_RADIUS      50
+WPNAV_JERK        20
+WPNAV_ACCEL_C    500
