@@ -79,6 +79,8 @@ SCHED_LOOP_RATE  125
 # while spraying/transiting, so these must be explicit as well.
 AGRO_WP_SPEED    18
 AGRO_MAX_SPEED   24
+AGRO_BRK_DIST    24
+AGRO_BRK_AGGR    0.6
 GUID_OPTIONS     16
 WPNAV_SPEED      2400
 WPNAV_ACCEL      500
