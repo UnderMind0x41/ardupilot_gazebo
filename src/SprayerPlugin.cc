@@ -91,6 +91,8 @@ class SprayerPlugin::Impl
   public: double sprayHeightMax{15.0};
   public: double markInterval{2.0};
   public: double markRadius{1.5};
+  public: bool enableEmitters{true};
+  public: bool enableGroundMarks{true};
 
   // ── Left/right link and emitter names (for topic construction) ─────────── //
 
@@ -260,6 +262,10 @@ void SprayerPlugin::Configure(
     this->impl->markInterval = _sdf->Get<double>("mark_interval");
   if (_sdf->HasElement("mark_radius"))
     this->impl->markRadius = _sdf->Get<double>("mark_radius");
+  if (_sdf->HasElement("enable_emitters"))
+    this->impl->enableEmitters = _sdf->Get<bool>("enable_emitters");
+  if (_sdf->HasElement("enable_ground_marks"))
+    this->impl->enableGroundMarks = _sdf->Get<bool>("enable_ground_marks");
 
   // ── Construct particle-emitter control topics ──────────────────────────── //
   //
@@ -275,10 +281,13 @@ void SprayerPlugin::Configure(
   const std::string topicRight = base + "/link/" + this->impl->rightLinkName +
                                   "/particle_emitter/" + this->impl->rightEmitterName + "/cmd";
 
-  this->impl->pubLeft  =
-      this->impl->node.Advertise<msgs::ParticleEmitter>(topicLeft);
-  this->impl->pubRight =
-      this->impl->node.Advertise<msgs::ParticleEmitter>(topicRight);
+  if (this->impl->enableEmitters)
+  {
+    this->impl->pubLeft  =
+        this->impl->node.Advertise<msgs::ParticleEmitter>(topicLeft);
+    this->impl->pubRight =
+        this->impl->node.Advertise<msgs::ParticleEmitter>(topicRight);
+  }
 
   // ── Subscribe to normalised pump command from ArduPilotPlugin ─────────── //
 
@@ -293,8 +302,12 @@ void SprayerPlugin::Configure(
         << "  pump cmd topic : " << this->impl->pumpCmdTopic << "\n"
         << "  spray topic    : " << this->impl->sprayTopic << "\n"
         << "  pump threshold : " << this->impl->pumpThreshold << "\n"
+        << "  emitters       : "
+        << (this->impl->enableEmitters ? "enabled" : "disabled") << "\n"
         << "  emitter left   : " << topicLeft  << "\n"
         << "  emitter right  : " << topicRight << "\n"
+        << "  ground marks   : "
+        << (this->impl->enableGroundMarks ? "enabled" : "disabled") << "\n"
         << "  mark interval  : " << this->impl->markInterval << " m\n"
         << "  mark radius    : " << this->impl->markRadius   << " m\n";
 
@@ -311,7 +324,7 @@ void SprayerPlugin::PreUpdate(const UpdateInfo &_info,
 
   // ── Toggle particle emitters when pump state changes ──────────────────── //
 
-  if (this->impl->emitterStateChanged.exchange(false))
+  if (this->impl->emitterStateChanged.exchange(false) && this->impl->enableEmitters)
   {
     const bool spraying = this->impl->spraying.load();
     this->impl->SetEmitting(this->impl->pubLeft,  spraying);
@@ -320,7 +333,11 @@ void SprayerPlugin::PreUpdate(const UpdateInfo &_info,
 
   // ── Drop ground marks while actively spraying ─────────────────────────── //
 
-  if (!this->impl->spraying.load()) return;
+  if (!this->impl->spraying.load() || !this->impl->enableGroundMarks ||
+      this->impl->markInterval <= 0.0)
+  {
+    return;
+  }
 
   // Use the model entity's world pose to track drone position.
   // worldPose() from gz/sim/Util.hh traverses the entity hierarchy and

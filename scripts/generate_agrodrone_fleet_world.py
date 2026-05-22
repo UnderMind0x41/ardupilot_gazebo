@@ -12,6 +12,7 @@ from pathlib import Path
 
 BASE_DRONE_MODEL = "iris_with_sprayer"
 BASE_GIMBAL_MODEL = "gimbal_small_3d"
+STATIC_BASE_RIG_MODEL = "landing_truck_static_validation"
 WORLD_TEMPLATE_DRONE_URIS = {
     "model://iris_with_sprayer",
     "model://iris_with_sprayer_2",
@@ -21,6 +22,7 @@ TRUCK_PAD_X_M = -1.0
 FIRST_TRAILER_PAD_X_M = -8.8
 BASE_Y_M = -30.0
 DRONE_SPAWN_Z_M = 1.601
+STATIC_BASE_RIG_DRONE_SPAWN_Z_M = 0.195
 
 
 def _parse_args() -> argparse.Namespace:
@@ -68,6 +70,24 @@ def _parse_args() -> argparse.Namespace:
             "Remove decorative crop rows, axes, and Fuel tree includes from the "
             "generated world. This keeps drones, ground, bases, GPS, and sprayer "
             "plugins for long headless validation runs."
+        ),
+    )
+    parser.add_argument(
+        "--static-base-rig",
+        action="store_true",
+        help=(
+            "Generate a static landing_truck variant for long headless validation. "
+            "The base GPS sensors and landing pads keep their normal instance "
+            "topics, but the truck/trailer physics joints are disabled."
+        ),
+    )
+    parser.add_argument(
+        "--disable-spray-visuals",
+        action="store_true",
+        help=(
+            "Generate sprayer model overrides without particle emitters or "
+            "ground-mark spawning. Pump commands are still consumed, but long "
+            "headless validation runs avoid accumulating visual spray entities."
         ),
     )
     return parser.parse_args()
@@ -125,6 +145,171 @@ def _generated_model_config(name: str, description: str) -> str:
 """
 
 
+def _generate_static_base_rig_variant(
+    *,
+    source_models_dir: Path,
+    generated_models_dir: Path,
+) -> None:
+    """Generate a minimal static base rig for fast validation worlds."""
+
+    target_dir = generated_models_dir / STATIC_BASE_RIG_MODEL
+    _write_if_changed(
+        target_dir / "model.sdf",
+        f"""<?xml version="1.0"?>
+<sdf version="1.9">
+  <model name="{STATIC_BASE_RIG_MODEL}">
+    <static>true</static>
+    <self_collide>false</self_collide>
+
+    <link name="base_link">
+      <visual name="truck_bed">
+        <pose>-0.6 0 0.02 0 0 0</pose>
+        <geometry><box><size>4.8 2.55 0.04</size></box></geometry>
+        <material>
+          <ambient>0.42 0.42 0.42 1</ambient>
+          <diffuse>0.40 0.40 0.40 1</diffuse>
+        </material>
+      </visual>
+      <visual name="landing_pad_bg">
+        <pose>-1.0 0 0.045 0 0 0</pose>
+        <geometry><box><size>2.6 2.6 0.008</size></box></geometry>
+        <material>
+          <ambient>0.95 0.82 0.0 1</ambient>
+          <diffuse>0.95 0.82 0.0 1</diffuse>
+        </material>
+      </visual>
+      <visual name="landing_pad_h_bar">
+        <pose>-1.0 0 0.052 0 0 0</pose>
+        <geometry><box><size>0.28 2.2 0.002</size></box></geometry>
+        <material>
+          <ambient>1.0 1.0 1.0 1</ambient>
+          <diffuse>1.0 1.0 1.0 1</diffuse>
+        </material>
+      </visual>
+      <visual name="landing_pad_h_left">
+        <pose>-1.0 0.76 0.052 0 0 0</pose>
+        <geometry><box><size>2.2 0.28 0.002</size></box></geometry>
+        <material>
+          <ambient>1.0 1.0 1.0 1</ambient>
+          <diffuse>1.0 1.0 1.0 1</diffuse>
+        </material>
+      </visual>
+      <visual name="landing_pad_h_right">
+        <pose>-1.0 -0.76 0.052 0 0 0</pose>
+        <geometry><box><size>2.2 0.28 0.002</size></box></geometry>
+        <material>
+          <ambient>1.0 1.0 1.0 1</ambient>
+          <diffuse>1.0 1.0 1.0 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <link name="base_gps_link">
+      <pose>-0.2 0 0.08 0 0 0</pose>
+      <sensor name="gps_sensor" type="navsat">
+        <pose>0 0 0 0 0 0</pose>
+        <always_on>true</always_on>
+        <update_rate>20.0</update_rate>
+        <navsat>
+          <position_sensing>
+            <horizontal>
+              <noise type="gaussian"><mean>0.0</mean><stddev>0.0</stddev></noise>
+            </horizontal>
+            <vertical>
+              <noise type="gaussian"><mean>0.0</mean><stddev>0.0</stddev></noise>
+            </vertical>
+          </position_sensing>
+          <velocity_sensing>
+            <horizontal>
+              <noise type="gaussian"><mean>0.0</mean><stddev>0.05</stddev></noise>
+            </horizontal>
+            <vertical>
+              <noise type="gaussian"><mean>0.0</mean><stddev>0.05</stddev></noise>
+            </vertical>
+          </velocity_sensing>
+        </navsat>
+      </sensor>
+    </link>
+
+    <link name="trailer_base_link">
+      <pose>-8.8 0 0 0 0 0</pose>
+      <visual name="trailer_bed">
+        <pose>0 0 0.02 0 0 0</pose>
+        <geometry><box><size>6.1 2.55 0.04</size></box></geometry>
+        <material>
+          <ambient>0.42 0.42 0.42 1</ambient>
+          <diffuse>0.40 0.40 0.40 1</diffuse>
+        </material>
+      </visual>
+      <visual name="landing_pad_bg">
+        <pose>0 0 0.045 0 0 0</pose>
+        <geometry><box><size>2.6 2.6 0.008</size></box></geometry>
+        <material>
+          <ambient>0.95 0.82 0.0 1</ambient>
+          <diffuse>0.95 0.82 0.0 1</diffuse>
+        </material>
+      </visual>
+      <visual name="landing_pad_h_bar">
+        <pose>0 0 0.052 0 0 0</pose>
+        <geometry><box><size>0.28 2.2 0.002</size></box></geometry>
+        <material>
+          <ambient>1.0 1.0 1.0 1</ambient>
+          <diffuse>1.0 1.0 1.0 1</diffuse>
+        </material>
+      </visual>
+      <visual name="landing_pad_h_left">
+        <pose>0 0.76 0.052 0 0 0</pose>
+        <geometry><box><size>2.2 0.28 0.002</size></box></geometry>
+        <material>
+          <ambient>1.0 1.0 1.0 1</ambient>
+          <diffuse>1.0 1.0 1.0 1</diffuse>
+        </material>
+      </visual>
+      <visual name="landing_pad_h_right">
+        <pose>0 -0.76 0.052 0 0 0</pose>
+        <geometry><box><size>2.2 0.28 0.002</size></box></geometry>
+        <material>
+          <ambient>1.0 1.0 1.0 1</ambient>
+          <diffuse>1.0 1.0 1.0 1</diffuse>
+        </material>
+      </visual>
+      <sensor name="trailer_gps_sensor" type="navsat">
+        <pose>1.0 0 0.08 0 0 0</pose>
+        <always_on>true</always_on>
+        <update_rate>20.0</update_rate>
+        <navsat>
+          <position_sensing>
+            <horizontal>
+              <noise type="gaussian"><mean>0.0</mean><stddev>0.0</stddev></noise>
+            </horizontal>
+            <vertical>
+              <noise type="gaussian"><mean>0.0</mean><stddev>0.0</stddev></noise>
+            </vertical>
+          </position_sensing>
+          <velocity_sensing>
+            <horizontal>
+              <noise type="gaussian"><mean>0.0</mean><stddev>0.05</stddev></noise>
+            </horizontal>
+            <vertical>
+              <noise type="gaussian"><mean>0.0</mean><stddev>0.05</stddev></noise>
+            </vertical>
+          </velocity_sensing>
+        </navsat>
+      </sensor>
+    </link>
+  </model>
+</sdf>
+""",
+    )
+    _write_if_changed(
+        target_dir / "model.config",
+        _generated_model_config(
+            STATIC_BASE_RIG_MODEL,
+            "Static landing truck/trailer rig for headless validation worlds.",
+        ),
+    )
+
+
 def _generate_gimbal_variant(
     *,
     drone_number: int,
@@ -163,6 +348,7 @@ def _generate_drone_variant(
     force: bool = False,
     disable_camera_sensors: bool = False,
     disable_gpu_lidar_sensors: bool = False,
+    disable_spray_visuals: bool = False,
 ) -> None:
     if drone_number <= 2 and not force:
         return
@@ -200,6 +386,8 @@ def _generate_drone_variant(
             sensor_types=stripped_sensor_types,
             remove_ardupilot_lidar=disable_gpu_lidar_sensors,
         )
+    if disable_spray_visuals:
+        text = _disable_sprayer_visuals(text)
 
     target_dir = generated_models_dir / model_name
     _write_if_changed(target_dir / "model.sdf", text)
@@ -313,11 +501,41 @@ def _strip_sensor_elements(
     return ET.tostring(root, encoding="unicode")
 
 
+def _disable_sprayer_visuals(text: str) -> str:
+    """Disable SprayerPlugin visual outputs while keeping pump command intake."""
+
+    root = ET.fromstring(text)
+    for parent in root.iter():
+        for child in list(parent):
+            if child.tag == "particle_emitter":
+                parent.remove(child)
+    for plugin in root.iter("plugin"):
+        if plugin.get("name") != "SprayerPlugin":
+            continue
+        for tag in ("enable_emitters", "enable_ground_marks"):
+            element = plugin.find(tag)
+            if element is None:
+                element = ET.SubElement(plugin, tag)
+            element.text = "false"
+    if hasattr(ET, "indent"):
+        ET.indent(root, space="  ")
+    return ET.tostring(root, encoding="unicode")
+
+
 def _remove_render_sensors_system(world: ET.Element) -> None:
     for plugin in list(world.findall("plugin")):
         if (
             plugin.get("filename") == "gz-sim-sensors-system"
             and plugin.get("name") == "gz::sim::systems::Sensors"
+        ):
+            world.remove(plugin)
+
+
+def _remove_particle_emitter_system(world: ET.Element) -> None:
+    for plugin in list(world.findall("plugin")):
+        if (
+            plugin.get("filename") == "gz-sim-particle-emitter-system"
+            and plugin.get("name") == "gz::sim::systems::ParticleEmitter"
         ):
             world.remove(plugin)
 
@@ -334,23 +552,31 @@ def _generate_world(args: argparse.Namespace) -> Path:
     _set_physics_max_step_size(world, args.physics_max_step_size)
     if args.disable_camera_sensors and args.disable_gpu_lidar_sensors:
         _remove_render_sensors_system(world)
+    if args.disable_spray_visuals:
+        _remove_particle_emitter_system(world)
     _remove_static_fleet_includes(world)
     if args.minimal_scenery:
         _remove_minimal_scenery(world)
 
     world.append(ET.Comment(" Generated fleet drone spawns "))
+    drone_spawn_z_m = (
+        STATIC_BASE_RIG_DRONE_SPAWN_Z_M
+        if args.static_base_rig
+        else DRONE_SPAWN_Z_M
+    )
     for drone_number in range(1, args.num_drones + 1):
         model_name = _drone_model_name(drone_number)
         pose = (
             f"{_fmt(_pad_x(drone_number))} {_fmt(BASE_Y_M)} "
-            f"{_fmt(DRONE_SPAWN_Z_M)} 0 0 90"
+            f"{_fmt(drone_spawn_z_m)} 0 0 90"
         )
         world.append(_include(f"model://{model_name}", pose, name=model_name, degrees=True))
 
     world.append(ET.Comment(" Generated truck rig and additional trailer pads "))
+    base_rig_model = STATIC_BASE_RIG_MODEL if args.static_base_rig else "landing_truck"
     world.append(
         _include(
-            "model://landing_truck",
+            f"model://{base_rig_model}",
             f"0 {_fmt(BASE_Y_M)} 0 0 0 0",
             name="landing_truck",
         )
@@ -379,7 +605,11 @@ def main() -> None:
         _remove_generated_model_override(args.generated_models_dir, _drone_model_name(drone_number))
         _remove_generated_model_override(args.generated_models_dir, _gimbal_model_name(drone_number))
 
-    generated_model_overrides = args.disable_camera_sensors or args.disable_gpu_lidar_sensors
+    generated_model_overrides = (
+        args.disable_camera_sensors
+        or args.disable_gpu_lidar_sensors
+        or args.disable_spray_visuals
+    )
     if not generated_model_overrides:
         for drone_number in (1, 2):
             _remove_generated_model_override(args.generated_models_dir, _drone_model_name(drone_number))
@@ -401,7 +631,15 @@ def main() -> None:
             force=generated_model_overrides,
             disable_camera_sensors=args.disable_camera_sensors,
             disable_gpu_lidar_sensors=args.disable_gpu_lidar_sensors,
+            disable_spray_visuals=args.disable_spray_visuals,
         )
+    if args.static_base_rig:
+        _generate_static_base_rig_variant(
+            source_models_dir=args.source_models_dir,
+            generated_models_dir=args.generated_models_dir,
+        )
+    else:
+        _remove_generated_model_override(args.generated_models_dir, STATIC_BASE_RIG_MODEL)
 
     print(_generate_world(args))
 
