@@ -50,6 +50,42 @@
           </pbr>
         </material>
       </visual>
+
+      <visual name="close_range_tag_backing">
+        <pose>0.95 0 0.003 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.42 0.42 0.006</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.05 0.05 0.05 1</specular>
+        </material>
+      </visual>
+
+      <visual name="tag36h11_1_close_range">
+        <pose>0.95 0 0.007 0 0 0</pose>
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>0.36 0.36</size>
+          </plane>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0 0 0 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>model://apriltag_36h11_1/materials/textures/tag36h11_1.png</albedo_map>
+              <roughness>1.0</roughness>
+              <metalness>0.0</metalness>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
     </link>
   </model>
 </sdf>

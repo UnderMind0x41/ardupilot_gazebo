@@ -549,7 +549,9 @@
       <right_emitter_name>spray_right</right_emitter_name>
       <pump_cmd_topic>/model/iris_with_sprayer_2/sprayer/pump_cmd</pump_cmd_topic>
       <pump_threshold>0.05</pump_threshold>
-      <spray_height_max>15.0</spray_height_max>
+      <!-- Must cover generated multi-drone field lanes:
+           base AUTO altitude 12 m + 8 m * (rank - 1), up to rank 4. -->
+      <spray_height_max>45.0</spray_height_max>
       <mark_interval>2.0</mark_interval>
       <mark_radius>1.5</mark_radius>
     </plugin>

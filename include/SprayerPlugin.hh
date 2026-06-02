@@ -60,7 +60,7 @@ namespace systems {
 ///   Default: 0.05
 ///
 ///   `<spray_height_max>` Maximum AGL height (m) at which spraying marks the
-///   ground. Default: 15.0
+///   ground. Default: 45.0
 ///
 ///   `<mark_interval>` Minimum travel distance (m) between ground marks.
 ///   Default: 2.0

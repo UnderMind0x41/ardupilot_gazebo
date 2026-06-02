@@ -88,7 +88,7 @@ class SprayerPlugin::Impl
   /// \brief Normalised pump value above which spraying is considered active.
   public: double pumpThreshold{0.05};
 
-  public: double sprayHeightMax{15.0};
+  public: double sprayHeightMax{45.0};
   public: double markInterval{2.0};
   public: double markRadius{1.5};
 

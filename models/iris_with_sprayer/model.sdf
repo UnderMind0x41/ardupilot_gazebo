@@ -602,8 +602,10 @@
       <!-- Normalised pump value above which spraying is considered active. -->
       <pump_threshold>0.05</pump_threshold>
 
-      <!-- Maximum height AGL (m) for ground marking. -->
-      <spray_height_max>15.0</spray_height_max>
+      <!-- Maximum height AGL (m) for ground marking.
+           Must cover generated multi-drone field lanes:
+           base AUTO altitude 12 m + 8 m * (rank - 1), up to rank 4. -->
+      <spray_height_max>45.0</spray_height_max>
 
       <!-- Drop a new ground mark every N metres of horizontal travel. -->
       <mark_interval>2.0</mark_interval>
