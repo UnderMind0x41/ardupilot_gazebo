@@ -193,7 +193,7 @@
       </visual>
 
       <visual name="gps_mount_base">
-        <pose>1.0 0 1.430 0 0 0</pose>
+        <pose>0 0 1.430 0 0 0</pose>
         <geometry><box><size>0.10 0.10 0.04</size></box></geometry>
         <material>
           <ambient>0.30 0.30 0.30 1</ambient>
@@ -201,7 +201,7 @@
         </material>
       </visual>
       <visual name="gps_head">
-        <pose>1.0 0 1.474 0 0 0</pose>
+        <pose>0 0 1.474 0 0 0</pose>
         <geometry><cylinder><radius>0.065</radius><length>0.048</length></cylinder></geometry>
         <material>
           <ambient>0.90 0.90 0.90 1</ambient>
@@ -210,7 +210,7 @@
         </material>
       </visual>
       <visual name="gps_led">
-        <pose>1.0 0 1.502 0 0 0</pose>
+        <pose>0 0 1.502 0 0 0</pose>
         <geometry><cylinder><radius>0.018</radius><length>0.008</length></cylinder></geometry>
         <material>
           <ambient>0.0 0.9 0.2 1</ambient>
@@ -219,7 +219,7 @@
       </visual>
 
       <sensor name="gps_sensor" type="navsat">
-        <pose>1.0 0 1.474 0 0 0</pose>
+        <pose>0 0 1.474 0 0 0</pose>
         <always_on>true</always_on>
         <update_rate>20.0</update_rate>
         <navsat>
