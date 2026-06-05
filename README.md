@@ -238,7 +238,7 @@ field world, the spherical coordinates are taken from the root launcher's
 `ARDUPILOT_HOME`; the default origin is near
 `35°21'48.0"S 149°09'54.8"E`
 (`-35.363333333,149.165222222`). Each agrodrone has a fixed downward camera
-with 130 degree horizontal FOV at 10 FPS. `scripts/start_sim.sh` enables these
+with 90 degree horizontal FOV at 10 FPS. `scripts/start_sim.sh` enables these
 streams automatically when Gazebo advertises the camera topics:
 
 ```bash
