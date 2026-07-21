@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate a Gazebo field world with one truck rig and one pad per drone."""
+"""Generate the minimal Agrodrone world and bounded model variants."""
 
 from __future__ import annotations
 
@@ -12,15 +12,17 @@ from pathlib import Path
 
 BASE_DRONE_MODEL = "iris_with_sprayer"
 BASE_GIMBAL_MODEL = "gimbal_small_3d"
+BASE_STATIONARY_BASE_MODEL = "stationary_landing_base"
 WORLD_TEMPLATE_DRONE_URIS = {
     "model://iris_with_sprayer",
     "model://iris_with_sprayer_2",
 }
-TRAILER_SPACING_M = 7.8
-TRUCK_PAD_X_M = -1.0
-FIRST_TRAILER_PAD_X_M = -8.8
+BASE_SPACING_M = 7.8
+FIRST_BASE_X_M = -1.0
+SECOND_BASE_X_M = -8.8
 BASE_Y_M = -30.0
-DRONE_SPAWN_Z_M = 1.601
+STATIONARY_PAD_Z_M = 0.08
+DRONE_SPAWN_Z_M = STATIONARY_PAD_Z_M + 0.195
 
 
 def _parse_args() -> argparse.Namespace:
@@ -28,7 +30,8 @@ def _parse_args() -> argparse.Namespace:
         description="Generate an Agrodrone Gazebo fleet world for one to four drones."
     )
     parser.add_argument("--num-drones", type=int, choices=range(1, 5), required=True)
-    parser.add_argument("--world-name", default="iris_dynamic_field")
+    parser.add_argument("--num-bases", type=int, choices=range(1, 3), default=2)
+    parser.add_argument("--world-name", default="iris_minimal_two_bases")
     parser.add_argument("--template-world", type=Path, required=True)
     parser.add_argument("--source-models-dir", type=Path, required=True)
     parser.add_argument("--generated-models-dir", type=Path, required=True)
@@ -85,10 +88,14 @@ def _gimbal_model_name(drone_number: int) -> str:
     return f"{BASE_GIMBAL_MODEL}_udp_{5600 + drone_number - 1}"
 
 
+def _stationary_base_model_name(base_number: int) -> str:
+    return f"{BASE_STATIONARY_BASE_MODEL}_{base_number}"
+
+
 def _pad_x(drone_number: int) -> float:
     if drone_number == 1:
-        return TRUCK_PAD_X_M
-    return FIRST_TRAILER_PAD_X_M - (drone_number - 2) * TRAILER_SPACING_M
+        return FIRST_BASE_X_M
+    return SECOND_BASE_X_M - (drone_number - 2) * BASE_SPACING_M
 
 
 def _fmt(value: float) -> str:
@@ -212,6 +219,33 @@ def _generate_drone_variant(
     )
 
 
+def _generate_stationary_base_variant(
+    *,
+    base_number: int,
+    source_models_dir: Path,
+    generated_models_dir: Path,
+) -> None:
+    model_name = _stationary_base_model_name(base_number)
+    source = source_models_dir / BASE_STATIONARY_BASE_MODEL / "model.sdf"
+    text = source.read_text(encoding="utf-8")
+    text = text.replace(
+        f'<model name="{BASE_STATIONARY_BASE_MODEL}">',
+        f'<model name="{model_name}">',
+        1,
+    )
+    text = text.replace("apriltag_36h11_1", f"apriltag_36h11_{base_number}")
+
+    target_dir = generated_models_dir / model_name
+    _write_if_changed(target_dir / "model.sdf", text)
+    _write_if_changed(
+        target_dir / "model.config",
+        _generated_model_config(
+            model_name,
+            f"Generated stationary landing base {base_number} with AprilTag {base_number}.",
+        ),
+    )
+
+
 def _include(uri: str, pose: str, *, name: str | None = None, degrees: bool = False) -> ET.Element:
     include = ET.Element("include")
     uri_element = ET.SubElement(include, "uri")
@@ -230,7 +264,15 @@ def _remove_static_fleet_includes(world: ET.Element) -> None:
     for include in list(world.findall("include")):
         uri = (include.findtext("uri") or "").strip()
         name = (include.findtext("name") or "").strip()
-        if uri in WORLD_TEMPLATE_DRONE_URIS or uri == "model://landing_truck" or name == "landing_truck":
+        if (
+            uri in WORLD_TEMPLATE_DRONE_URIS
+            or uri == "model://landing_truck"
+            or uri == "model://landing_trailer"
+            or uri.startswith(f"model://{BASE_STATIONARY_BASE_MODEL}_")
+            or name == "landing_truck"
+            or name.startswith("landing_trailer_")
+            or name.startswith(f"{BASE_STATIONARY_BASE_MODEL}_")
+        ):
             world.remove(include)
 
 
@@ -347,19 +389,11 @@ def _generate_world(args: argparse.Namespace) -> Path:
         )
         world.append(_include(f"model://{model_name}", pose, name=model_name, degrees=True))
 
-    world.append(ET.Comment(" Generated truck rig and additional trailer pads "))
-    world.append(
-        _include(
-            "model://landing_truck",
-            f"0 {_fmt(BASE_Y_M)} 0 0 0 0",
-            name="landing_truck",
-        )
-    )
-    for drone_number in range(3, args.num_drones + 1):
-        trailer_number = drone_number - 1
-        trailer_name = f"landing_trailer_{trailer_number}"
-        trailer_pose = f"{_fmt(_pad_x(drone_number))} {_fmt(BASE_Y_M)} 0 0 0 0"
-        world.append(_include("model://landing_trailer", trailer_pose, name=trailer_name))
+    world.append(ET.Comment(" Two lightweight stationary landing bases "))
+    for base_number in range(1, args.num_bases + 1):
+        base_name = _stationary_base_model_name(base_number)
+        base_pose = f"{_fmt(_pad_x(base_number))} {_fmt(BASE_Y_M)} 0 0 0 0"
+        world.append(_include(f"model://{base_name}", base_pose, name=base_name))
 
     if hasattr(ET, "indent"):
         ET.indent(tree, space="  ")
@@ -378,6 +412,19 @@ def main() -> None:
     for drone_number in range(args.num_drones + 1, 5):
         _remove_generated_model_override(args.generated_models_dir, _drone_model_name(drone_number))
         _remove_generated_model_override(args.generated_models_dir, _gimbal_model_name(drone_number))
+
+    for base_number in range(args.num_bases + 1, 3):
+        _remove_generated_model_override(
+            args.generated_models_dir,
+            _stationary_base_model_name(base_number),
+        )
+
+    for base_number in range(1, args.num_bases + 1):
+        _generate_stationary_base_variant(
+            base_number=base_number,
+            source_models_dir=args.source_models_dir,
+            generated_models_dir=args.generated_models_dir,
+        )
 
     generated_model_overrides = args.disable_camera_sensors or args.disable_gpu_lidar_sensors
     if not generated_model_overrides:

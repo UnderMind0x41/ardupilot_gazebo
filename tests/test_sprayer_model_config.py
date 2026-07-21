@@ -9,6 +9,7 @@ import xml.etree.ElementTree as ET
 import importlib.util
 import math
 from pathlib import Path
+from types import SimpleNamespace
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -95,6 +96,70 @@ class SprayerModelConfigTests(unittest.TestCase):
                     abs_tol=1e-11,
                 )
             )
+
+    def test_generated_stationary_bases_have_matching_gps_and_tag_ids(self) -> None:
+        generator = _load_world_generator()
+        with tempfile.TemporaryDirectory() as tmp:
+            generated_models_dir = Path(tmp)
+            for base_number in (1, 2):
+                generator._generate_stationary_base_variant(
+                    base_number=base_number,
+                    source_models_dir=SOURCE_MODELS_DIR,
+                    generated_models_dir=generated_models_dir,
+                )
+                root = ET.parse(
+                    generated_models_dir
+                    / f"stationary_landing_base_{base_number}"
+                    / "model.sdf"
+                ).getroot()
+                model = root.find("model")
+                self.assertEqual(
+                    model.get("name"),
+                    f"stationary_landing_base_{base_number}",
+                )
+                self.assertEqual(model.findtext("include/uri"), f"model://apriltag_36h11_{base_number}")
+                self.assertEqual(len(model.findall("link")), 1)
+                self.assertIsNotNone(model.find("link/sensor[@type='navsat']"))
+
+    def test_minimal_world_contains_only_required_fleet_assets(self) -> None:
+        generator = _load_world_generator()
+        with tempfile.TemporaryDirectory() as tmp:
+            output_dir = Path(tmp)
+            output = generator._generate_world(
+                SimpleNamespace(
+                    template_world=REPO_ROOT / "worlds/iris_minimal_two_bases.sdf",
+                    world_name="minimal_test",
+                    latitude_deg=-35.363333333,
+                    longitude_deg=149.165222222,
+                    elevation_m=584.0,
+                    heading_deg=0.0,
+                    physics_max_step_size=None,
+                    disable_camera_sensors=False,
+                    disable_gpu_lidar_sensors=False,
+                    minimal_scenery=False,
+                    num_drones=2,
+                    num_bases=2,
+                    generated_worlds_dir=output_dir,
+                )
+            )
+            text = output.read_text(encoding="utf-8")
+            world = ET.parse(output).getroot().find("world")
+            names = [include.findtext("name") for include in world.findall("include")]
+
+            self.assertEqual(
+                names,
+                [
+                    "iris_with_sprayer",
+                    "iris_with_sprayer_2",
+                    "stationary_landing_base_1",
+                    "stationary_landing_base_2",
+                ],
+            )
+            self.assertNotIn("landing_truck", text)
+            self.assertNotIn("landing_trailer", text)
+            self.assertNotIn("fuel.gazebosim.org", text)
+            self.assertNotIn("crop_field", text)
+            self.assertEqual(world.findtext("physics/max_step_size"), "0.004")
 
 
 if __name__ == "__main__":
