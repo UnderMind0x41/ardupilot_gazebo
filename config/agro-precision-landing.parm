@@ -7,11 +7,21 @@ PLND_ENABLED       1
 PLND_TYPE          1       # 1 = MAVLink companion LANDING_TARGET backend
 PLND_ORIENT        25      # Downward-facing precision-landing camera
 PLND_EST_TYPE      1       # Kalman filter
+# The simulated landing target is stationary. Weight vehicle inertial motion
+# more strongly than frame-to-frame camera noise so the target estimate does
+# not chase every 10 Hz PnP variation during final descent.
+PLND_ACC_P_NSE     0.50
 PLND_STRICT        2       # Required target: hold instead of blind final descent when lost
 PLND_RET_MAX       4
 PLND_TIMEOUT       2
 PLND_ALT_MIN       0.50
 PLND_ALT_MAX       30
 PLND_XY_DIST_MAX   2.50
-PLND_LAG           0.02
+PLND_XY_VEL_MAX    80         # Precision LAND only: 0.8 m/s horizontal cap
+PLND_XY_ACC_MAX    30         # Precision LAND only: 0.3 m/s^2 acceleration cap
+# Camera render, AprilTag PnP and ROS/MAVLink forwarding are not instantaneous.
+# Compensate the measured integrated-pipeline delay instead of ArduPilot's
+# minimum 20 ms value; under-compensation causes a phase lag and lateral
+# over-correction around the marker.
+PLND_LAG           0.15
 PLND_OPTIONS       0

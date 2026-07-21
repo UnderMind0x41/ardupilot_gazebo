@@ -49,6 +49,46 @@ def _downward_camera_horizontal_fov(model_sdf: Path) -> float:
 
 
 class SprayerModelConfigTests(unittest.TestCase):
+    def test_precision_land_profile_uses_damped_stationary_target_limits(self) -> None:
+        parameters: dict[str, float] = {}
+        profile = REPO_ROOT / "config" / "agro-precision-landing.parm"
+        for line in profile.read_text(encoding="utf-8").splitlines():
+            content = line.split("#", 1)[0].strip()
+            if not content:
+                continue
+            name, value = content.split()[:2]
+            parameters[name] = float(value)
+        self.assertEqual(parameters["PLND_ACC_P_NSE"], 0.5)
+        self.assertEqual(parameters["PLND_XY_VEL_MAX"], 80.0)
+        self.assertEqual(parameters["PLND_XY_ACC_MAX"], 30.0)
+
+    def test_landing_contacts_use_bounded_correction_and_friction(self) -> None:
+        for model_name in ("iris_with_standoffs", "stationary_landing_base"):
+            with self.subTest(model_name=model_name):
+                root = ET.parse(SOURCE_MODELS_DIR / model_name / "model.sdf").getroot()
+                collisions = root.findall(".//collision")
+                self.assertTrue(collisions)
+                for collision in collisions:
+                    surface = collision.find("surface")
+                    if surface is None:
+                        continue
+                    self.assertEqual(surface.findtext("contact/ode/max_vel"), "0.01")
+                    self.assertEqual(surface.findtext("friction/ode/mu"), "10.0")
+                    self.assertEqual(surface.findtext("friction/ode/mu2"), "10.0")
+        standoffs = ET.parse(
+            SOURCE_MODELS_DIR / "iris_with_standoffs" / "model.sdf"
+        ).getroot()
+        for name in (
+            "front_left_leg_collision",
+            "front_right_leg_collision",
+            "rear_left_leg_collision",
+            "rear_right_leg_collision",
+        ):
+            self.assertEqual(
+                standoffs.findtext(f".//collision[@name='{name}']/geometry/cylinder/radius"),
+                "0.015",
+            )
+
     def test_source_sprayer_models_mark_generated_field_lanes(self) -> None:
         for model_name in ("iris_with_sprayer", "iris_with_sprayer_2"):
             with self.subTest(model_name=model_name):
@@ -145,6 +185,10 @@ class SprayerModelConfigTests(unittest.TestCase):
             text = output.read_text(encoding="utf-8")
             world = ET.parse(output).getroot().find("world")
             names = [include.findtext("name") for include in world.findall("include")]
+            poses = {
+                include.findtext("name"): include.findtext("pose")
+                for include in world.findall("include")
+            }
 
             self.assertEqual(
                 names,
@@ -160,6 +204,8 @@ class SprayerModelConfigTests(unittest.TestCase):
             self.assertNotIn("fuel.gazebosim.org", text)
             self.assertNotIn("crop_field", text)
             self.assertEqual(world.findtext("physics/max_step_size"), "0.004")
+            self.assertEqual(poses["iris_with_sprayer"], "-1 -30 0.281 0 0 90")
+            self.assertEqual(poses["iris_with_sprayer_2"], "-8.8 -30 0.281 0 0 90")
 
 
 if __name__ == "__main__":
