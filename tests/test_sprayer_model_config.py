@@ -61,6 +61,7 @@ class SprayerModelConfigTests(unittest.TestCase):
         self.assertEqual(parameters["PLND_ACC_P_NSE"], 0.5)
         self.assertEqual(parameters["PLND_XY_VEL_MAX"], 80.0)
         self.assertEqual(parameters["PLND_XY_ACC_MAX"], 30.0)
+        self.assertEqual(parameters["PLND_OPTIONS"], 4.0)
 
     def test_landing_contacts_use_bounded_correction_and_friction(self) -> None:
         for model_name in ("iris_with_standoffs", "stationary_landing_base"):
