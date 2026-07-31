@@ -1,0 +1,121 @@
+# Standalone PX4 Swan K1 quad tailsitter port for ArduPlane QuadPlane.
+
+# Quad-X motors are fixed to the wing and remain the only attitude effectors in
+# both vertical and fixed-wing flight.
+Q_ENABLE             1
+Q_FRAME_CLASS        1
+Q_FRAME_TYPE         1
+Q_TAILSIT_ENABLE     2
+Q_TAILSIT_MOTMX      15
+# In QACRO use the aircraft-specific pilot convention: roll stick commands
+# physical yaw in hover, and yaw/rudder stick commands physical roll.
+Q_ACRO_RY_SWAP       1
+
+# ArduPlane's default QuadPlane motor slots are SERVO5..SERVO8.
+SERVO5_FUNCTION      33
+SERVO6_FUNCTION      34
+SERVO7_FUNCTION      35
+SERVO8_FUNCTION      36
+SERVO5_MIN           1000
+SERVO6_MIN           1000
+SERVO7_MIN           1000
+SERVO8_MIN           1000
+SERVO5_MAX           2000
+SERVO6_MAX           2000
+SERVO7_MAX           2000
+SERVO8_MAX           2000
+Q_M_PWM_MIN          1000
+Q_M_PWM_MAX          2000
+
+# The physical motor model is quadratic in angular velocity. ArduPilot's motor
+# linearisation and hover estimate are initialized close to the 1.6 kg model's
+# analytical hover point (about 678 of 1200 rad/s).
+Q_M_THST_EXPO        0.65
+Q_M_THST_HOVER       0.36
+Q_M_SPIN_ARM         0.05
+Q_M_SPIN_MIN         0.10
+Q_M_SPIN_MAX         0.95
+
+# Start from ArduPilot's flight-tested copter-tailsitter controller family.
+# The first live transition with ordinary QuadPlane gains under-controlled this
+# airframe's large wing inertia; these rate gains keep the transition on-axis.
+Q_A_ANG_RLL_P        3.455
+Q_A_ANG_PIT_P        18.0
+Q_A_ANG_YAW_P        2.069
+Q_A_RAT_RLL_P        0.542
+Q_A_RAT_RLL_I        0.542
+Q_A_RAT_RLL_D        0.001
+Q_A_RAT_PIT_P        0.528
+Q_A_RAT_PIT_I        0.528
+Q_A_RAT_PIT_D        0.005
+Q_A_RAT_YAW_P        0.392
+Q_A_RAT_YAW_I        0.039
+Q_A_RAT_YAW_D        0.000
+Q_A_ACCEL_R_MAX      117886
+Q_A_ACCEL_P_MAX      207070
+Q_A_ACCEL_Y_MAX      12288
+
+# Tailsitter transitions. The source PX4 model transitions at 15 m/s; ArduPilot
+# changes controller authority by attitude, so use gentle pitch rates and keep
+# Q-assist active for this control-surface-less airframe.
+Q_TAILSIT_ANGLE      45
+Q_TAILSIT_ANG_VT     45
+Q_TAILSIT_RAT_FW     35
+Q_TAILSIT_RAT_VT     30
+Q_TAILSIT_THR_VT     45
+Q_TRANSITION_MS      2500
+Q_TRANS_DECEL        6
+Q_ASSIST_SPEED       16
+
+# Wing-borne operating envelope derived from PX4 airframe 4018.
+ARSPD_TYPE           100
+ARSPD_USE            1
+AIRSPEED_MIN         14
+AIRSPEED_CRUISE      18
+AIRSPEED_MAX         22
+TRIM_THROTTLE        35
+THR_MIN              5
+THR_MAX              80
+ROLL_LIMIT_DEG       55
+PTCH_LIM_MIN_DEG     -20
+PTCH_LIM_MAX_DEG     25
+TECS_CLMB_MAX        6
+TECS_SINK_MAX        3
+TECS_SINK_MIN        1.6
+
+# SITL sensor and startup defaults.
+INS_ACCOFFS_X        0.001
+INS_ACCOFFS_Y        0.001
+INS_ACCOFFS_Z        0.001
+INS_ACCSCAL_X        1.001
+INS_ACCSCAL_Y        1.001
+INS_ACCSCAL_Z        1.001
+INS_GYR_CAL          0
+# The Gazebo model has one physical IMU. Do not invent a second independent
+# gyro instance whose startup bias can trip ArduPlane's consistency check.
+INS_USE2             0
+INS_USE3             0
+SIM_IMU_COUNT        1
+EK3_IMU_MASK         1
+# quadplane.parm normally calibrates two synthetic SITL IMUs. With one Gazebo
+# IMU, clear the unused second calibration so ArduPilot's exact-count check
+# accepts the profile.
+INS_ACC2OFFS_X        0
+INS_ACC2OFFS_Y        0
+INS_ACC2OFFS_Z        0
+INS_ACC2SCAL_X        1
+INS_ACC2SCAL_Y        1
+INS_ACC2SCAL_Z        1
+BATT_MONITOR         4
+ARMING_RUDDER        2
+SCHED_LOOP_RATE      300
+
+# Useful manual switch defaults: QSTABILIZE, QHOVER, QLOITER, FBWA, CRUISE,
+# QRTL. The automated validator uses MAVLink mode commands directly.
+FLTMODE1             17
+FLTMODE2             17
+FLTMODE3             17
+FLTMODE4             17
+FLTMODE5             17
+FLTMODE6             17
+FLTMODE_CH           5

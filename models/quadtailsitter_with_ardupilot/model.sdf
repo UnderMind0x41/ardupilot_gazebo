@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<sdf version="1.10">
+  <model name="quadtailsitter_with_ardupilot">
+    <include>
+      <uri>model://quadtailsitter</uri>
+      <name>quadtailsitter</name>
+    </include>
+
+    <plugin name="ArduPilotPlugin" filename="ArduPilotPlugin">
+      <fdm_addr>127.0.0.1</fdm_addr>
+      <fdm_port_in>9002</fdm_port_in>
+      <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>
+      <lock_step>1</lock_step>
+      <no_time_sync>1</no_time_sync>
+      <have_32_channels>0</have_32_channels>
+
+      <!--
+        PX4 model axes:
+          +Z = aircraft forward, -X = aircraft up, -Y = aircraft right.
+        ArduPilot aircraft axes:
+          +X = forward, +Y = right, +Z = down.
+        RPY 180/-90/0 maps model vectors [x,y,z] to [z,-y,x].
+      -->
+      <modelXYZToAirplaneXForwardZDown degrees="true">0 0 0 180 -90 0</modelXYZToAirplaneXForwardZDown>
+      <gazeboXYZToNED degrees="true">0 0 0 180 0 90</gazeboXYZToNED>
+
+      <imuName>quadtailsitter::base_link::imu_sensor</imuName>
+
+      <!--
+        ArduPlane QuadPlane assigns Motor1..Motor4 to SERVO5..SERVO8.
+        The imported model's physical order exactly matches ArduPilot's quad-X
+        order after the tailsitter frame rotation:
+          Motor1 rotor_0 front-right CCW
+          Motor2 rotor_1 rear-left   CCW
+          Motor3 rotor_2 front-left  CW
+          Motor4 rotor_3 rear-right  CW
+
+        ACTUATOR controls preserve the stock PX4 MulticopterMotorModel. Each
+        normalized PWM output becomes one entry in its 0..1200 rad/s vector.
+      -->
+      <control channel="4">
+        <type>ACTUATOR</type>
+        <cmd_topic>/quadtailsitter/command/motor_speed</cmd_topic>
+        <actuator_index>0</actuator_index>
+        <multiplier>1200</multiplier>
+        <offset>0</offset>
+        <servo_min>1000</servo_min>
+        <servo_max>2000</servo_max>
+      </control>
+      <control channel="5">
+        <type>ACTUATOR</type>
+        <cmd_topic>/quadtailsitter/command/motor_speed</cmd_topic>
+        <actuator_index>1</actuator_index>
+        <multiplier>1200</multiplier>
+        <offset>0</offset>
+        <servo_min>1000</servo_min>
+        <servo_max>2000</servo_max>
+      </control>
+      <control channel="6">
+        <type>ACTUATOR</type>
+        <cmd_topic>/quadtailsitter/command/motor_speed</cmd_topic>
+        <actuator_index>2</actuator_index>
+        <multiplier>1200</multiplier>
+        <offset>0</offset>
+        <servo_min>1000</servo_min>
+        <servo_max>2000</servo_max>
+      </control>
+      <control channel="7">
+        <type>ACTUATOR</type>
+        <cmd_topic>/quadtailsitter/command/motor_speed</cmd_topic>
+        <actuator_index>3</actuator_index>
+        <multiplier>1200</multiplier>
+        <offset>0</offset>
+        <servo_min>1000</servo_min>
+        <servo_max>2000</servo_max>
+      </control>
+    </plugin>
+  </model>
+</sdf>

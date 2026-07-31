@@ -62,7 +62,8 @@ class ArduPilotPluginPrivate;
 ///    <servo_max>        upper limit for PWM input
 ///    <servo_min>        lower limit for PWM input
 ///    <!-- output to Gazebo -->
-///    <type>             type of control, VELOCITY, POSITION, EFFORT or COMMAND
+///    <type>             control type: VELOCITY, POSITION, EFFORT, COMMAND or
+///                       ACTUATOR
 ///    <useForce>         1 if joint forces are applied, 0 to set joint directly
 ///    <p_gain>           velocity pid p gain
 ///    <i_gain>           velocity pid i gain
@@ -74,6 +75,7 @@ class ArduPilotPluginPrivate;
 ///    <jointName>        motor joint, torque applied here
 ///    <cmd_topic>        topic to publish commands that are processed
 ///                       by other plugins
+///    <actuator_index>   velocity-vector index when type is ACTUATOR
 ///
 ///    <turningDirection> rotor turning direction, 'cw' or 'ccw'
 ///    <frequencyCutoff>  filter incoming joint state

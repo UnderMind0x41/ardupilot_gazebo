@@ -1,6 +1,7 @@
 build/
 Build/
 colcon/
+log/
 .venv/
 venv/
 bin/

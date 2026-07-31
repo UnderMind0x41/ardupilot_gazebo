@@ -127,6 +127,84 @@ Reload your terminal with `source ~/.bashrc` (or `source ~/.zshrc` on macOS).
 
 ## Usage
 
+### Standalone Swan K1 quad tailsitter (ArduPilot port)
+
+This workspace includes a port of PX4's `gz_quadtailsitter` physical model.
+The model has no aerodynamic control surfaces: its four fixed motors control
+both the vertical multicopter regime and wing-borne flight. ArduPilot therefore
+runs it as an ArduPlane QuadPlane motor-only tailsitter
+(`Q_TAILSIT_ENABLE=2`), not with the ArduCopter executable.
+
+From the union-workspace root:
+
+```bash
+./scripts/start_quadtailsitter.sh
+```
+
+The launcher builds the dedicated plugin directory and ArduPlane by default,
+starts `quadtailsitter_runway.sdf`, and forwards MAVLink to
+`udp:127.0.0.1:14550`. Before startup it stops exact stale standalone Swan or
+Iris launcher, Gazebo, ArduPlane, and MAVProxy processes; unrelated port owners
+remain untouched and cause a clear error. Useful overrides:
+
+```bash
+HEADLESS=true ./scripts/start_quadtailsitter.sh
+BUILD=false WIPE=false MAVLINK_UDP_PORT=14555 ./scripts/start_quadtailsitter.sh
+HEADLESS=true BUILD=false RUN_VALIDATION=true ./scripts/start_quadtailsitter.sh
+```
+
+`RUN_VALIDATION=true` performs a normal pre-arm, vertical takeoff and hover,
+forward transition, sustained FBWA flight, back transition, QLOITER hover,
+QLAND, and automatic disarm. Evidence is written under
+`log/quadtailsitter/<UTC timestamp>/validation.json` and is intentionally
+ignored by Git.
+
+For manual flight from a MAVLink GCS, take off in `GUIDED`/`QLOITER`, switch to
+`FBWA` with throttle near 65% for the forward transition, and switch back to
+`QLOITER` for the vertical transition. Expect the model to gain altitude while
+decelerating in the current conservative back-transition tune.
+
+The model profile enables `Q_ACRO_RY_SWAP=1`. This ArduPlane parameter is
+visible and editable in Mission Planner. It affects QACRO only: the transmitter
+roll stick commands physical yaw in tailsitter hover, while the yaw/rudder
+stick commands physical roll. Set it to `0` to restore ArduPlane's standard
+QACRO pilot convention. Its focused live check is:
+
+```bash
+python3 scripts/validate_quadtailsitter_qacro_swap.py
+```
+
+Port provenance and deliberately changed tags are in
+`models/quadtailsitter/PX4_SOURCE.md`. The ArduPilot frame conversion and
+motor mapping are explicit in
+`models/quadtailsitter_with_ardupilot/model.sdf`; the model-specific tune is
+in `config/gazebo-quadtailsitter.parm`.
+
+### Stock Iris tailsitter swap fixture
+
+The control-only fixture below converts the standard Iris into a tailsitter
+aircraft frame without changing the Iris motor, rotor, blade-lift, drag, or
+body physics:
+
+```bash
+./scripts/start_iris_tailsitter_swap_test.sh
+python3 scripts/validate_iris_tailsitter_swap_inputs.py
+```
+
+The first command is run from the union-workspace root and starts Gazebo with
+GUI unless `HEADLESS=true`. It generates the wrapper and world under
+`build/iris-tailsitter-fixture/`, routes ArduPlane QuadPlane outputs
+SERVO5-SERVO8 to the four stock Iris motors, and exposes MAVLink at UDP 14550.
+The red vertical mast is the ArduPlane aircraft-forward axis.
+
+The validator compares `Q_ACRO_RY_SWAP=0` and `1` for both
+`RC_CHANNELS_OVERRIDE` and QGroundControl's `MANUAL_CONTROL` message path,
+verifies the received RC1/RC4 values and measured body-axis response, then
+performs QLAND and disarm. The fixture default and post-test value are `0`.
+`SYSID_MYGCS` must match the joystick sender; QGroundControl normally uses
+system ID 255. Remember that QGC labels aircraft body axes: for a vertical
+tailsitter, body roll is physical yaw and body yaw is physical roll.
+
 ### 1. Iris quad-copter
 
 #### Run Gazebo

@@ -70,7 +70,7 @@
         </material>
       </visual>
 
-      <!-- Spray particle emitter — purple mist.
+      <!-- Spray particle emitter — white mist.
            gz-rendering fires along the emitter node's local +X (Ogre UNIT_X).
            Link is already rotated Rx(180°); add Ry(−90°) to the emitter so
            that Rx(180°)·Ry(−90°)·(1,0,0) = (0,0,−1) = world −Z (down). -->
@@ -93,9 +93,9 @@
         <!-- Start off — plugin enables this when spraying begins -->
         <emitting>false</emitting>
         <material>
-          <diffuse>0.55 0.0 0.85 0.75</diffuse>
-          <ambient>0.55 0.0 0.85 0.75</ambient>
-          <emissive>0.2 0.0 0.3 0.4</emissive>
+          <diffuse>1 1 1 0.75</diffuse>
+          <ambient>1 1 1 0.75</ambient>
+          <emissive>0.3 0.3 0.3 0.4</emissive>
         </material>
       </particle_emitter>
     </link>
@@ -153,9 +153,9 @@
         <scale_rate>0.8</scale_rate>
         <emitting>false</emitting>
         <material>
-          <diffuse>0.55 0.0 0.85 0.75</diffuse>
-          <ambient>0.55 0.0 0.85 0.75</ambient>
-          <emissive>0.2 0.0 0.3 0.4</emissive>
+          <diffuse>1 1 1 0.75</diffuse>
+          <ambient>1 1 1 0.75</ambient>
+          <emissive>0.3 0.3 0.3 0.4</emissive>
         </material>
       </particle_emitter>
     </link>

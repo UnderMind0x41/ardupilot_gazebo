@@ -19,12 +19,14 @@
 #include <rapidjson/stringbuffer.h>
 #include <rapidjson/writer.h>
 
+#include <gz/msgs/actuators.pb.h>
 #include <gz/msgs/imu.pb.h>
 #include <gz/msgs/laserscan.pb.h>
 
 #include <algorithm>
 #include <chrono>
 #include <functional>
+#include <map>
 #include <memory>
 #include <mutex>
 #include <string>
@@ -111,6 +113,7 @@ class Control
   ///   POSITION control position of joint
   ///   EFFORT control effort of joint
   ///   COMMAND control sends command to topic
+  ///   ACTUATOR appends velocity to a grouped gz.msgs.Actuators topic
   public: std::string type;
 
   /// \brief Use force controller
@@ -121,6 +124,9 @@ class Control
 
   /// \brief The name of the topic to forward this command
   public: std::string cmdTopic;
+
+  /// \brief Velocity-vector index for ACTUATOR controls
+  public: int actuatorIndex = -1;
 
   /// \brief The joint being controlled
   public: gz::sim::Entity joint;
@@ -213,6 +219,9 @@ class gz::sim::systems::ArduPilotPluginPrivate
 
   /// \brief Array of controllers
   public: std::vector<Control> controls;
+
+  /// \brief Publishers for grouped gz.msgs.Actuators motor commands
+  public: std::map<std::string, gz::transport::Node::Publisher> actuatorPubs;
 
   /// \brief keep track of controller update sim-time.
   public: std::chrono::steady_clock::duration lastControllerUpdateTime{0};
@@ -599,12 +608,13 @@ void gz::sim::systems::ArduPilotPlugin::LoadControlChannels(
     if (control.type != "VELOCITY" &&
         control.type != "POSITION" &&
         control.type != "EFFORT" &&
-        control.type != "COMMAND")
+        control.type != "COMMAND" &&
+        control.type != "ACTUATOR")
     {
       gzwarn << "[" << this->dataPtr->modelName << "] "
              << "Control type [" << control.type
              << "] not recognized, must be one of"
-             << "VELOCITY, POSITION, EFFORT, COMMAND."
+             << "VELOCITY, POSITION, EFFORT, COMMAND, ACTUATOR."
              << " default to VELOCITY.\n";
       control.type = "VELOCITY";
     }
@@ -614,7 +624,39 @@ void gz::sim::systems::ArduPilotPlugin::LoadControlChannels(
       control.useForce = controlSDF->Get<bool>("useForce");
     }
 
-    if (controlSDF->HasElement("jointName"))
+    if (control.type == "ACTUATOR")
+    {
+      if (!controlSDF->HasElement("cmd_topic") ||
+          !controlSDF->HasElement("actuator_index"))
+      {
+        gzerr << "[" << this->dataPtr->modelName << "] "
+              << "ACTUATOR control requires <cmd_topic> and "
+              << "<actuator_index>. This plugin will not run.\n";
+        return;
+      }
+
+      control.cmdTopic = controlSDF->Get<std::string>("cmd_topic");
+      control.actuatorIndex = controlSDF->Get<int>("actuator_index");
+      if (control.actuatorIndex < 0)
+      {
+        gzerr << "[" << this->dataPtr->modelName << "] "
+              << "ACTUATOR control index must be non-negative. "
+              << "This plugin will not run.\n";
+        return;
+      }
+
+      if (this->dataPtr->actuatorPubs.count(control.cmdTopic) == 0)
+      {
+        gzmsg << "[" << this->dataPtr->modelName << "] "
+              << "Advertising actuator velocities on "
+              << control.cmdTopic << ".\n";
+        this->dataPtr->actuatorPubs.emplace(
+            control.cmdTopic,
+            this->dataPtr->node.Advertise<msgs::Actuators>(
+                control.cmdTopic));
+      }
+    }
+    else if (controlSDF->HasElement("jointName"))
     {
       control.jointName = controlSDF->Get<std::string>("jointName");
     }
@@ -625,15 +667,18 @@ void gz::sim::systems::ArduPilotPlugin::LoadControlChannels(
             << " where the control channel is attached.\n";
     }
 
-    // Get the pointer to the joint.
-    control.joint = JointByName(_ecm,
-        this->dataPtr->model.Entity(), control.jointName);
-    if (control.joint == gz::sim::kNullEntity)
+    // Get the pointer to the joint for joint-based controls.
+    if (control.type != "ACTUATOR")
     {
-      gzerr << "[" << this->dataPtr->modelName << "] "
-            << "Couldn't find specified joint ["
-            << control.jointName << "]. This plugin will not run.\n";
-      return;
+      control.joint = JointByName(_ecm,
+          this->dataPtr->model.Entity(), control.jointName);
+      if (control.joint == gz::sim::kNullEntity)
+      {
+        gzerr << "[" << this->dataPtr->modelName << "] "
+              << "Couldn't find specified joint ["
+              << control.jointName << "]. This plugin will not run.\n";
+        return;
+      }
     }
 
     // set up publisher if relaying the command
@@ -1315,9 +1360,45 @@ void gz::sim::systems::ArduPilotPlugin::ApplyMotorForces(
     const double _dt,
     gz::sim::EntityComponentManager &_ecm)
 {
+  std::map<std::string, msgs::Actuators> actuatorMsgs;
+
+  // Assemble complete vectors first. Publishing one vector per update keeps
+  // Gazebo's stock MulticopterMotorModel synchronized across all motors and
+  // ensures a missing/disarmed ArduPilot output actively commands zero.
+  for (const auto &control : this->dataPtr->controls)
+  {
+    if (control.type != "ACTUATOR")
+    {
+      continue;
+    }
+
+    auto &msg = actuatorMsgs[control.cmdTopic];
+    while (msg.velocity_size() <= control.actuatorIndex)
+    {
+      msg.add_velocity(0.0);
+    }
+    msg.set_velocity(
+        control.actuatorIndex,
+        control.outputReady ? control.cmd : 0.0);
+  }
+
+  for (const auto &entry : actuatorMsgs)
+  {
+    const auto pub = this->dataPtr->actuatorPubs.find(entry.first);
+    if (pub != this->dataPtr->actuatorPubs.end())
+    {
+      pub->second.Publish(entry.second);
+    }
+  }
+
   // update velocity PID for controls and apply force to joint
   for (size_t i = 0; i < this->dataPtr->controls.size(); ++i)
   {
+    if (this->dataPtr->controls[i].type == "ACTUATOR")
+    {
+      continue;
+    }
+
     // skip servo output while not ready
     if (!this->dataPtr->controls[i].outputReady)
     {
