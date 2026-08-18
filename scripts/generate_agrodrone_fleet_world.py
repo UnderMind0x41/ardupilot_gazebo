@@ -6,7 +6,9 @@ from __future__ import annotations
 import argparse
 import re
 import shutil
+import struct
 import xml.etree.ElementTree as ET
+import zlib
 from pathlib import Path
 
 
@@ -29,6 +31,31 @@ DRONE_SPAWN_Z_M = (
     - DRONE_LANDING_GEAR_LOWEST_Z_M
     + DRONE_SPAWN_CLEARANCE_M
 )
+APRILTAG_TEXTURE_SIZE_PX = 1024
+APRILTAG_CELL_SIZE_PX = 90
+APRILTAG_MARGIN_PX = 152
+APRILTAG_36H11_GRIDS = {
+    3: (
+        "########",
+        "####..##",
+        "##.##..#",
+        "#.##.#.#",
+        "#...##.#",
+        "#...####",
+        "#.##...#",
+        "########",
+    ),
+    4: (
+        "########",
+        "##.###.#",
+        "######.#",
+        "##.#.###",
+        "#....#.#",
+        "###....#",
+        "##.#...#",
+        "########",
+    ),
+}
 
 
 def _parse_args() -> argparse.Namespace:
@@ -36,7 +63,7 @@ def _parse_args() -> argparse.Namespace:
         description="Generate an Agrodrone Gazebo fleet world for one to four drones."
     )
     parser.add_argument("--num-drones", type=int, choices=range(1, 5), required=True)
-    parser.add_argument("--num-bases", type=int, choices=range(1, 3), default=2)
+    parser.add_argument("--num-bases", type=int, choices=range(1, 5), default=2)
     parser.add_argument("--world-name", default="iris_minimal_two_bases")
     parser.add_argument("--template-world", type=Path, required=True)
     parser.add_argument("--source-models-dir", type=Path, required=True)
@@ -119,6 +146,84 @@ def _write_if_changed(path: Path, content: str) -> None:
     if path.exists() and path.read_text(encoding="utf-8") == content:
         return
     path.write_text(content, encoding="utf-8")
+
+
+def _write_bytes_if_changed(path: Path, content: bytes) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists() and path.read_bytes() == content:
+        return
+    path.write_bytes(content)
+
+
+def _png_chunk(chunk_type: bytes, content: bytes) -> bytes:
+    checksum = zlib.crc32(chunk_type)
+    checksum = zlib.crc32(content, checksum)
+    return (
+        struct.pack(">I", len(content))
+        + chunk_type
+        + content
+        + struct.pack(">I", checksum & 0xFFFFFFFF)
+    )
+
+
+def _render_apriltag_texture(tag_id: int) -> bytes:
+    """Render the bounded generated 36h11 tags without an image dependency."""
+
+    grid = APRILTAG_36H11_GRIDS.get(tag_id)
+    if grid is None:
+        raise ValueError(f"no generated AprilTag 36h11 grid for id {tag_id}")
+    size = APRILTAG_TEXTURE_SIZE_PX
+    pixels = bytearray([255]) * (size * size)
+    for row_index, row in enumerate(grid):
+        if len(row) != 8 or any(cell not in {"#", "."} for cell in row):
+            raise ValueError(f"invalid AprilTag grid for id {tag_id}")
+        y_start = APRILTAG_MARGIN_PX + row_index * APRILTAG_CELL_SIZE_PX
+        for column_index, cell in enumerate(row):
+            if cell != "#":
+                continue
+            x_start = APRILTAG_MARGIN_PX + column_index * APRILTAG_CELL_SIZE_PX
+            black_row = bytes(APRILTAG_CELL_SIZE_PX)
+            for y in range(y_start, y_start + APRILTAG_CELL_SIZE_PX):
+                offset = y * size + x_start
+                pixels[offset : offset + APRILTAG_CELL_SIZE_PX] = black_row
+    scanlines = b"".join(
+        b"\x00" + pixels[row * size : (row + 1) * size]
+        for row in range(size)
+    )
+    header = struct.pack(">IIBBBBB", size, size, 8, 0, 0, 0, 0)
+    return (
+        b"\x89PNG\r\n\x1a\n"
+        + _png_chunk(b"IHDR", header)
+        + _png_chunk(b"IDAT", zlib.compress(scanlines, level=9))
+        + _png_chunk(b"IEND", b"")
+    )
+
+
+def _generate_apriltag_variant(
+    *,
+    tag_id: int,
+    source_models_dir: Path,
+    generated_models_dir: Path,
+) -> None:
+    model_name = f"apriltag_36h11_{tag_id}"
+    source_name = "apriltag_36h11_1"
+    source = source_models_dir / source_name / "model.sdf"
+    text = source.read_text(encoding="utf-8").replace(source_name, model_name)
+    text = text.replace("tag36h11_1", f"tag36h11_{tag_id}")
+
+    target_dir = generated_models_dir / model_name
+    _write_if_changed(target_dir / "model.sdf", text)
+    _write_if_changed(
+        target_dir / "model.config",
+        _generated_model_config(
+            model_name,
+            f"Generated AprilTag 36h11 ID {tag_id} visual target.",
+        ),
+    )
+    _write_bytes_if_changed(
+        target_dir / "materials" / "textures" / f"tag36h11_{tag_id}.png",
+        _render_apriltag_texture(tag_id),
+    )
 
 
 def _remove_generated_model_override(generated_models_dir: Path, name: str) -> None:
@@ -395,7 +500,7 @@ def _generate_world(args: argparse.Namespace) -> Path:
         )
         world.append(_include(f"model://{model_name}", pose, name=model_name, degrees=True))
 
-    world.append(ET.Comment(" Two lightweight stationary landing bases "))
+    world.append(ET.Comment(" Generated lightweight stationary landing bases "))
     for base_number in range(1, args.num_bases + 1):
         base_name = _stationary_base_model_name(base_number)
         base_pose = f"{_fmt(_pad_x(base_number))} {_fmt(BASE_Y_M)} 0 0 0 0"
@@ -419,10 +524,22 @@ def main() -> None:
         _remove_generated_model_override(args.generated_models_dir, _drone_model_name(drone_number))
         _remove_generated_model_override(args.generated_models_dir, _gimbal_model_name(drone_number))
 
-    for base_number in range(args.num_bases + 1, 3):
+    for base_number in range(args.num_bases + 1, 5):
         _remove_generated_model_override(
             args.generated_models_dir,
             _stationary_base_model_name(base_number),
+        )
+        if base_number >= 3:
+            _remove_generated_model_override(
+                args.generated_models_dir,
+                f"apriltag_36h11_{base_number}",
+            )
+
+    for base_number in range(3, args.num_bases + 1):
+        _generate_apriltag_variant(
+            tag_id=base_number,
+            source_models_dir=args.source_models_dir,
+            generated_models_dir=args.generated_models_dir,
         )
 
     for base_number in range(1, args.num_bases + 1):

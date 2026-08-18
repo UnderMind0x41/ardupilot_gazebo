@@ -142,7 +142,13 @@ class SprayerModelConfigTests(unittest.TestCase):
         generator = _load_world_generator()
         with tempfile.TemporaryDirectory() as tmp:
             generated_models_dir = Path(tmp)
-            for base_number in (1, 2):
+            for base_number in (1, 2, 3, 4):
+                if base_number >= 3:
+                    generator._generate_apriltag_variant(
+                        tag_id=base_number,
+                        source_models_dir=SOURCE_MODELS_DIR,
+                        generated_models_dir=generated_models_dir,
+                    )
                 generator._generate_stationary_base_variant(
                     base_number=base_number,
                     source_models_dir=SOURCE_MODELS_DIR,
@@ -161,6 +167,20 @@ class SprayerModelConfigTests(unittest.TestCase):
                 self.assertEqual(model.findtext("include/uri"), f"model://apriltag_36h11_{base_number}")
                 self.assertEqual(len(model.findall("link")), 1)
                 self.assertIsNotNone(model.find("link/sensor[@type='navsat']"))
+                if base_number >= 3:
+                    tag_dir = generated_models_dir / f"apriltag_36h11_{base_number}"
+                    tag_root = ET.parse(tag_dir / "model.sdf").getroot()
+                    self.assertEqual(
+                        tag_root.find("model").get("name"),
+                        f"apriltag_36h11_{base_number}",
+                    )
+                    texture = (
+                        tag_dir
+                        / "materials"
+                        / "textures"
+                        / f"tag36h11_{base_number}.png"
+                    ).read_bytes()
+                    self.assertTrue(texture.startswith(b"\x89PNG\r\n\x1a\n"))
 
     def test_minimal_world_contains_only_required_fleet_assets(self) -> None:
         generator = _load_world_generator()
@@ -178,8 +198,8 @@ class SprayerModelConfigTests(unittest.TestCase):
                     disable_camera_sensors=False,
                     disable_gpu_lidar_sensors=False,
                     minimal_scenery=False,
-                    num_drones=2,
-                    num_bases=2,
+                    num_drones=4,
+                    num_bases=4,
                     generated_worlds_dir=output_dir,
                 )
             )
@@ -196,8 +216,12 @@ class SprayerModelConfigTests(unittest.TestCase):
                 [
                     "iris_with_sprayer",
                     "iris_with_sprayer_2",
+                    "iris_with_sprayer_3",
+                    "iris_with_sprayer_4",
                     "stationary_landing_base_1",
                     "stationary_landing_base_2",
+                    "stationary_landing_base_3",
+                    "stationary_landing_base_4",
                 ],
             )
             self.assertNotIn("landing_truck", text)
@@ -207,6 +231,10 @@ class SprayerModelConfigTests(unittest.TestCase):
             self.assertEqual(world.findtext("physics/max_step_size"), "0.004")
             self.assertEqual(poses["iris_with_sprayer"], "-1 -30 0.281 0 0 90")
             self.assertEqual(poses["iris_with_sprayer_2"], "-8.8 -30 0.281 0 0 90")
+            self.assertEqual(poses["iris_with_sprayer_3"], "-16.6 -30 0.281 0 0 90")
+            self.assertEqual(poses["iris_with_sprayer_4"], "-24.4 -30 0.281 0 0 90")
+            self.assertEqual(poses["stationary_landing_base_3"], "-16.6 -30 0 0 0 0")
+            self.assertEqual(poses["stationary_landing_base_4"], "-24.4 -30 0 0 0 0")
 
 
 if __name__ == "__main__":
